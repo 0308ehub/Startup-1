@@ -4,30 +4,35 @@ import { getSupabaseBrowser } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 function SignInForm() {
     const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [message, setMessage] = useState("");
     const searchParams = useSearchParams();
+    const router = useRouter();
     const redirectTo = searchParams.get('redirectTo') || '/dashboard';
 
-    async function sendMagicLink() {
+    async function signInWithEmail() {
         setIsLoading(true);
         setMessage("");
         const supabase = getSupabaseBrowser();
-        const { error } = await supabase.auth.signInWithOtp({ 
-            email, 
-            options: { emailRedirectTo: `${window.location.origin}${redirectTo}` } 
+        
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
         });
+        
         if (error) {
             setMessage(`Error: ${error.message}`);
-        } else {
-            setMessage("Check your email for the magic link!");
+            setIsLoading(false);
+        } else if (data.user) {
+            // Successful sign in - redirect to the intended page
+            router.push(redirectTo);
         }
-        setIsLoading(false);
     }
 
     async function signInWithGoogle() {
@@ -72,21 +77,34 @@ function SignInForm() {
                         </div>
 
                         <div className="space-y-3">
-                            <Input
-                                className="w-full"
-                                placeholder="you@example.com"
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                disabled={isLoading}
-                            />
+                            <div>
+                                <label className="text-sm font-medium text-slate-700">Email</label>
+                                <Input
+                                    className="w-full"
+                                    placeholder="you@example.com"
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    disabled={isLoading}
+                                />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium text-slate-700">Password</label>
+                                <Input
+                                    className="w-full"
+                                    placeholder="••••••••"
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    disabled={isLoading}
+                                />
+                            </div>
                             <Button 
-                                variant="secondary" 
                                 className="w-full" 
-                                onClick={sendMagicLink}
-                                disabled={isLoading || !email}
+                                onClick={signInWithEmail}
+                                disabled={isLoading || !email || !password}
                             >
-                                {isLoading ? "Sending..." : "Send magic link"}
+                                {isLoading ? "Signing in..." : "Sign in with Email"}
                             </Button>
                         </div>
 

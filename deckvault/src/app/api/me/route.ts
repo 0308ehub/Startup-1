@@ -5,16 +5,21 @@ export async function GET() {
 	const { data } = await supabase.auth.getUser();
 	if (!data.user) return new Response("Unauthorized", { status: 401 });
 	
-	// Return user data from Supabase auth
-	return Response.json({
-		id: data.user.id,
-		email: data.user.email,
-		username: data.user.user_metadata?.username,
-		imageUrl: data.user.user_metadata?.avatar_url,
-		region: data.user.user_metadata?.region,
-		createdAt: data.user.created_at,
-		updatedAt: data.user.updated_at,
-	});
+	// Get user profile from profiles table
+	const { data: profile, error } = await supabase
+		.from('profiles')
+		.select('*')
+		.eq('id', data.user.id)
+		.single();
+	
+	if (error) {
+		return new Response(JSON.stringify({ error: error.message }), { 
+			status: 500,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	}
+	
+	return Response.json(profile);
 }
 
 export async function PATCH(req: Request) {
@@ -24,13 +29,17 @@ export async function PATCH(req: Request) {
 	
 	const body = await req.json();
 	
-	// Update user metadata in Supabase
-	const { data: updateData, error } = await supabase.auth.updateUser({
-		data: {
+	// Update user profile in profiles table
+	const { data: updateData, error } = await supabase
+		.from('profiles')
+		.update({
 			username: body.username,
 			region: body.region,
-		}
-	});
+			updated_at: new Date().toISOString()
+		})
+		.eq('id', data.user.id)
+		.select()
+		.single();
 	
 	if (error) {
 		return new Response(JSON.stringify({ error: error.message }), { 
@@ -39,15 +48,7 @@ export async function PATCH(req: Request) {
 		});
 	}
 	
-	return Response.json({
-		id: updateData.user?.id,
-		email: updateData.user?.email,
-		username: updateData.user?.user_metadata?.username,
-		imageUrl: updateData.user?.user_metadata?.avatar_url,
-		region: updateData.user?.user_metadata?.region,
-		createdAt: updateData.user?.created_at,
-		updatedAt: updateData.user?.updated_at,
-	});
+	return Response.json(updateData);
 }
 
 

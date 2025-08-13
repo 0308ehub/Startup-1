@@ -4,8 +4,19 @@ import { createSupabaseServer } from "@/lib/supabase/server";
 
 export default async function Navbar() {
 	const supabase = await createSupabaseServer();
-	const { data } = await supabase.auth.getUser();
-	const displayName = data.user?.user_metadata?.username || data.user?.email;
+	const { data: { user } } = await supabase.auth.getUser();
+	
+	let displayName = null;
+	if (user) {
+		// Try to get username from profiles table first
+		const { data: profile } = await supabase
+			.from('profiles')
+			.select('username')
+			.eq('id', user.id)
+			.single();
+			
+		displayName = profile?.username || user.user_metadata?.username || user.email;
+	}
 
 	return (
 		<header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">

@@ -4,7 +4,7 @@ import { getSupabaseBrowser } from "@/lib/supabase/browser";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 
 function SignUpForm() {
@@ -14,26 +14,65 @@ function SignUpForm() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const searchParams = useSearchParams();
+    const router = useRouter();
     const redirectTo = searchParams.get('redirectTo') || '/dashboard';
 
     async function signUp() {
         setLoading(true);
         setMessage("");
         const supabase = getSupabaseBrowser();
+        
+        // First, check if username is already taken
+        const { data: existingUser } = await supabase
+            .from('profiles')
+            .select('username')
+            .eq('username', username)
+            .single();
+            
+        if (existingUser) {
+            setMessage("Error: Username is already taken. Please choose a different username.");
+            setLoading(false);
+            return;
+        }
+
+        // Create the user account
         const { data, error } = await supabase.auth.signUp({
             email,
             password,
             options: { 
-                data: { username },
-                emailRedirectTo: `${window.location.origin}${redirectTo}`
+                data: { username }
             },
         });
-        setLoading(false);
+        
         if (error) {
             setMessage(`Error: ${error.message}`);
+            setLoading(false);
         } else if (data.user) {
-            setMessage("Account created! Please check your email to verify your account.");
+            // Create user profile in the profiles table
+            const { error: profileError } = await supabase
+                .from('profiles')
+                .insert([
+                    {
+                        id: data.user.id,
+                        username: username,
+                        email: email,
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    }
+                ]);
+                
+            if (profileError) {
+                setMessage(`Error creating profile: ${profileError.message}`);
+                setLoading(false);
+            } else {
+                setMessage("Account created successfully! You can now sign in with your email and password.");
+                // Redirect to sign-in page after a short delay
+                setTimeout(() => {
+                    router.push('/sign-in');
+                }, 2000);
+            }
         }
+        setLoading(false);
     }
 
     return (
