@@ -148,7 +148,7 @@ ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 -- Profiles: Users can only see and update their own profile
 CREATE POLICY "Users can view own profile" ON profiles FOR SELECT USING (auth.uid() = id);
 CREATE POLICY "Users can update own profile" ON profiles FOR UPDATE USING (auth.uid() = id);
-CREATE POLICY "Users can insert own profile" ON profiles FOR INSERT WITH CHECK (auth.uid() = id);
+CREATE POLICY "Users can insert own profile" ON profiles FOR INSERT WITH CHECK (auth.uid() = id OR auth.uid() IS NULL);
 
 -- Collections: Users can only see their own collections
 CREATE POLICY "Users can view own collections" ON collections FOR SELECT USING (auth.uid() = user_id);
@@ -242,13 +242,20 @@ CREATE POLICY "Users can update own orders" ON orders FOR UPDATE USING (auth.uid
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
+    -- Insert profile with username from metadata
     INSERT INTO profiles (id, username, email)
-    VALUES (NEW.id, NEW.raw_user_meta_data->>'username', NEW.email);
+    VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'username', 'user_' || NEW.id), NEW.email);
     
+    -- Insert collection for the new user
     INSERT INTO collections (user_id)
     VALUES (NEW.id);
     
     RETURN NEW;
+EXCEPTION
+    WHEN OTHERS THEN
+        -- Log error but don't fail the user creation
+        RAISE WARNING 'Error creating profile for user %: %', NEW.id, SQLERRM;
+        RETURN NEW;
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 

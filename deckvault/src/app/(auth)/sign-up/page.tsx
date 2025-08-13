@@ -22,19 +22,6 @@ function SignUpForm() {
         setMessage("");
         const supabase = getSupabaseBrowser();
         
-        // First, check if username is already taken
-        const { data: existingUser } = await supabase
-            .from('profiles')
-            .select('username')
-            .eq('username', username)
-            .single();
-            
-        if (existingUser) {
-            setMessage("Error: Username is already taken. Please choose a different username.");
-            setLoading(false);
-            return;
-        }
-
         // Create the user account
         const { data, error } = await supabase.auth.signUp({
             email,
@@ -48,29 +35,11 @@ function SignUpForm() {
             setMessage(`Error: ${error.message}`);
             setLoading(false);
         } else if (data.user) {
-            // Create user profile in the profiles table
-            const { error: profileError } = await supabase
-                .from('profiles')
-                .insert([
-                    {
-                        id: data.user.id,
-                        username: username,
-                        email: email,
-                        created_at: new Date().toISOString(),
-                        updated_at: new Date().toISOString()
-                    }
-                ]);
-                
-            if (profileError) {
-                setMessage(`Error creating profile: ${profileError.message}`);
-                setLoading(false);
-            } else {
-                setMessage("Account created successfully! You can now sign in with your email and password.");
-                // Redirect to sign-in page after a short delay
-                setTimeout(() => {
-                    router.push('/sign-in');
-                }, 2000);
-            }
+            setMessage("Account created successfully! You can now sign in with your email and password.");
+            // Redirect to sign-in page after a short delay
+            setTimeout(() => {
+                router.push('/sign-in');
+            }, 2000);
         }
         setLoading(false);
     }
