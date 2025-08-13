@@ -1,16 +1,38 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/Button";
+import { Card, CardContent } from "@/components/ui/Card";
 
 export default function Home() {
 	return (
-		<div className="min-h-screen flex items-center justify-center p-8">
-			<div className="space-y-4 text-center">
-				<h1 className="text-3xl font-bold">DeckVault</h1>
-				<p className="text-gray-600">Yu-Gi-Oh! Portfolio, Deck Builder, Tester, and Marketplace</p>
+		<div className="space-y-10">
+			<section className="text-center space-y-4 py-10">
+				<h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Build. Test. Trade. Track.</h1>
+				<p className="text-slate-600 max-w-2xl mx-auto">DeckVault is your Yu-Gi-Oh! command center — a fast catalog, clean deck builder, goldfish simulator, and a simple marketplace.</p>
 				<div className="flex gap-3 justify-center">
-					<Link href="/sign-in" className="border rounded px-4 py-2">Sign in</Link>
-					<Link href="/dashboard" className="border rounded px-4 py-2">Go to dashboard</Link>
+					<Link href="/catalog"><Button variant="secondary">Browse Catalog</Button></Link>
+					<Link href="/dashboard"><Button>Open Dashboard</Button></Link>
 				</div>
-			</div>
+			</section>
+			<section className="grid md:grid-cols-3 gap-6">
+				<Card>
+					<CardContent className="p-6 space-y-2">
+						<h3 className="font-semibold">Portfolio</h3>
+						<p className="text-sm text-slate-600">Track value and P/L with auto-refreshed prices.</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardContent className="p-6 space-y-2">
+						<h3 className="font-semibold">Deck Builder</h3>
+						<p className="text-sm text-slate-600">MVP legality checks and clean editing UI.</p>
+					</CardContent>
+				</Card>
+				<Card>
+					<CardContent className="p-6 space-y-2">
+						<h3 className="font-semibold">Simulator</h3>
+						<p className="text-sm text-slate-600">Seedable draws and combo probabilities.</p>
+					</CardContent>
+				</Card>
+			</section>
 		</div>
 	);
 }
