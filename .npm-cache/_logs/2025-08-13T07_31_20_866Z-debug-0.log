@@ -1,0 +1,1185 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.2.4
+2 info using node@v20.11.0
+3 timing npm:load:whichnode Completed in 0ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 0ms
+6 timing config:load:builtin Completed in 0ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 1ms
+9 timing config:load:file:/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 0ms
+11 timing config:load:file:/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000 Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 0ms
+16 timing config:load Completed in 3ms
+17 timing npm:load:configload Completed in 3ms
+18 timing config:load:flatten Completed in 1ms
+19 timing npm:load:mkdirpcache Completed in 0ms
+20 timing npm:load:mkdirplogs Completed in 0ms
+21 verbose title npm install @prisma/cli-init@latest
+22 verbose argv "install" "@prisma/cli-init@latest" "--no-save" "--prefix" "/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000" "--userconfig" "/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000" "--loglevel" "error"
+23 timing npm:load:setTitle Completed in 5ms
+24 timing npm:load:display Completed in 0ms
+25 verbose logfile logs-max:10 dir:/Users/alanwei/Startup-1/.npm-cache/_logs/2025-08-13T07_31_20_866Z-
+26 verbose logfile /Users/alanwei/Startup-1/.npm-cache/_logs/2025-08-13T07_31_20_866Z-debug-0.log
+27 timing npm:load:logFile Completed in 4ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 18ms
+31 timing config:load:flatten Completed in 0ms
+32 timing arborist:ctor Completed in 0ms
+33 silly logfile done cleaning log files
+34 timing arborist:ctor Completed in 0ms
+35 timing idealTree:init Completed in 7ms
+36 http fetch GET 200 https://registry.npmjs.org/@prisma%2fcli-init 191ms (cache miss)
+37 timing idealTree:userRequests Completed in 196ms
+38 silly idealTree buildDeps
+39 silly fetch manifest @prisma/cli-init@0.4.1
+40 silly placeDep ROOT @prisma/cli-init@0.4.1 OK for:  want: 0.4.1
+41 silly fetch manifest arg@5.0.2
+42 silly fetch manifest ora@8.2.0
+43 silly fetch manifest open@7.4.2
+44 silly fetch manifest kleur@4.1.5
+45 silly fetch manifest dotenv@16.5.0
+46 silly fetch manifest effect@3.12.10
+47 silly fetch manifest fs-extra@11.3.0
+48 silly fetch manifest node-fetch@3.3.2
+49 silly fetch manifest ts-pattern@5.6.2
+50 silly fetch manifest async-listen@3.1.0
+51 silly fetch manifest get-tsconfig@4.10.0
+52 silly fetch manifest @prisma/debug@6.7.0
+53 silly fetch manifest xdg-app-paths@8.3.0
+54 silly fetch manifest @prisma/config@6.7.0
+55 silly fetch manifest @inquirer/prompts@7.3.3
+56 silly fetch manifest @prisma/generator@6.7.0
+57 silly fetch manifest @prisma/internals@6.7.0
+58 silly fetch manifest checkpoint-client@1.1.33
+59 http fetch GET 200 https://registry.npmjs.org/effect 23ms (cache hit)
+60 http fetch GET 200 https://registry.npmjs.org/get-tsconfig 22ms (cache hit)
+61 http fetch GET 200 https://registry.npmjs.org/dotenv 24ms (cache hit)
+62 http fetch GET 200 https://registry.npmjs.org/@prisma%2fconfig 26ms (cache hit)
+63 http fetch GET 200 https://registry.npmjs.org/@prisma%2fdebug 45ms (cache hit)
+64 http fetch GET 200 https://registry.npmjs.org/arg 102ms (cache miss)
+65 http fetch GET 200 https://registry.npmjs.org/async-listen 147ms (cache miss)
+66 http fetch GET 200 https://registry.npmjs.org/checkpoint-client 149ms (cache miss)
+67 http fetch GET 200 https://registry.npmjs.org/open 158ms (cache miss)
+68 http fetch GET 200 https://registry.npmjs.org/ora 162ms (cache miss)
+69 http fetch GET 200 https://registry.npmjs.org/xdg-app-paths 163ms (cache miss)
+70 http fetch GET 200 https://registry.npmjs.org/node-fetch 184ms (cache miss)
+71 http fetch GET 200 https://registry.npmjs.org/ts-pattern 197ms (cache miss)
+72 http fetch GET 200 https://registry.npmjs.org/kleur 215ms (cache miss)
+73 http fetch GET 200 https://registry.npmjs.org/fs-extra 214ms (cache miss)
+74 http fetch GET 200 https://registry.npmjs.org/@prisma%2fgenerator 242ms (cache miss)
+75 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fprompts 250ms (cache miss)
+76 http fetch GET 200 https://registry.npmjs.org/@prisma%2finternals 455ms (cache miss)
+77 timing idealTree:#root Completed in 508ms
+78 silly fetch manifest @types/node@>=18
+79 http fetch GET 200 https://registry.npmjs.org/@types%2fnode 9ms (cache hit)
+80 silly fetch manifest typescript@>=5.1.0
+81 http fetch GET 200 https://registry.npmjs.org/typescript 15ms (cache hit)
+82 silly placeDep ROOT @inquirer/prompts@7.3.3 OK for: @prisma/cli-init@0.4.1 want: 7.3.3
+83 silly fetch manifest @inquirer/input@^4.1.7
+84 silly fetch manifest @inquirer/editor@^4.2.8
+85 silly fetch manifest @inquirer/expand@^4.0.10
+86 silly fetch manifest @inquirer/number@^3.0.10
+87 silly fetch manifest @inquirer/search@^3.0.10
+88 silly fetch manifest @inquirer/select@^4.0.10
+89 silly fetch manifest @inquirer/confirm@^5.1.7
+90 silly fetch manifest @inquirer/rawlist@^4.0.10
+91 silly fetch manifest @inquirer/checkbox@^4.1.3
+92 silly fetch manifest @inquirer/password@^4.0.10
+93 silly placeDep ROOT @prisma/config@6.7.0 OK for: @prisma/cli-init@0.4.1 want: 6.7.0
+94 silly fetch manifest esbuild@>=0.12 <1
+95 silly fetch manifest esbuild-register@3.6.0
+96 silly placeDep ROOT @prisma/debug@6.7.0 OK for: @prisma/cli-init@0.4.1 want: 6.7.0
+97 silly placeDep ROOT @prisma/generator@6.7.0 OK for: @prisma/cli-init@0.4.1 want: 6.7.0
+98 silly placeDep ROOT @prisma/internals@6.7.0 OK for: @prisma/cli-init@0.4.1 want: 6.7.0
+99 silly fetch manifest prompts@2.4.2
+100 silly fetch manifest @prisma/dmmf@6.7.0
+101 silly fetch manifest @prisma/engines@6.7.0
+102 silly fetch manifest @prisma/fetch-engine@6.7.0
+103 silly fetch manifest @prisma/get-platform@6.7.0
+104 silly fetch manifest @prisma/generator-helper@6.7.0
+105 silly fetch manifest @prisma/prisma-schema-wasm@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+106 silly fetch manifest @prisma/schema-engine-wasm@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+107 silly fetch manifest @prisma/schema-files-loader@6.7.0
+108 silly fetch manifest @prisma/driver-adapter-utils@6.7.0
+109 silly placeDep ROOT arg@5.0.2 OK for: @prisma/cli-init@0.4.1 want: 5.0.2
+110 silly placeDep ROOT async-listen@3.1.0 OK for: @prisma/cli-init@0.4.1 want: 3.1.0
+111 silly placeDep ROOT checkpoint-client@1.1.33 OK for: @prisma/cli-init@0.4.1 want: 1.1.33
+112 silly fetch manifest ms@2.1.3
+113 silly fetch manifest uuid@9.0.1
+114 silly fetch manifest ci-info@4.0.0
+115 silly fetch manifest make-dir@4.0.0
+116 silly fetch manifest env-paths@2.2.1
+117 silly fetch manifest node-fetch@2.7.0
+118 silly placeDep ROOT dotenv@16.5.0 OK for: @prisma/cli-init@0.4.1 want: 16.5.0
+119 silly placeDep ROOT effect@3.12.10 OK for: @prisma/cli-init@0.4.1 want: 3.12.10
+120 silly fetch manifest fast-check@^3.23.1
+121 silly placeDep ROOT fs-extra@11.3.0 OK for: @prisma/cli-init@0.4.1 want: 11.3.0
+122 silly fetch manifest jsonfile@^6.0.1
+123 silly fetch manifest graceful-fs@^4.2.0
+124 silly fetch manifest universalify@^2.0.0
+125 silly placeDep ROOT get-tsconfig@4.10.0 OK for: @prisma/cli-init@0.4.1 want: 4.10.0
+126 silly fetch manifest resolve-pkg-maps@^1.0.0
+127 silly placeDep ROOT kleur@4.1.5 OK for: @prisma/cli-init@0.4.1 want: 4.1.5
+128 silly placeDep ROOT node-fetch@3.3.2 OK for: @prisma/cli-init@0.4.1 want: 3.3.2
+129 silly fetch manifest data-uri-to-buffer@^4.0.0
+130 silly fetch manifest fetch-blob@^3.1.4
+131 silly fetch manifest formdata-polyfill@^4.0.10
+132 silly placeDep ROOT open@7.4.2 OK for: @prisma/cli-init@0.4.1 want: 7.4.2
+133 silly fetch manifest is-wsl@^2.1.1
+134 silly fetch manifest is-docker@^2.0.0
+135 silly placeDep ROOT ora@8.2.0 OK for: @prisma/cli-init@0.4.1 want: 8.2.0
+136 silly fetch manifest chalk@^5.3.0
+137 silly fetch manifest cli-cursor@^5.0.0
+138 silly fetch manifest cli-spinners@^2.9.2
+139 silly fetch manifest is-interactive@^2.0.0
+140 silly fetch manifest is-unicode-supported@^2.0.0
+141 silly fetch manifest log-symbols@^6.0.0
+142 silly fetch manifest stdin-discarder@^0.2.2
+143 silly fetch manifest string-width@^7.2.0
+144 silly fetch manifest strip-ansi@^7.1.0
+145 silly placeDep ROOT ts-pattern@5.6.2 OK for: @prisma/cli-init@0.4.1 want: 5.6.2
+146 silly placeDep ROOT xdg-app-paths@8.3.0 OK for: @prisma/cli-init@0.4.1 want: 8.3.0
+147 silly fetch manifest xdg-portable@^10.6.0
+148 silly fetch manifest fsevents@*
+149 http fetch GET 200 https://registry.npmjs.org/esbuild 52ms (cache hit)
+150 http fetch GET 200 https://registry.npmjs.org/fast-check 47ms (cache hit)
+151 http fetch GET 200 https://registry.npmjs.org/graceful-fs 54ms (cache hit)
+152 http fetch GET 200 https://registry.npmjs.org/@prisma%2fengines 70ms (cache hit)
+153 http fetch GET 200 https://registry.npmjs.org/resolve-pkg-maps 84ms (cache hit)
+154 http fetch GET 200 https://registry.npmjs.org/ms 87ms (cache hit)
+155 http fetch GET 200 https://registry.npmjs.org/uuid 87ms (cache hit)
+156 http fetch GET 200 https://registry.npmjs.org/@prisma%2fget-platform 101ms (cache hit)
+157 http fetch GET 200 https://registry.npmjs.org/@prisma%2ffetch-engine 151ms (cache hit)
+158 http fetch GET 200 https://registry.npmjs.org/chalk 199ms (cache hit)
+159 http fetch GET 200 https://registry.npmjs.org/fsevents 219ms (cache hit)
+160 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fnumber 256ms (cache miss)
+161 http fetch GET 200 https://registry.npmjs.org/esbuild-register 255ms (cache miss)
+162 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fsearch 257ms (cache miss)
+163 http fetch GET 200 https://registry.npmjs.org/@inquirer%2frawlist 258ms (cache miss)
+164 http fetch GET 200 https://registry.npmjs.org/@inquirer%2finput 260ms (cache miss)
+165 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fconfirm 260ms (cache miss)
+166 http fetch GET 200 https://registry.npmjs.org/prompts 258ms (cache miss)
+167 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fcheckbox 261ms (cache miss)
+168 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fexpand 264ms (cache miss)
+169 http fetch GET 200 https://registry.npmjs.org/@inquirer%2feditor 265ms (cache miss)
+170 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fselect 264ms (cache miss)
+171 http fetch GET 200 https://registry.npmjs.org/@prisma%2fdmmf 262ms (cache miss)
+172 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fpassword 265ms (cache miss)
+173 http fetch GET 200 https://registry.npmjs.org/universalify 271ms (cache miss)
+174 http fetch GET 200 https://registry.npmjs.org/is-interactive 269ms (cache miss)
+175 http fetch GET 200 https://registry.npmjs.org/jsonfile 286ms (cache miss)
+176 http fetch GET 200 https://registry.npmjs.org/is-docker 282ms (cache miss)
+177 http fetch GET 200 https://registry.npmjs.org/env-paths 289ms (cache miss)
+178 http fetch GET 200 https://registry.npmjs.org/cli-spinners 282ms (cache miss)
+179 http fetch GET 200 https://registry.npmjs.org/is-wsl 284ms (cache miss)
+180 http fetch GET 200 https://registry.npmjs.org/make-dir 290ms (cache miss)
+181 http fetch GET 200 https://registry.npmjs.org/formdata-polyfill 288ms (cache miss)
+182 http fetch GET 200 https://registry.npmjs.org/fetch-blob 291ms (cache miss)
+183 http fetch GET 200 https://registry.npmjs.org/ci-info 297ms (cache miss)
+184 http fetch GET 200 https://registry.npmjs.org/data-uri-to-buffer 299ms (cache miss)
+185 http fetch GET 200 https://registry.npmjs.org/stdin-discarder 297ms (cache miss)
+186 http fetch GET 200 https://registry.npmjs.org/is-unicode-supported 298ms (cache miss)
+187 http fetch GET 200 https://registry.npmjs.org/log-symbols 298ms (cache miss)
+188 http fetch GET 200 https://registry.npmjs.org/cli-cursor 301ms (cache miss)
+189 http fetch GET 200 https://registry.npmjs.org/strip-ansi 300ms (cache miss)
+190 http fetch GET 200 https://registry.npmjs.org/xdg-portable 300ms (cache miss)
+191 http fetch GET 200 https://registry.npmjs.org/@prisma%2fschema-engine-wasm 314ms (cache miss)
+192 http fetch GET 200 https://registry.npmjs.org/string-width 306ms (cache miss)
+193 http fetch GET 200 https://registry.npmjs.org/@prisma%2fschema-files-loader 362ms (cache miss)
+194 http fetch GET 200 https://registry.npmjs.org/@prisma%2fdriver-adapter-utils 372ms (cache miss)
+195 http fetch GET 200 https://registry.npmjs.org/@prisma%2fprisma-schema-wasm 486ms (cache miss)
+196 http fetch GET 200 https://registry.npmjs.org/@prisma%2fgenerator-helper 704ms (cache miss)
+197 timing idealTree:node_modules/@prisma/cli-init Completed in 812ms
+198 silly placeDep ROOT @inquirer/checkbox@4.2.0 OK for: @inquirer/prompts@7.3.3 want: ^4.1.3
+199 silly fetch manifest @inquirer/core@^10.1.15
+200 silly fetch manifest @inquirer/figures@^1.0.13
+201 silly fetch manifest @inquirer/type@^3.0.8
+202 silly fetch manifest ansi-escapes@^4.3.2
+203 silly fetch manifest yoctocolors-cjs@^2.1.2
+204 silly placeDep ROOT @inquirer/confirm@5.1.14 OK for: @inquirer/prompts@7.3.3 want: ^5.1.7
+205 silly placeDep ROOT @inquirer/editor@4.2.16 OK for: @inquirer/prompts@7.3.3 want: ^4.2.8
+206 silly fetch manifest @inquirer/external-editor@^1.0.0
+207 silly placeDep ROOT @inquirer/expand@4.0.17 OK for: @inquirer/prompts@7.3.3 want: ^4.0.10
+208 silly placeDep ROOT @inquirer/input@4.2.1 OK for: @inquirer/prompts@7.3.3 want: ^4.1.7
+209 silly placeDep ROOT @inquirer/number@3.0.17 OK for: @inquirer/prompts@7.3.3 want: ^3.0.10
+210 silly placeDep ROOT @inquirer/password@4.0.17 OK for: @inquirer/prompts@7.3.3 want: ^4.0.10
+211 silly placeDep ROOT @inquirer/rawlist@4.1.5 OK for: @inquirer/prompts@7.3.3 want: ^4.0.10
+212 silly placeDep ROOT @inquirer/search@3.1.0 OK for: @inquirer/prompts@7.3.3 want: ^3.0.10
+213 silly placeDep ROOT @inquirer/select@4.3.1 OK for: @inquirer/prompts@7.3.3 want: ^4.0.10
+214 http fetch GET 200 https://registry.npmjs.org/ansi-escapes 47ms (cache miss)
+215 http fetch GET 200 https://registry.npmjs.org/yoctocolors-cjs 50ms (cache miss)
+216 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fexternal-editor 113ms (cache miss)
+217 http fetch GET 200 https://registry.npmjs.org/@inquirer%2ftype 124ms (cache miss)
+218 http fetch GET 200 https://registry.npmjs.org/@inquirer%2fcore 139ms (cache miss)
+219 http fetch GET 200 https://registry.npmjs.org/@inquirer%2ffigures 157ms (cache miss)
+220 timing idealTree:node_modules/@inquirer/prompts Completed in 161ms
+221 silly placeDep ROOT @inquirer/core@10.1.15 OK for: @inquirer/checkbox@4.2.0 want: ^10.1.15
+222 silly fetch manifest cli-width@^4.1.0
+223 silly fetch manifest mute-stream@^2.0.0
+224 silly fetch manifest signal-exit@^4.1.0
+225 silly fetch manifest wrap-ansi@^6.2.0
+226 silly placeDep ROOT @inquirer/figures@1.0.13 OK for: @inquirer/checkbox@4.2.0 want: ^1.0.13
+227 silly placeDep ROOT @inquirer/type@3.0.8 OK for: @inquirer/checkbox@4.2.0 want: ^3.0.8
+228 silly placeDep ROOT ansi-escapes@4.3.2 OK for: @inquirer/checkbox@4.2.0 want: ^4.3.2
+229 silly fetch manifest type-fest@^0.21.3
+230 silly placeDep ROOT yoctocolors-cjs@2.1.2 OK for: @inquirer/checkbox@4.2.0 want: ^2.1.2
+231 http fetch GET 200 https://registry.npmjs.org/signal-exit 49ms (cache miss)
+232 http fetch GET 200 https://registry.npmjs.org/mute-stream 50ms (cache miss)
+233 http fetch GET 200 https://registry.npmjs.org/wrap-ansi 56ms (cache miss)
+234 http fetch GET 200 https://registry.npmjs.org/type-fest 57ms (cache miss)
+235 http fetch GET 200 https://registry.npmjs.org/cli-width 65ms (cache miss)
+236 timing idealTree:node_modules/@inquirer/checkbox Completed in 68ms
+237 timing idealTree:node_modules/@inquirer/confirm Completed in 0ms
+238 silly placeDep ROOT cli-width@4.1.0 OK for: @inquirer/core@10.1.15 want: ^4.1.0
+239 silly placeDep ROOT mute-stream@2.0.0 OK for: @inquirer/core@10.1.15 want: ^2.0.0
+240 silly placeDep ROOT signal-exit@4.1.0 OK for: @inquirer/core@10.1.15 want: ^4.1.0
+241 silly placeDep ROOT wrap-ansi@6.2.0 OK for: @inquirer/core@10.1.15 want: ^6.2.0
+242 silly fetch manifest ansi-styles@^4.0.0
+243 silly fetch manifest string-width@^4.1.0
+244 silly fetch manifest strip-ansi@^6.0.0
+245 http fetch GET 200 https://registry.npmjs.org/ansi-styles 2ms (cache hit)
+246 timing idealTree:node_modules/@inquirer/core Completed in 6ms
+247 silly placeDep ROOT @inquirer/external-editor@1.0.0 OK for: @inquirer/editor@4.2.16 want: ^1.0.0
+248 silly placeDep ROOT @types/node@24.2.1 OK for: @inquirer/external-editor@1.0.0 want: >=18
+249 silly fetch manifest chardet@^2.1.0
+250 silly fetch manifest iconv-lite@^0.6.3
+251 silly fetch manifest undici-types@~7.10.0
+252 http fetch GET 200 https://registry.npmjs.org/iconv-lite 5ms (cache hit)
+253 http fetch GET 200 https://registry.npmjs.org/undici-types 6ms (cache hit)
+254 http fetch GET 200 https://registry.npmjs.org/chardet 92ms (cache miss)
+255 timing idealTree:node_modules/@inquirer/editor Completed in 93ms
+256 timing idealTree:node_modules/@inquirer/expand Completed in 0ms
+257 silly placeDep ROOT chardet@2.1.0 OK for: @inquirer/external-editor@1.0.0 want: ^2.1.0
+258 silly placeDep ROOT iconv-lite@0.6.3 OK for: @inquirer/external-editor@1.0.0 want: ^0.6.3
+259 silly fetch manifest safer-buffer@>= 2.1.2 < 3.0.0
+260 http fetch GET 200 https://registry.npmjs.org/safer-buffer 2ms (cache hit)
+261 timing idealTree:node_modules/@inquirer/external-editor Completed in 3ms
+262 timing idealTree:node_modules/@inquirer/figures Completed in 0ms
+263 timing idealTree:node_modules/@inquirer/input Completed in 0ms
+264 timing idealTree:node_modules/@inquirer/number Completed in 0ms
+265 timing idealTree:node_modules/@inquirer/password Completed in 0ms
+266 timing idealTree:node_modules/@inquirer/rawlist Completed in 0ms
+267 timing idealTree:node_modules/@inquirer/search Completed in 0ms
+268 timing idealTree:node_modules/@inquirer/select Completed in 0ms
+269 timing idealTree:node_modules/@inquirer/type Completed in 0ms
+270 silly placeDep ROOT esbuild@0.25.9 OK for: @prisma/config@6.7.0 want: >=0.12 <1
+271 silly fetch manifest @esbuild/aix-ppc64@0.25.9
+272 silly fetch manifest @esbuild/android-arm@0.25.9
+273 silly fetch manifest @esbuild/android-arm64@0.25.9
+274 silly fetch manifest @esbuild/android-x64@0.25.9
+275 silly fetch manifest @esbuild/darwin-arm64@0.25.9
+276 silly fetch manifest @esbuild/darwin-x64@0.25.9
+277 silly fetch manifest @esbuild/freebsd-arm64@0.25.9
+278 silly fetch manifest @esbuild/freebsd-x64@0.25.9
+279 silly fetch manifest @esbuild/linux-arm@0.25.9
+280 silly fetch manifest @esbuild/linux-arm64@0.25.9
+281 silly fetch manifest @esbuild/linux-ia32@0.25.9
+282 silly fetch manifest @esbuild/linux-loong64@0.25.9
+283 silly fetch manifest @esbuild/linux-mips64el@0.25.9
+284 silly fetch manifest @esbuild/linux-ppc64@0.25.9
+285 silly fetch manifest @esbuild/linux-riscv64@0.25.9
+286 silly fetch manifest @esbuild/linux-s390x@0.25.9
+287 silly fetch manifest @esbuild/linux-x64@0.25.9
+288 silly fetch manifest @esbuild/netbsd-arm64@0.25.9
+289 silly fetch manifest @esbuild/netbsd-x64@0.25.9
+290 silly fetch manifest @esbuild/openbsd-arm64@0.25.9
+291 silly fetch manifest @esbuild/openbsd-x64@0.25.9
+292 silly fetch manifest @esbuild/openharmony-arm64@0.25.9
+293 silly fetch manifest @esbuild/sunos-x64@0.25.9
+294 silly fetch manifest @esbuild/win32-arm64@0.25.9
+295 silly fetch manifest @esbuild/win32-ia32@0.25.9
+296 silly fetch manifest @esbuild/win32-x64@0.25.9
+297 silly placeDep ROOT esbuild-register@3.6.0 OK for: @prisma/config@6.7.0 want: 3.6.0
+298 silly fetch manifest debug@^4.3.4
+299 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-arm64 45ms (cache hit)
+300 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fdarwin-x64 45ms (cache hit)
+301 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm64 46ms (cache hit)
+302 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-arm64 45ms (cache hit)
+303 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-arm 48ms (cache hit)
+304 http fetch GET 200 https://registry.npmjs.org/@esbuild%2faix-ppc64 49ms (cache hit)
+305 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-s390x 43ms (cache hit)
+306 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fandroid-x64 48ms (cache hit)
+307 http fetch GET 200 https://registry.npmjs.org/@esbuild%2ffreebsd-x64 47ms (cache hit)
+308 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm64 48ms (cache hit)
+309 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-riscv64 46ms (cache hit)
+310 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-arm64 31ms (cache hit)
+311 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-x64 34ms (cache hit)
+312 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-arm64 31ms (cache hit)
+313 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fnetbsd-x64 31ms (cache hit)
+314 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ppc64 47ms (cache hit)
+315 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-loong64 49ms (cache hit)
+316 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-mips64el 49ms (cache hit)
+317 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-arm 51ms (cache hit)
+318 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenharmony-arm64 32ms (cache hit)
+319 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fsunos-x64 33ms (cache hit)
+320 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fopenbsd-x64 33ms (cache hit)
+321 http fetch GET 200 https://registry.npmjs.org/@esbuild%2flinux-ia32 52ms (cache hit)
+322 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-arm64 33ms (cache hit)
+323 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-ia32 34ms (cache hit)
+324 http fetch GET 200 https://registry.npmjs.org/@esbuild%2fwin32-x64 34ms (cache hit)
+325 http fetch GET 200 https://registry.npmjs.org/debug 33ms (cache hit)
+326 timing idealTree:node_modules/@prisma/config Completed in 60ms
+327 timing idealTree:node_modules/@prisma/debug Completed in 0ms
+328 timing idealTree:node_modules/@prisma/generator Completed in 0ms
+329 silly placeDep ROOT @prisma/dmmf@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+330 silly placeDep ROOT @prisma/driver-adapter-utils@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+331 silly placeDep ROOT @prisma/engines@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+332 silly fetch manifest @prisma/engines-version@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+333 silly placeDep ROOT @prisma/fetch-engine@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+334 silly placeDep ROOT @prisma/generator-helper@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+335 silly placeDep ROOT @prisma/get-platform@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+336 silly placeDep ROOT @prisma/prisma-schema-wasm@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed OK for: @prisma/internals@6.7.0 want: 6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+337 silly placeDep ROOT @prisma/schema-engine-wasm@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed OK for: @prisma/internals@6.7.0 want: 6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+338 silly placeDep ROOT @prisma/schema-files-loader@6.7.0 OK for: @prisma/internals@6.7.0 want: 6.7.0
+339 silly placeDep ROOT prompts@2.4.2 OK for: @prisma/internals@6.7.0 want: 2.4.2
+340 silly fetch manifest kleur@^3.0.3
+341 silly fetch manifest sisteransi@^1.0.5
+342 http fetch GET 200 https://registry.npmjs.org/@prisma%2fengines-version 16ms (cache hit)
+343 http fetch GET 200 https://registry.npmjs.org/sisteransi 55ms (cache miss)
+344 timing idealTree:node_modules/@prisma/internals Completed in 60ms
+345 timing idealTree:node_modules/@prisma/dmmf Completed in 0ms
+346 timing idealTree:node_modules/@prisma/driver-adapter-utils Completed in 0ms
+347 silly placeDep ROOT @prisma/engines-version@6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed OK for: @prisma/engines@6.7.0 want: 6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+348 timing idealTree:node_modules/@prisma/engines Completed in 0ms
+349 timing idealTree:node_modules/@prisma/engines-version Completed in 0ms
+350 timing idealTree:node_modules/@prisma/fetch-engine Completed in 0ms
+351 timing idealTree:node_modules/@prisma/generator-helper Completed in 0ms
+352 timing idealTree:node_modules/@prisma/get-platform Completed in 0ms
+353 timing idealTree:node_modules/@prisma/prisma-schema-wasm Completed in 0ms
+354 timing idealTree:node_modules/@prisma/schema-engine-wasm Completed in 0ms
+355 timing idealTree:node_modules/@prisma/schema-files-loader Completed in 1ms
+356 silly placeDep ROOT undici-types@7.10.0 OK for: @types/node@24.2.1 want: ~7.10.0
+357 timing idealTree:node_modules/@types/node Completed in 0ms
+358 silly placeDep ROOT type-fest@0.21.3 OK for: ansi-escapes@4.3.2 want: ^0.21.3
+359 timing idealTree:node_modules/ansi-escapes Completed in 0ms
+360 timing idealTree:node_modules/arg Completed in 0ms
+361 timing idealTree:node_modules/async-listen Completed in 0ms
+362 timing idealTree:node_modules/chardet Completed in 0ms
+363 silly fetch manifest encoding@^0.1.0
+364 http fetch GET 200 https://registry.npmjs.org/encoding 64ms (cache miss)
+365 silly placeDep ROOT ci-info@4.0.0 OK for: checkpoint-client@1.1.33 want: 4.0.0
+366 silly placeDep ROOT env-paths@2.2.1 OK for: checkpoint-client@1.1.33 want: 2.2.1
+367 silly placeDep ROOT make-dir@4.0.0 OK for: checkpoint-client@1.1.33 want: 4.0.0
+368 silly fetch manifest semver@^7.5.3
+369 silly placeDep ROOT ms@2.1.3 OK for: checkpoint-client@1.1.33 want: 2.1.3
+370 silly placeDep node_modules/checkpoint-client node-fetch@2.7.0 OK for: checkpoint-client@1.1.33 want: 2.7.0
+371 silly fetch manifest whatwg-url@^5.0.0
+372 silly placeDep ROOT uuid@9.0.1 OK for: checkpoint-client@1.1.33 want: 9.0.1
+373 http fetch GET 200 https://registry.npmjs.org/whatwg-url 3ms (cache hit)
+374 http fetch GET 200 https://registry.npmjs.org/semver 4ms (cache hit)
+375 timing idealTree:node_modules/checkpoint-client Completed in 71ms
+376 timing idealTree:node_modules/ci-info Completed in 0ms
+377 timing idealTree:node_modules/cli-width Completed in 0ms
+378 timing idealTree:node_modules/dotenv Completed in 0ms
+379 silly placeDep ROOT fast-check@3.23.2 OK for: effect@3.12.10 want: ^3.23.1
+380 silly fetch manifest pure-rand@^6.1.0
+381 http fetch GET 200 https://registry.npmjs.org/pure-rand 2ms (cache hit)
+382 timing idealTree:node_modules/effect Completed in 3ms
+383 timing idealTree:node_modules/env-paths Completed in 0ms
+384 silly placeDep ROOT @esbuild/aix-ppc64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+385 silly placeDep ROOT @esbuild/android-arm@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+386 silly placeDep ROOT @esbuild/android-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+387 silly placeDep ROOT @esbuild/android-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+388 silly placeDep ROOT @esbuild/darwin-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+389 silly placeDep ROOT @esbuild/darwin-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+390 silly placeDep ROOT @esbuild/freebsd-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+391 silly placeDep ROOT @esbuild/freebsd-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+392 silly placeDep ROOT @esbuild/linux-arm@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+393 silly placeDep ROOT @esbuild/linux-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+394 silly placeDep ROOT @esbuild/linux-ia32@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+395 silly placeDep ROOT @esbuild/linux-loong64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+396 silly placeDep ROOT @esbuild/linux-mips64el@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+397 silly placeDep ROOT @esbuild/linux-ppc64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+398 silly placeDep ROOT @esbuild/linux-riscv64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+399 silly placeDep ROOT @esbuild/linux-s390x@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+400 silly placeDep ROOT @esbuild/linux-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+401 silly placeDep ROOT @esbuild/netbsd-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+402 silly placeDep ROOT @esbuild/netbsd-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+403 silly placeDep ROOT @esbuild/openbsd-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+404 silly placeDep ROOT @esbuild/openbsd-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+405 silly placeDep ROOT @esbuild/openharmony-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+406 silly placeDep ROOT @esbuild/sunos-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+407 silly placeDep ROOT @esbuild/win32-arm64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+408 silly placeDep ROOT @esbuild/win32-ia32@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+409 silly placeDep ROOT @esbuild/win32-x64@0.25.9 OK for: esbuild@0.25.9 want: 0.25.9
+410 timing idealTree:node_modules/esbuild Completed in 9ms
+411 timing idealTree:node_modules/@esbuild/aix-ppc64 Completed in 0ms
+412 timing idealTree:node_modules/@esbuild/android-arm Completed in 0ms
+413 timing idealTree:node_modules/@esbuild/android-arm64 Completed in 0ms
+414 timing idealTree:node_modules/@esbuild/android-x64 Completed in 0ms
+415 timing idealTree:node_modules/@esbuild/darwin-arm64 Completed in 0ms
+416 timing idealTree:node_modules/@esbuild/darwin-x64 Completed in 0ms
+417 timing idealTree:node_modules/@esbuild/freebsd-arm64 Completed in 0ms
+418 timing idealTree:node_modules/@esbuild/freebsd-x64 Completed in 0ms
+419 timing idealTree:node_modules/@esbuild/linux-arm Completed in 0ms
+420 timing idealTree:node_modules/@esbuild/linux-arm64 Completed in 0ms
+421 timing idealTree:node_modules/@esbuild/linux-ia32 Completed in 0ms
+422 timing idealTree:node_modules/@esbuild/linux-loong64 Completed in 0ms
+423 timing idealTree:node_modules/@esbuild/linux-mips64el Completed in 0ms
+424 timing idealTree:node_modules/@esbuild/linux-ppc64 Completed in 0ms
+425 timing idealTree:node_modules/@esbuild/linux-riscv64 Completed in 0ms
+426 timing idealTree:node_modules/@esbuild/linux-s390x Completed in 0ms
+427 timing idealTree:node_modules/@esbuild/linux-x64 Completed in 0ms
+428 timing idealTree:node_modules/@esbuild/netbsd-arm64 Completed in 0ms
+429 timing idealTree:node_modules/@esbuild/netbsd-x64 Completed in 0ms
+430 timing idealTree:node_modules/@esbuild/openbsd-arm64 Completed in 0ms
+431 timing idealTree:node_modules/@esbuild/openbsd-x64 Completed in 0ms
+432 timing idealTree:node_modules/@esbuild/openharmony-arm64 Completed in 0ms
+433 timing idealTree:node_modules/@esbuild/sunos-x64 Completed in 0ms
+434 timing idealTree:node_modules/@esbuild/win32-arm64 Completed in 0ms
+435 timing idealTree:node_modules/@esbuild/win32-ia32 Completed in 0ms
+436 timing idealTree:node_modules/@esbuild/win32-x64 Completed in 0ms
+437 silly placeDep ROOT debug@4.4.1 OK for: esbuild-register@3.6.0 want: ^4.3.4
+438 timing idealTree:node_modules/esbuild-register Completed in 2ms
+439 timing idealTree:node_modules/debug Completed in 0ms
+440 silly placeDep ROOT pure-rand@6.1.0 OK for: fast-check@3.23.2 want: ^6.1.0
+441 timing idealTree:node_modules/fast-check Completed in 0ms
+442 silly placeDep ROOT graceful-fs@4.2.11 OK for: fs-extra@11.3.0 want: ^4.2.0
+443 silly placeDep ROOT jsonfile@6.2.0 OK for: fs-extra@11.3.0 want: ^6.0.1
+444 silly placeDep ROOT universalify@2.0.1 OK for: fs-extra@11.3.0 want: ^2.0.0
+445 timing idealTree:node_modules/fs-extra Completed in 1ms
+446 silly placeDep ROOT resolve-pkg-maps@1.0.0 OK for: get-tsconfig@4.10.0 want: ^1.0.0
+447 timing idealTree:node_modules/get-tsconfig Completed in 1ms
+448 timing idealTree:node_modules/graceful-fs Completed in 0ms
+449 silly placeDep ROOT safer-buffer@2.1.2 OK for: iconv-lite@0.6.3 want: >= 2.1.2 < 3.0.0
+450 timing idealTree:node_modules/iconv-lite Completed in 0ms
+451 timing idealTree:node_modules/jsonfile Completed in 0ms
+452 timing idealTree:node_modules/kleur Completed in 0ms
+453 silly placeDep ROOT semver@7.7.2 OK for: make-dir@4.0.0 want: ^7.5.3
+454 timing idealTree:node_modules/make-dir Completed in 0ms
+455 timing idealTree:node_modules/ms Completed in 0ms
+456 timing idealTree:node_modules/mute-stream Completed in 0ms
+457 silly placeDep ROOT data-uri-to-buffer@4.0.1 OK for: node-fetch@3.3.2 want: ^4.0.0
+458 silly placeDep ROOT fetch-blob@3.2.0 OK for: node-fetch@3.3.2 want: ^3.1.4
+459 silly fetch manifest node-domexception@^1.0.0
+460 silly fetch manifest web-streams-polyfill@^3.0.3
+461 silly placeDep ROOT formdata-polyfill@4.0.10 OK for: node-fetch@3.3.2 want: ^4.0.10
+462 http fetch GET 200 https://registry.npmjs.org/web-streams-polyfill 44ms (cache miss)
+463 http fetch GET 200 https://registry.npmjs.org/node-domexception 54ms (cache miss)
+464 timing idealTree:node_modules/node-fetch Completed in 55ms
+465 timing idealTree:node_modules/data-uri-to-buffer Completed in 0ms
+466 silly placeDep ROOT node-domexception@1.0.0 OK for: fetch-blob@3.2.0 want: ^1.0.0
+467 silly placeDep ROOT web-streams-polyfill@3.3.3 OK for: fetch-blob@3.2.0 want: ^3.0.3
+468 timing idealTree:node_modules/fetch-blob Completed in 1ms
+469 timing idealTree:node_modules/formdata-polyfill Completed in 0ms
+470 timing idealTree:node_modules/node-domexception Completed in 0ms
+471 silly placeDep ROOT is-docker@2.2.1 OK for: open@7.4.2 want: ^2.0.0
+472 silly placeDep ROOT is-wsl@2.2.0 OK for: open@7.4.2 want: ^2.1.1
+473 timing idealTree:node_modules/open Completed in 1ms
+474 timing idealTree:node_modules/is-docker Completed in 0ms
+475 timing idealTree:node_modules/is-wsl Completed in 0ms
+476 silly placeDep ROOT chalk@5.5.0 OK for: ora@8.2.0 want: ^5.3.0
+477 silly placeDep ROOT cli-cursor@5.0.0 OK for: ora@8.2.0 want: ^5.0.0
+478 silly fetch manifest restore-cursor@^5.0.0
+479 silly placeDep ROOT cli-spinners@2.9.2 OK for: ora@8.2.0 want: ^2.9.2
+480 silly placeDep ROOT is-interactive@2.0.0 OK for: ora@8.2.0 want: ^2.0.0
+481 silly placeDep ROOT is-unicode-supported@2.1.0 OK for: ora@8.2.0 want: ^2.0.0
+482 silly placeDep ROOT log-symbols@6.0.0 OK for: ora@8.2.0 want: ^6.0.0
+483 silly fetch manifest is-unicode-supported@^1.3.0
+484 silly placeDep ROOT stdin-discarder@0.2.2 OK for: ora@8.2.0 want: ^0.2.2
+485 silly placeDep ROOT string-width@7.2.0 OK for: ora@8.2.0 want: ^7.2.0
+486 silly fetch manifest emoji-regex@^10.3.0
+487 silly fetch manifest get-east-asian-width@^1.0.0
+488 silly placeDep ROOT strip-ansi@7.1.0 OK for: ora@8.2.0 want: ^7.1.0
+489 silly fetch manifest ansi-regex@^6.0.1
+490 http fetch GET 200 https://registry.npmjs.org/ansi-regex 4ms (cache hit)
+491 http fetch GET 200 https://registry.npmjs.org/emoji-regex 5ms (cache hit)
+492 http fetch GET 200 https://registry.npmjs.org/restore-cursor 39ms (cache miss)
+493 http fetch GET 200 https://registry.npmjs.org/get-east-asian-width 45ms (cache miss)
+494 timing idealTree:node_modules/ora Completed in 48ms
+495 timing idealTree:node_modules/chalk Completed in 0ms
+496 silly placeDep ROOT restore-cursor@5.1.0 OK for: cli-cursor@5.0.0 want: ^5.0.0
+497 silly fetch manifest onetime@^7.0.0
+498 http fetch GET 200 https://registry.npmjs.org/onetime 43ms (cache miss)
+499 timing idealTree:node_modules/cli-cursor Completed in 43ms
+500 timing idealTree:node_modules/cli-spinners Completed in 0ms
+501 timing idealTree:node_modules/is-interactive Completed in 0ms
+502 timing idealTree:node_modules/is-unicode-supported Completed in 0ms
+503 silly placeDep node_modules/log-symbols is-unicode-supported@1.3.0 OK for: log-symbols@6.0.0 want: ^1.3.0
+504 timing idealTree:node_modules/log-symbols Completed in 1ms
+505 silly placeDep node_modules/prompts kleur@3.0.3 OK for: prompts@2.4.2 want: ^3.0.3
+506 silly placeDep ROOT sisteransi@1.0.5 OK for: prompts@2.4.2 want: ^1.0.5
+507 timing idealTree:node_modules/prompts Completed in 2ms
+508 timing idealTree:node_modules/pure-rand Completed in 0ms
+509 timing idealTree:node_modules/resolve-pkg-maps Completed in 0ms
+510 silly placeDep ROOT onetime@7.0.0 OK for: restore-cursor@5.1.0 want: ^7.0.0
+511 silly fetch manifest mimic-function@^5.0.0
+512 http fetch GET 200 https://registry.npmjs.org/mimic-function 48ms (cache miss)
+513 timing idealTree:node_modules/restore-cursor Completed in 48ms
+514 silly placeDep ROOT mimic-function@5.0.1 OK for: onetime@7.0.0 want: ^5.0.0
+515 timing idealTree:node_modules/onetime Completed in 0ms
+516 timing idealTree:node_modules/mimic-function Completed in 0ms
+517 timing idealTree:node_modules/safer-buffer Completed in 0ms
+518 timing idealTree:node_modules/semver Completed in 0ms
+519 timing idealTree:node_modules/signal-exit Completed in 0ms
+520 timing idealTree:node_modules/sisteransi Completed in 0ms
+521 timing idealTree:node_modules/stdin-discarder Completed in 0ms
+522 silly placeDep ROOT emoji-regex@10.4.0 OK for: string-width@7.2.0 want: ^10.3.0
+523 silly placeDep ROOT get-east-asian-width@1.3.0 OK for: string-width@7.2.0 want: ^1.0.0
+524 timing idealTree:node_modules/string-width Completed in 0ms
+525 timing idealTree:node_modules/emoji-regex Completed in 0ms
+526 timing idealTree:node_modules/get-east-asian-width Completed in 0ms
+527 silly placeDep ROOT ansi-regex@6.1.0 OK for: strip-ansi@7.1.0 want: ^6.0.1
+528 timing idealTree:node_modules/strip-ansi Completed in 0ms
+529 timing idealTree:node_modules/ansi-regex Completed in 0ms
+530 timing idealTree:node_modules/ts-pattern Completed in 0ms
+531 timing idealTree:node_modules/type-fest Completed in 0ms
+532 timing idealTree:node_modules/undici-types Completed in 0ms
+533 timing idealTree:node_modules/universalify Completed in 0ms
+534 timing idealTree:node_modules/uuid Completed in 0ms
+535 timing idealTree:node_modules/web-streams-polyfill Completed in 0ms
+536 silly placeDep ROOT ansi-styles@4.3.0 OK for: wrap-ansi@6.2.0 want: ^4.0.0
+537 silly fetch manifest color-convert@^2.0.1
+538 silly placeDep node_modules/wrap-ansi string-width@4.2.3 OK for: wrap-ansi@6.2.0 want: ^4.1.0
+539 silly fetch manifest strip-ansi@^6.0.1
+540 silly fetch manifest emoji-regex@^8.0.0
+541 silly fetch manifest is-fullwidth-code-point@^3.0.0
+542 silly placeDep node_modules/wrap-ansi strip-ansi@6.0.1 OK for: wrap-ansi@6.2.0 want: ^6.0.0
+543 silly fetch manifest ansi-regex@^5.0.1
+544 http fetch GET 200 https://registry.npmjs.org/color-convert 4ms (cache hit)
+545 http fetch GET 200 https://registry.npmjs.org/is-fullwidth-code-point 51ms (cache miss)
+546 timing idealTree:node_modules/wrap-ansi Completed in 53ms
+547 silly placeDep ROOT color-convert@2.0.1 OK for: ansi-styles@4.3.0 want: ^2.0.1
+548 silly fetch manifest color-name@~1.1.4
+549 http fetch GET 200 https://registry.npmjs.org/color-name 2ms (cache hit)
+550 timing idealTree:node_modules/ansi-styles Completed in 4ms
+551 silly placeDep ROOT color-name@1.1.4 OK for: color-convert@2.0.1 want: ~1.1.4
+552 timing idealTree:node_modules/color-convert Completed in 1ms
+553 timing idealTree:node_modules/color-name Completed in 0ms
+554 silly placeDep ROOT fsevents@2.3.3 OK for: xdg-app-paths@8.3.0 want: *
+555 silly placeDep ROOT xdg-portable@10.6.0 OK for: xdg-app-paths@8.3.0 want: ^10.6.0
+556 silly fetch manifest os-paths@^7.4.0
+557 http fetch GET 200 https://registry.npmjs.org/os-paths 48ms (cache miss)
+558 timing idealTree:node_modules/xdg-app-paths Completed in 50ms
+559 timing idealTree:node_modules/fsevents Completed in 0ms
+560 silly placeDep ROOT os-paths@7.4.0 OK for: xdg-portable@10.6.0 want: ^7.4.0
+561 timing idealTree:node_modules/xdg-portable Completed in 1ms
+562 timing idealTree:node_modules/os-paths Completed in 0ms
+563 timing idealTree:node_modules/yoctocolors-cjs Completed in 0ms
+564 silly placeDep ROOT whatwg-url@5.0.0 OK for: node-fetch@2.7.0 want: ^5.0.0
+565 silly fetch manifest tr46@~0.0.3
+566 silly fetch manifest webidl-conversions@^3.0.0
+567 http fetch GET 200 https://registry.npmjs.org/webidl-conversions 4ms (cache hit)
+568 http fetch GET 200 https://registry.npmjs.org/tr46 6ms (cache hit)
+569 timing idealTree:node_modules/checkpoint-client/node_modules/node-fetch Completed in 7ms
+570 silly placeDep ROOT tr46@0.0.3 OK for: whatwg-url@5.0.0 want: ~0.0.3
+571 silly placeDep ROOT webidl-conversions@3.0.1 OK for: whatwg-url@5.0.0 want: ^3.0.0
+572 timing idealTree:node_modules/whatwg-url Completed in 1ms
+573 timing idealTree:node_modules/tr46 Completed in 0ms
+574 timing idealTree:node_modules/webidl-conversions Completed in 0ms
+575 timing idealTree:node_modules/log-symbols/node_modules/is-unicode-supported Completed in 0ms
+576 timing idealTree:node_modules/prompts/node_modules/kleur Completed in 0ms
+577 silly placeDep node_modules/wrap-ansi emoji-regex@8.0.0 OK for: string-width@4.2.3 want: ^8.0.0
+578 silly placeDep ROOT is-fullwidth-code-point@3.0.0 OK for: string-width@4.2.3 want: ^3.0.0
+579 timing idealTree:node_modules/wrap-ansi/node_modules/string-width Completed in 1ms
+580 timing idealTree:node_modules/is-fullwidth-code-point Completed in 0ms
+581 timing idealTree:node_modules/wrap-ansi/node_modules/emoji-regex Completed in 0ms
+582 silly placeDep node_modules/wrap-ansi ansi-regex@5.0.1 OK for: strip-ansi@6.0.1 want: ^5.0.1
+583 timing idealTree:node_modules/wrap-ansi/node_modules/strip-ansi Completed in 1ms
+584 timing idealTree:node_modules/wrap-ansi/node_modules/ansi-regex Completed in 0ms
+585 timing idealTree:buildDeps Completed in 2184ms
+586 timing idealTree:fixDepFlags Completed in 2ms
+587 timing idealTree Completed in 2390ms
+588 timing reify:loadTrees Completed in 2391ms
+589 timing reify:diffTrees Completed in 2ms
+590 silly reify moves {}
+591 timing reify:retireShallow Completed in 2ms
+592 timing reify:createSparse Completed in 13ms
+593 timing reify:loadBundles Completed in 0ms
+594 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-x64
+595 silly reify mark deleted [
+595 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-x64'
+595 silly reify ]
+596 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-ia32
+597 silly reify mark deleted [
+597 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-ia32'
+597 silly reify ]
+598 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-arm64
+599 silly reify mark deleted [
+599 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/win32-arm64'
+599 silly reify ]
+600 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/sunos-x64
+601 silly reify mark deleted [
+601 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/sunos-x64'
+601 silly reify ]
+602 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openharmony-arm64
+603 silly reify mark deleted [
+603 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openharmony-arm64'
+603 silly reify ]
+604 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openbsd-x64
+605 silly reify mark deleted [
+605 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openbsd-x64'
+605 silly reify ]
+606 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openbsd-arm64
+607 silly reify mark deleted [
+607 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/openbsd-arm64'
+607 silly reify ]
+608 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/netbsd-x64
+609 silly reify mark deleted [
+609 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/netbsd-x64'
+609 silly reify ]
+610 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/netbsd-arm64
+611 silly reify mark deleted [
+611 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/netbsd-arm64'
+611 silly reify ]
+612 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-x64
+613 silly reify mark deleted [
+613 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-x64'
+613 silly reify ]
+614 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-s390x
+615 silly reify mark deleted [
+615 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-s390x'
+615 silly reify ]
+616 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-riscv64
+617 silly reify mark deleted [
+617 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-riscv64'
+617 silly reify ]
+618 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-ppc64
+619 silly reify mark deleted [
+619 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-ppc64'
+619 silly reify ]
+620 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-mips64el
+621 silly reify mark deleted [
+621 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-mips64el'
+621 silly reify ]
+622 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-loong64
+623 silly reify mark deleted [
+623 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-loong64'
+623 silly reify ]
+624 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-ia32
+625 silly reify mark deleted [
+625 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-ia32'
+625 silly reify ]
+626 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-arm64
+627 silly reify mark deleted [
+627 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-arm64'
+627 silly reify ]
+628 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-arm
+629 silly reify mark deleted [
+629 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/linux-arm'
+629 silly reify ]
+630 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/freebsd-x64
+631 silly reify mark deleted [
+631 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/freebsd-x64'
+631 silly reify ]
+632 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/freebsd-arm64
+633 silly reify mark deleted [
+633 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/freebsd-arm64'
+633 silly reify ]
+634 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/darwin-x64
+635 silly reify mark deleted [
+635 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/darwin-x64'
+635 silly reify ]
+636 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-x64
+637 silly reify mark deleted [
+637 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-x64'
+637 silly reify ]
+638 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-arm64
+639 silly reify mark deleted [
+639 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-arm64'
+639 silly reify ]
+640 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-arm
+641 silly reify mark deleted [
+641 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/android-arm'
+641 silly reify ]
+642 verbose reify failed optional dependency /private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/aix-ppc64
+643 silly reify mark deleted [
+643 silly reify   '/private/var/folders/hl/1s1r_lt51_s8c5k5kdn2x7wm0000gn/T/@prisma/cli-init@latest-1755068400000/node_modules/@esbuild/aix-ppc64'
+643 silly reify ]
+644 timing reifyNode:node_modules/@esbuild/win32-x64 Completed in 6ms
+645 timing reifyNode:node_modules/@esbuild/win32-ia32 Completed in 6ms
+646 timing reifyNode:node_modules/@esbuild/win32-arm64 Completed in 5ms
+647 timing reifyNode:node_modules/@esbuild/sunos-x64 Completed in 5ms
+648 timing reifyNode:node_modules/@esbuild/openharmony-arm64 Completed in 5ms
+649 timing reifyNode:node_modules/@esbuild/openbsd-x64 Completed in 5ms
+650 timing reifyNode:node_modules/@esbuild/openbsd-arm64 Completed in 5ms
+651 timing reifyNode:node_modules/@esbuild/netbsd-x64 Completed in 5ms
+652 timing reifyNode:node_modules/@esbuild/netbsd-arm64 Completed in 5ms
+653 timing reifyNode:node_modules/@esbuild/linux-x64 Completed in 6ms
+654 timing reifyNode:node_modules/@esbuild/linux-s390x Completed in 6ms
+655 timing reifyNode:node_modules/@esbuild/linux-riscv64 Completed in 6ms
+656 timing reifyNode:node_modules/@esbuild/linux-ppc64 Completed in 6ms
+657 timing reifyNode:node_modules/@esbuild/linux-mips64el Completed in 6ms
+658 timing reifyNode:node_modules/@esbuild/linux-loong64 Completed in 6ms
+659 timing reifyNode:node_modules/@esbuild/linux-ia32 Completed in 6ms
+660 timing reifyNode:node_modules/@esbuild/linux-arm64 Completed in 6ms
+661 timing reifyNode:node_modules/@esbuild/linux-arm Completed in 6ms
+662 timing reifyNode:node_modules/@esbuild/freebsd-x64 Completed in 6ms
+663 timing reifyNode:node_modules/@esbuild/freebsd-arm64 Completed in 6ms
+664 timing reifyNode:node_modules/@esbuild/darwin-x64 Completed in 6ms
+665 timing reifyNode:node_modules/@esbuild/android-x64 Completed in 6ms
+666 timing reifyNode:node_modules/@esbuild/android-arm64 Completed in 6ms
+667 timing reifyNode:node_modules/@esbuild/android-arm Completed in 6ms
+668 timing reifyNode:node_modules/@esbuild/aix-ppc64 Completed in 6ms
+669 silly tarball no local data for is-fullwidth-code-point@https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz. Extracting by manifest.
+670 silly tarball no local data for webidl-conversions@https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz. Extracting by manifest.
+671 silly tarball no local data for tr46@https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz. Extracting by manifest.
+672 silly tarball no local data for os-paths@https://registry.npmjs.org/os-paths/-/os-paths-7.4.0.tgz. Extracting by manifest.
+673 silly tarball no local data for whatwg-url@https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz. Extracting by manifest.
+674 silly tarball no local data for xdg-portable@https://registry.npmjs.org/xdg-portable/-/xdg-portable-10.6.0.tgz. Extracting by manifest.
+675 silly tarball no local data for ansi-regex@https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz. Extracting by manifest.
+676 silly tarball no local data for get-east-asian-width@https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.3.0.tgz. Extracting by manifest.
+677 silly tarball no local data for emoji-regex@https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.4.0.tgz. Extracting by manifest.
+678 silly tarball no local data for onetime@https://registry.npmjs.org/onetime/-/onetime-7.0.0.tgz. Extracting by manifest.
+679 silly tarball no local data for sisteransi@https://registry.npmjs.org/sisteransi/-/sisteransi-1.0.5.tgz. Extracting by manifest.
+680 silly tarball no local data for restore-cursor@https://registry.npmjs.org/restore-cursor/-/restore-cursor-5.1.0.tgz. Extracting by manifest.
+681 silly tarball no local data for strip-ansi@https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz. Extracting by manifest.
+682 silly tarball no local data for stdin-discarder@https://registry.npmjs.org/stdin-discarder/-/stdin-discarder-0.2.2.tgz. Extracting by manifest.
+683 silly tarball no local data for string-width@https://registry.npmjs.org/string-width/-/string-width-7.2.0.tgz. Extracting by manifest.
+684 silly tarball no local data for log-symbols@https://registry.npmjs.org/log-symbols/-/log-symbols-6.0.0.tgz. Extracting by manifest.
+685 silly tarball no local data for is-unicode-supported@https://registry.npmjs.org/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz. Extracting by manifest.
+686 silly tarball no local data for is-unicode-supported@https://registry.npmjs.org/is-unicode-supported/-/is-unicode-supported-2.1.0.tgz. Extracting by manifest.
+687 silly tarball no local data for is-interactive@https://registry.npmjs.org/is-interactive/-/is-interactive-2.0.0.tgz. Extracting by manifest.
+688 silly tarball no local data for cli-cursor@https://registry.npmjs.org/cli-cursor/-/cli-cursor-5.0.0.tgz. Extracting by manifest.
+689 silly tarball no local data for cli-spinners@https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.9.2.tgz. Extracting by manifest.
+690 silly tarball no local data for is-wsl@https://registry.npmjs.org/is-wsl/-/is-wsl-2.2.0.tgz. Extracting by manifest.
+691 silly tarball no local data for node-domexception@https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz. Extracting by manifest.
+692 silly tarball no local data for chalk@https://registry.npmjs.org/chalk/-/chalk-5.5.0.tgz. Extracting by manifest.
+693 silly tarball no local data for formdata-polyfill@https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz. Extracting by manifest.
+694 silly tarball no local data for is-docker@https://registry.npmjs.org/is-docker/-/is-docker-2.2.1.tgz. Extracting by manifest.
+695 silly tarball no local data for data-uri-to-buffer@https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz. Extracting by manifest.
+696 silly tarball no local data for fetch-blob@https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz. Extracting by manifest.
+697 silly tarball no local data for jsonfile@https://registry.npmjs.org/jsonfile/-/jsonfile-6.2.0.tgz. Extracting by manifest.
+698 silly tarball no local data for universalify@https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz. Extracting by manifest.
+699 silly tarball no local data for uuid@https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz. Extracting by manifest.
+700 silly tarball no local data for make-dir@https://registry.npmjs.org/make-dir/-/make-dir-4.0.0.tgz. Extracting by manifest.
+701 silly tarball no local data for env-paths@https://registry.npmjs.org/env-paths/-/env-paths-2.2.1.tgz. Extracting by manifest.
+702 silly tarball no local data for ci-info@https://registry.npmjs.org/ci-info/-/ci-info-4.0.0.tgz. Extracting by manifest.
+703 silly tarball no local data for undici-types@https://registry.npmjs.org/undici-types/-/undici-types-7.10.0.tgz. Extracting by manifest.
+704 silly tarball no local data for @prisma/engines-version@https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz. Extracting by manifest.
+705 silly tarball no local data for type-fest@https://registry.npmjs.org/type-fest/-/type-fest-0.21.3.tgz. Extracting by manifest.
+706 silly tarball no local data for prompts@https://registry.npmjs.org/prompts/-/prompts-2.4.2.tgz. Extracting by manifest.
+707 silly tarball no local data for @prisma/schema-files-loader@https://registry.npmjs.org/@prisma/schema-files-loader/-/schema-files-loader-6.7.0.tgz. Extracting by manifest.
+708 silly tarball no local data for kleur@https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz. Extracting by manifest.
+709 silly tarball no local data for @prisma/schema-engine-wasm@https://registry.npmjs.org/@prisma/schema-engine-wasm/-/schema-engine-wasm-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz. Extracting by manifest.
+710 silly tarball no local data for web-streams-polyfill@https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz. Extracting by manifest.
+711 silly tarball no local data for mimic-function@https://registry.npmjs.org/mimic-function/-/mimic-function-5.0.1.tgz. Extracting by manifest.
+712 silly tarball no local data for @prisma/generator-helper@https://registry.npmjs.org/@prisma/generator-helper/-/generator-helper-6.7.0.tgz. Extracting by manifest.
+713 silly tarball no local data for @prisma/prisma-schema-wasm@https://registry.npmjs.org/@prisma/prisma-schema-wasm/-/prisma-schema-wasm-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz. Extracting by manifest.
+714 silly tarball no local data for @prisma/dmmf@https://registry.npmjs.org/@prisma/dmmf/-/dmmf-6.7.0.tgz. Extracting by manifest.
+715 silly tarball no local data for @prisma/get-platform@https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.7.0.tgz. Extracting by manifest.
+716 silly tarball no local data for @prisma/engines@https://registry.npmjs.org/@prisma/engines/-/engines-6.7.0.tgz. Extracting by manifest.
+717 silly tarball no local data for @prisma/driver-adapter-utils@https://registry.npmjs.org/@prisma/driver-adapter-utils/-/driver-adapter-utils-6.7.0.tgz. Extracting by manifest.
+718 silly tarball no local data for @prisma/fetch-engine@https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.7.0.tgz. Extracting by manifest.
+719 silly tarball no local data for @types/node@https://registry.npmjs.org/@types/node/-/node-24.2.1.tgz. Extracting by manifest.
+720 silly tarball no local data for @inquirer/external-editor@https://registry.npmjs.org/@inquirer/external-editor/-/external-editor-1.0.0.tgz. Extracting by manifest.
+721 silly tarball no local data for chardet@https://registry.npmjs.org/chardet/-/chardet-2.1.0.tgz. Extracting by manifest.
+722 silly tarball no local data for string-width@https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz. Extracting by manifest.
+723 silly tarball no local data for wrap-ansi@https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz. Extracting by manifest.
+724 silly tarball no local data for signal-exit@https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz. Extracting by manifest.
+725 silly tarball no local data for mute-stream@https://registry.npmjs.org/mute-stream/-/mute-stream-2.0.0.tgz. Extracting by manifest.
+726 silly tarball no local data for cli-width@https://registry.npmjs.org/cli-width/-/cli-width-4.1.0.tgz. Extracting by manifest.
+727 silly tarball no local data for emoji-regex@https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz. Extracting by manifest.
+728 silly tarball no local data for @inquirer/type@https://registry.npmjs.org/@inquirer/type/-/type-3.0.8.tgz. Extracting by manifest.
+729 silly tarball no local data for @inquirer/figures@https://registry.npmjs.org/@inquirer/figures/-/figures-1.0.13.tgz. Extracting by manifest.
+730 silly tarball no local data for @inquirer/core@https://registry.npmjs.org/@inquirer/core/-/core-10.1.15.tgz. Extracting by manifest.
+731 silly tarball no local data for @inquirer/select@https://registry.npmjs.org/@inquirer/select/-/select-4.3.1.tgz. Extracting by manifest.
+732 silly tarball no local data for yoctocolors-cjs@https://registry.npmjs.org/yoctocolors-cjs/-/yoctocolors-cjs-2.1.2.tgz. Extracting by manifest.
+733 silly tarball no local data for @inquirer/search@https://registry.npmjs.org/@inquirer/search/-/search-3.1.0.tgz. Extracting by manifest.
+734 silly tarball no local data for @inquirer/rawlist@https://registry.npmjs.org/@inquirer/rawlist/-/rawlist-4.1.5.tgz. Extracting by manifest.
+735 silly tarball no local data for ansi-escapes@https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz. Extracting by manifest.
+736 silly tarball no local data for @inquirer/password@https://registry.npmjs.org/@inquirer/password/-/password-4.0.17.tgz. Extracting by manifest.
+737 silly tarball no local data for @inquirer/number@https://registry.npmjs.org/@inquirer/number/-/number-3.0.17.tgz. Extracting by manifest.
+738 silly tarball no local data for @inquirer/input@https://registry.npmjs.org/@inquirer/input/-/input-4.2.1.tgz. Extracting by manifest.
+739 silly tarball no local data for @inquirer/expand@https://registry.npmjs.org/@inquirer/expand/-/expand-4.0.17.tgz. Extracting by manifest.
+740 silly tarball no local data for @inquirer/editor@https://registry.npmjs.org/@inquirer/editor/-/editor-4.2.16.tgz. Extracting by manifest.
+741 silly tarball no local data for @inquirer/checkbox@https://registry.npmjs.org/@inquirer/checkbox/-/checkbox-4.2.0.tgz. Extracting by manifest.
+742 silly tarball no local data for @inquirer/confirm@https://registry.npmjs.org/@inquirer/confirm/-/confirm-5.1.14.tgz. Extracting by manifest.
+743 silly tarball no local data for strip-ansi@https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz. Extracting by manifest.
+744 silly tarball no local data for xdg-app-paths@https://registry.npmjs.org/xdg-app-paths/-/xdg-app-paths-8.3.0.tgz. Extracting by manifest.
+745 silly tarball no local data for ts-pattern@https://registry.npmjs.org/ts-pattern/-/ts-pattern-5.6.2.tgz. Extracting by manifest.
+746 silly tarball no local data for ora@https://registry.npmjs.org/ora/-/ora-8.2.0.tgz. Extracting by manifest.
+747 silly tarball no local data for node-fetch@https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz. Extracting by manifest.
+748 silly tarball no local data for kleur@https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz. Extracting by manifest.
+749 silly tarball no local data for get-tsconfig@https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.10.0.tgz. Extracting by manifest.
+750 silly tarball no local data for fs-extra@https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.0.tgz. Extracting by manifest.
+751 silly tarball no local data for effect@https://registry.npmjs.org/effect/-/effect-3.12.10.tgz. Extracting by manifest.
+752 silly tarball no local data for dotenv@https://registry.npmjs.org/dotenv/-/dotenv-16.5.0.tgz. Extracting by manifest.
+753 silly tarball no local data for checkpoint-client@https://registry.npmjs.org/checkpoint-client/-/checkpoint-client-1.1.33.tgz. Extracting by manifest.
+754 silly tarball no local data for async-listen@https://registry.npmjs.org/async-listen/-/async-listen-3.1.0.tgz. Extracting by manifest.
+755 silly tarball no local data for arg@https://registry.npmjs.org/arg/-/arg-5.0.2.tgz. Extracting by manifest.
+756 silly tarball no local data for @prisma/internals@https://registry.npmjs.org/@prisma/internals/-/internals-6.7.0.tgz. Extracting by manifest.
+757 silly tarball no local data for @prisma/generator@https://registry.npmjs.org/@prisma/generator/-/generator-6.7.0.tgz. Extracting by manifest.
+758 silly tarball no local data for @prisma/debug@https://registry.npmjs.org/@prisma/debug/-/debug-6.7.0.tgz. Extracting by manifest.
+759 silly tarball no local data for node-fetch@https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz. Extracting by manifest.
+760 silly tarball no local data for @prisma/config@https://registry.npmjs.org/@prisma/config/-/config-6.7.0.tgz. Extracting by manifest.
+761 silly tarball no local data for esbuild-register@https://registry.npmjs.org/esbuild-register/-/esbuild-register-3.6.0.tgz. Extracting by manifest.
+762 silly tarball no local data for open@https://registry.npmjs.org/open/-/open-7.4.2.tgz. Extracting by manifest.
+763 silly tarball no local data for @inquirer/prompts@https://registry.npmjs.org/@inquirer/prompts/-/prompts-7.3.3.tgz. Extracting by manifest.
+764 silly tarball no local data for @prisma/cli-init@https://registry.npmjs.org/@prisma/cli-init/-/cli-init-0.4.1.tgz. Extracting by manifest.
+765 timing reifyNode:node_modules/color-name Completed in 139ms
+766 timing reifyNode:node_modules/ms Completed in 139ms
+767 timing reifyNode:node_modules/wrap-ansi/node_modules/ansi-regex Completed in 140ms
+768 timing reifyNode:node_modules/ansi-styles Completed in 141ms
+769 timing reifyNode:node_modules/graceful-fs Completed in 143ms
+770 timing reifyNode:node_modules/resolve-pkg-maps Completed in 145ms
+771 timing reifyNode:node_modules/color-convert Completed in 145ms
+772 timing reifyNode:node_modules/debug Completed in 145ms
+773 timing reifyNode:node_modules/safer-buffer Completed in 146ms
+774 http fetch GET 200 https://registry.npmjs.org/onetime/-/onetime-7.0.0.tgz 125ms (cache miss)
+775 timing reifyNode:node_modules/onetime Completed in 148ms
+776 http fetch GET 200 https://registry.npmjs.org/restore-cursor/-/restore-cursor-5.1.0.tgz 124ms (cache miss)
+777 timing reifyNode:node_modules/restore-cursor Completed in 148ms
+778 http fetch GET 200 https://registry.npmjs.org/strip-ansi/-/strip-ansi-7.1.0.tgz 124ms (cache miss)
+779 timing reifyNode:node_modules/strip-ansi Completed in 148ms
+780 http fetch GET 200 https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz 130ms (cache miss)
+781 timing reifyNode:node_modules/is-fullwidth-code-point Completed in 149ms
+782 http fetch GET 200 https://registry.npmjs.org/ansi-regex/-/ansi-regex-6.1.0.tgz 126ms (cache miss)
+783 timing reifyNode:node_modules/ansi-regex Completed in 149ms
+784 http fetch GET 200 https://registry.npmjs.org/string-width/-/string-width-7.2.0.tgz 124ms (cache miss)
+785 timing reifyNode:node_modules/string-width Completed in 149ms
+786 http fetch GET 200 https://registry.npmjs.org/emoji-regex/-/emoji-regex-10.4.0.tgz 126ms (cache miss)
+787 timing reifyNode:node_modules/emoji-regex Completed in 149ms
+788 http fetch GET 200 https://registry.npmjs.org/stdin-discarder/-/stdin-discarder-0.2.2.tgz 125ms (cache miss)
+789 timing reifyNode:node_modules/stdin-discarder Completed in 149ms
+790 http fetch GET 200 https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.3.0.tgz 126ms (cache miss)
+791 timing reifyNode:node_modules/get-east-asian-width Completed in 149ms
+792 http fetch GET 200 https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz 130ms (cache miss)
+793 timing reifyNode:node_modules/webidl-conversions Completed in 151ms
+794 http fetch GET 200 https://registry.npmjs.org/sisteransi/-/sisteransi-1.0.5.tgz 126ms (cache miss)
+795 timing reifyNode:node_modules/sisteransi Completed in 150ms
+796 http fetch GET 200 https://registry.npmjs.org/whatwg-url/-/whatwg-url-5.0.0.tgz 128ms (cache miss)
+797 timing reifyNode:node_modules/fsevents Completed in 150ms
+798 timing reifyNode:node_modules/whatwg-url Completed in 151ms
+799 timing reifyNode:node_modules/esbuild Completed in 151ms
+800 http fetch GET 200 https://registry.npmjs.org/tr46/-/tr46-0.0.3.tgz 143ms (cache miss)
+801 timing reifyNode:node_modules/tr46 Completed in 164ms
+802 http fetch GET 200 https://registry.npmjs.org/is-interactive/-/is-interactive-2.0.0.tgz 141ms (cache miss)
+803 timing reifyNode:node_modules/is-interactive Completed in 167ms
+804 http fetch GET 200 https://registry.npmjs.org/is-unicode-supported/-/is-unicode-supported-2.1.0.tgz 143ms (cache miss)
+805 timing reifyNode:node_modules/is-unicode-supported Completed in 169ms
+806 http fetch GET 200 https://registry.npmjs.org/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz 144ms (cache miss)
+807 timing reifyNode:node_modules/log-symbols/node_modules/is-unicode-supported Completed in 170ms
+808 http fetch GET 200 https://registry.npmjs.org/os-paths/-/os-paths-7.4.0.tgz 148ms (cache miss)
+809 timing reifyNode:node_modules/os-paths Completed in 170ms
+810 http fetch GET 200 https://registry.npmjs.org/log-symbols/-/log-symbols-6.0.0.tgz 146ms (cache miss)
+811 timing reifyNode:node_modules/log-symbols Completed in 171ms
+812 http fetch GET 200 https://registry.npmjs.org/xdg-portable/-/xdg-portable-10.6.0.tgz 150ms (cache miss)
+813 timing reifyNode:node_modules/xdg-portable Completed in 172ms
+814 http fetch GET 200 https://registry.npmjs.org/cli-cursor/-/cli-cursor-5.0.0.tgz 146ms (cache miss)
+815 timing reifyNode:node_modules/cli-cursor Completed in 172ms
+816 timing reifyNode:node_modules/semver Completed in 176ms
+817 http fetch GET 200 https://registry.npmjs.org/is-wsl/-/is-wsl-2.2.0.tgz 152ms (cache miss)
+818 timing reifyNode:node_modules/is-wsl Completed in 178ms
+819 timing reifyNode:node_modules/iconv-lite Completed in 177ms
+820 http fetch GET 200 https://registry.npmjs.org/jsonfile/-/jsonfile-6.2.0.tgz 153ms (cache miss)
+821 timing reifyNode:node_modules/jsonfile Completed in 181ms
+822 http fetch GET 200 https://registry.npmjs.org/universalify/-/universalify-2.0.1.tgz 153ms (cache miss)
+823 timing reifyNode:node_modules/universalify Completed in 181ms
+824 http fetch GET 200 https://registry.npmjs.org/formdata-polyfill/-/formdata-polyfill-4.0.10.tgz 154ms (cache miss)
+825 timing reifyNode:node_modules/formdata-polyfill Completed in 181ms
+826 http fetch GET 200 https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz 159ms (cache miss)
+827 timing reifyNode:node_modules/data-uri-to-buffer Completed in 186ms
+828 timing reifyNode:node_modules/pure-rand Completed in 187ms
+829 http fetch GET 200 https://registry.npmjs.org/chalk/-/chalk-5.5.0.tgz 171ms (cache miss)
+830 http fetch GET 200 https://registry.npmjs.org/cli-spinners/-/cli-spinners-2.9.2.tgz 173ms (cache miss)
+831 http fetch GET 200 https://registry.npmjs.org/is-docker/-/is-docker-2.2.1.tgz 172ms (cache miss)
+832 timing reifyNode:node_modules/is-docker Completed in 199ms
+833 http fetch GET 200 https://registry.npmjs.org/node-domexception/-/node-domexception-1.0.0.tgz 173ms (cache miss)
+834 timing reifyNode:node_modules/cli-spinners Completed in 199ms
+835 http fetch GET 200 https://registry.npmjs.org/fetch-blob/-/fetch-blob-3.2.0.tgz 183ms (cache miss)
+836 timing reifyNode:node_modules/fetch-blob Completed in 211ms
+837 timing reifyNode:node_modules/chalk Completed in 215ms
+838 http fetch GET 200 https://registry.npmjs.org/make-dir/-/make-dir-4.0.0.tgz 186ms (cache miss)
+839 timing reifyNode:node_modules/make-dir Completed in 214ms
+840 http fetch GET 200 https://registry.npmjs.org/env-paths/-/env-paths-2.2.1.tgz 188ms (cache miss)
+841 timing reifyNode:node_modules/env-paths Completed in 216ms
+842 http fetch GET 200 https://registry.npmjs.org/ci-info/-/ci-info-4.0.0.tgz 188ms (cache miss)
+843 timing reifyNode:node_modules/ci-info Completed in 217ms
+844 warn deprecated node-domexception@1.0.0: Use your platform's native DOMException instead
+845 timing reifyNode:node_modules/node-domexception Completed in 220ms
+846 http fetch GET 200 https://registry.npmjs.org/undici-types/-/undici-types-7.10.0.tgz 196ms (cache miss)
+847 timing reifyNode:node_modules/undici-types Completed in 225ms
+848 http fetch GET 200 https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz 208ms (cache miss)
+849 timing reifyNode:node_modules/uuid Completed in 235ms
+850 http fetch GET 200 https://registry.npmjs.org/type-fest/-/type-fest-0.21.3.tgz 207ms (cache miss)
+851 timing reifyNode:node_modules/type-fest Completed in 237ms
+852 http fetch GET 200 https://registry.npmjs.org/kleur/-/kleur-3.0.3.tgz 208ms (cache miss)
+853 timing reifyNode:node_modules/prompts/node_modules/kleur Completed in 237ms
+854 http fetch GET 200 https://registry.npmjs.org/prompts/-/prompts-2.4.2.tgz 221ms (cache miss)
+855 timing reifyNode:node_modules/prompts Completed in 250ms
+856 http fetch GET 200 https://registry.npmjs.org/mimic-function/-/mimic-function-5.0.1.tgz 223ms (cache miss)
+857 timing reifyNode:node_modules/mimic-function Completed in 254ms
+858 http fetch GET 200 https://registry.npmjs.org/@prisma/generator-helper/-/generator-helper-6.7.0.tgz 250ms (cache miss)
+859 http fetch GET 200 https://registry.npmjs.org/@prisma/engines/-/engines-6.7.0.tgz 252ms (cache miss)
+860 http fetch GET 200 https://registry.npmjs.org/@prisma/dmmf/-/dmmf-6.7.0.tgz 253ms (cache miss)
+861 timing reifyNode:node_modules/@prisma/engines Completed in 286ms
+862 timing reifyNode:node_modules/@prisma/dmmf Completed in 287ms
+863 timing reifyNode:node_modules/@prisma/generator-helper Completed in 288ms
+864 http fetch GET 200 https://registry.npmjs.org/chardet/-/chardet-2.1.0.tgz 264ms (cache miss)
+865 timing reifyNode:node_modules/chardet Completed in 299ms
+866 http fetch GET 200 https://registry.npmjs.org/string-width/-/string-width-4.2.3.tgz 271ms (cache miss)
+867 timing reifyNode:node_modules/wrap-ansi/node_modules/string-width Completed in 305ms
+868 http fetch GET 200 https://registry.npmjs.org/@inquirer/external-editor/-/external-editor-1.0.0.tgz 276ms (cache miss)
+869 timing reifyNode:node_modules/@inquirer/external-editor Completed in 310ms
+870 http fetch GET 200 https://registry.npmjs.org/mute-stream/-/mute-stream-2.0.0.tgz 282ms (cache miss)
+871 timing reifyNode:node_modules/mute-stream Completed in 316ms
+872 http fetch GET 200 https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-6.2.0.tgz 282ms (cache miss)
+873 timing reifyNode:node_modules/wrap-ansi Completed in 317ms
+874 http fetch GET 200 https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz 285ms (cache miss)
+875 timing reifyNode:node_modules/signal-exit Completed in 319ms
+876 http fetch GET 200 https://registry.npmjs.org/cli-width/-/cli-width-4.1.0.tgz 294ms (cache miss)
+877 timing reifyNode:node_modules/cli-width Completed in 329ms
+878 timing reifyNode:node_modules/@esbuild/darwin-arm64 Completed in 332ms
+879 http fetch GET 200 https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz 299ms (cache miss)
+880 timing reifyNode:node_modules/wrap-ansi/node_modules/emoji-regex Completed in 336ms
+881 http fetch GET 200 https://registry.npmjs.org/@types/node/-/node-24.2.1.tgz 311ms (cache miss)
+882 timing reifyNode:node_modules/@types/node Completed in 345ms
+883 http fetch GET 200 https://registry.npmjs.org/yoctocolors-cjs/-/yoctocolors-cjs-2.1.2.tgz 314ms (cache miss)
+884 timing reifyNode:node_modules/yoctocolors-cjs Completed in 350ms
+885 http fetch GET 200 https://registry.npmjs.org/@prisma/driver-adapter-utils/-/driver-adapter-utils-6.7.0.tgz 329ms (cache miss)
+886 timing reifyNode:node_modules/@prisma/driver-adapter-utils Completed in 363ms
+887 http fetch GET 200 https://registry.npmjs.org/@inquirer/select/-/select-4.3.1.tgz 337ms (cache miss)
+888 timing reifyNode:node_modules/@inquirer/select Completed in 373ms
+889 http fetch GET 200 https://registry.npmjs.org/ansi-escapes/-/ansi-escapes-4.3.2.tgz 342ms (cache miss)
+890 timing reifyNode:node_modules/ansi-escapes Completed in 379ms
+891 http fetch GET 200 https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz 356ms (cache miss)
+892 timing reifyNode:node_modules/web-streams-polyfill Completed in 387ms
+893 http fetch GET 200 https://registry.npmjs.org/@inquirer/rawlist/-/rawlist-4.1.5.tgz 365ms (cache miss)
+894 timing reifyNode:node_modules/@inquirer/rawlist Completed in 402ms
+895 http fetch GET 200 https://registry.npmjs.org/@inquirer/type/-/type-3.0.8.tgz 385ms (cache miss)
+896 http fetch GET 200 https://registry.npmjs.org/@inquirer/search/-/search-3.1.0.tgz 384ms (cache miss)
+897 timing reifyNode:node_modules/@inquirer/search Completed in 424ms
+898 http fetch GET 200 https://registry.npmjs.org/@inquirer/password/-/password-4.0.17.tgz 385ms (cache miss)
+899 http fetch GET 200 https://registry.npmjs.org/@inquirer/number/-/number-3.0.17.tgz 387ms (cache miss)
+900 timing reifyNode:node_modules/@inquirer/type Completed in 426ms
+901 timing reifyNode:node_modules/@inquirer/password Completed in 427ms
+902 timing reifyNode:node_modules/@inquirer/number Completed in 427ms
+903 http fetch GET 200 https://registry.npmjs.org/@inquirer/input/-/input-4.2.1.tgz 390ms (cache miss)
+904 http fetch GET 200 https://registry.npmjs.org/@prisma/prisma-schema-wasm/-/prisma-schema-wasm-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz 399ms (cache miss)
+905 timing reifyNode:node_modules/@prisma/prisma-schema-wasm Completed in 431ms
+906 timing reifyNode:node_modules/@inquirer/input Completed in 430ms
+907 http fetch GET 200 https://registry.npmjs.org/@inquirer/core/-/core-10.1.15.tgz 411ms (cache miss)
+908 timing reifyNode:node_modules/@inquirer/core Completed in 448ms
+909 http fetch GET 200 https://registry.npmjs.org/@prisma/schema-engine-wasm/-/schema-engine-wasm-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz 424ms (cache miss)
+910 timing reifyNode:node_modules/@prisma/schema-engine-wasm Completed in 455ms
+911 http fetch GET 200 https://registry.npmjs.org/xdg-app-paths/-/xdg-app-paths-8.3.0.tgz 417ms (cache miss)
+912 timing reifyNode:node_modules/xdg-app-paths Completed in 457ms
+913 timing reifyNode:node_modules/fast-check Completed in 463ms
+914 http fetch GET 200 https://registry.npmjs.org/@prisma/fetch-engine/-/fetch-engine-6.7.0.tgz 430ms (cache miss)
+915 timing reifyNode:node_modules/@prisma/fetch-engine Completed in 465ms
+916 http fetch GET 200 https://registry.npmjs.org/kleur/-/kleur-4.1.5.tgz 425ms (cache miss)
+917 timing reifyNode:node_modules/kleur Completed in 466ms
+918 http fetch GET 200 https://registry.npmjs.org/@inquirer/expand/-/expand-4.0.17.tgz 427ms (cache miss)
+919 timing reifyNode:node_modules/@inquirer/expand Completed in 467ms
+920 http fetch GET 200 https://registry.npmjs.org/node-fetch/-/node-fetch-3.3.2.tgz 431ms (cache miss)
+921 timing reifyNode:node_modules/node-fetch Completed in 473ms
+922 http fetch GET 200 https://registry.npmjs.org/strip-ansi/-/strip-ansi-6.0.1.tgz 434ms (cache miss)
+923 timing reifyNode:node_modules/wrap-ansi/node_modules/strip-ansi Completed in 475ms
+924 http fetch GET 200 https://registry.npmjs.org/@inquirer/figures/-/figures-1.0.13.tgz 439ms (cache miss)
+925 timing reifyNode:node_modules/@inquirer/figures Completed in 475ms
+926 http fetch GET 200 https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-4.10.0.tgz 436ms (cache miss)
+927 timing reifyNode:node_modules/get-tsconfig Completed in 478ms
+928 http fetch GET 200 https://registry.npmjs.org/@inquirer/checkbox/-/checkbox-4.2.0.tgz 440ms (cache miss)
+929 http fetch GET 200 https://registry.npmjs.org/ora/-/ora-8.2.0.tgz 440ms (cache miss)
+930 timing reifyNode:node_modules/ora Completed in 481ms
+931 timing reifyNode:node_modules/@inquirer/checkbox Completed in 482ms
+932 http fetch GET 200 https://registry.npmjs.org/ts-pattern/-/ts-pattern-5.6.2.tgz 442ms (cache miss)
+933 timing reifyNode:node_modules/ts-pattern Completed in 483ms
+934 http fetch GET 200 https://registry.npmjs.org/@inquirer/confirm/-/confirm-5.1.14.tgz 446ms (cache miss)
+935 timing reifyNode:node_modules/@inquirer/confirm Completed in 486ms
+936 http fetch GET 200 https://registry.npmjs.org/@inquirer/editor/-/editor-4.2.16.tgz 499ms (cache miss)
+937 http fetch GET 200 https://registry.npmjs.org/@prisma/schema-files-loader/-/schema-files-loader-6.7.0.tgz 512ms (cache miss)
+938 timing reifyNode:node_modules/@prisma/schema-files-loader Completed in 542ms
+939 http fetch GET 200 https://registry.npmjs.org/fs-extra/-/fs-extra-11.3.0.tgz 499ms (cache miss)
+940 http fetch GET 200 https://registry.npmjs.org/async-listen/-/async-listen-3.1.0.tgz 499ms (cache miss)
+941 timing reifyNode:node_modules/async-listen Completed in 541ms
+942 timing reifyNode:node_modules/@inquirer/editor Completed in 542ms
+943 http fetch GET 200 https://registry.npmjs.org/arg/-/arg-5.0.2.tgz 499ms (cache miss)
+944 timing reifyNode:node_modules/arg Completed in 543ms
+945 http fetch GET 200 https://registry.npmjs.org/@prisma/engines-version/-/engines-version-6.7.0-36.3cff47a7f5d65c3ea74883f1d736e41d68ce91ed.tgz 515ms (cache miss)
+946 timing reifyNode:node_modules/@prisma/engines-version Completed in 544ms
+947 http fetch GET 200 https://registry.npmjs.org/node-fetch/-/node-fetch-2.7.0.tgz 502ms (cache miss)
+948 http fetch GET 200 https://registry.npmjs.org/esbuild-register/-/esbuild-register-3.6.0.tgz 502ms (cache miss)
+949 timing reifyNode:node_modules/checkpoint-client/node_modules/node-fetch Completed in 546ms
+950 http fetch GET 200 https://registry.npmjs.org/dotenv/-/dotenv-16.5.0.tgz 505ms (cache miss)
+951 timing reifyNode:node_modules/dotenv Completed in 547ms
+952 timing reifyNode:node_modules/esbuild-register Completed in 548ms
+953 timing reifyNode:node_modules/fs-extra Completed in 553ms
+954 http fetch GET 200 https://registry.npmjs.org/open/-/open-7.4.2.tgz 510ms (cache miss)
+955 timing reifyNode:node_modules/open Completed in 555ms
+956 http fetch GET 200 https://registry.npmjs.org/checkpoint-client/-/checkpoint-client-1.1.33.tgz 518ms (cache miss)
+957 timing reifyNode:node_modules/checkpoint-client Completed in 561ms
+958 http fetch GET 200 https://registry.npmjs.org/@prisma/get-platform/-/get-platform-6.7.0.tgz 532ms (cache miss)
+959 timing reifyNode:node_modules/@prisma/get-platform Completed in 566ms
+960 http fetch GET 200 https://registry.npmjs.org/@prisma/generator/-/generator-6.7.0.tgz 535ms (cache miss)
+961 timing reifyNode:node_modules/@prisma/generator Completed in 578ms
+962 http fetch GET 200 https://registry.npmjs.org/@prisma/debug/-/debug-6.7.0.tgz 593ms (cache miss)
+963 timing reifyNode:node_modules/@prisma/debug Completed in 636ms
+964 http fetch GET 200 https://registry.npmjs.org/@inquirer/prompts/-/prompts-7.3.3.tgz 627ms (cache miss)
+965 timing reifyNode:node_modules/@inquirer/prompts Completed in 672ms
+966 http fetch GET 200 https://registry.npmjs.org/@prisma/cli-init/-/cli-init-0.4.1.tgz 769ms (cache miss)
+967 timing reifyNode:node_modules/@prisma/cli-init Completed in 822ms
+968 http fetch GET 200 https://registry.npmjs.org/@prisma/config/-/config-6.7.0.tgz 802ms (cache miss)
+969 timing reifyNode:node_modules/@prisma/config Completed in 846ms
+970 http fetch GET 200 https://registry.npmjs.org/@prisma/internals/-/internals-6.7.0.tgz 807ms (cache miss)
+971 timing reifyNode:node_modules/@prisma/internals Completed in 850ms
+972 http fetch GET 200 https://registry.npmjs.org/effect/-/effect-3.12.10.tgz 903ms (cache miss)
+973 timing reifyNode:node_modules/effect Completed in 945ms
+974 timing reify:unpack Completed in 948ms
+975 timing reify:unretire Completed in 0ms
+976 timing build:queue Completed in 1ms
+977 timing build:link:node_modules/uuid Completed in 1ms
+978 timing build:link:node_modules/is-docker Completed in 1ms
+979 timing build:link:node_modules/semver Completed in 1ms
+980 timing build:link:node_modules/esbuild Completed in 1ms
+981 timing build:link Completed in 1ms
+982 info run @prisma/engines@6.7.0 postinstall node_modules/@prisma/engines node scripts/postinstall.js
+983 info run esbuild@0.25.9 postinstall node_modules/esbuild node install.js
+984 info run esbuild@0.25.9 postinstall { code: 0, signal: null }
+985 timing build:run:postinstall:node_modules/esbuild Completed in 324ms
+986 info run @prisma/engines@6.7.0 postinstall { code: 0, signal: null }
+987 timing build:run:postinstall:node_modules/@prisma/engines Completed in 1024ms
+988 timing build:run:postinstall Completed in 1025ms
+989 timing build:deps Completed in 1029ms
+990 timing build Completed in 1030ms
+991 timing reify:build Completed in 1030ms
+992 timing reify:trash Completed in 1ms
+993 timing reify Completed in 4401ms
+994 silly ADD node_modules/is-fullwidth-code-point
+995 silly ADD node_modules/webidl-conversions
+996 silly ADD node_modules/tr46
+997 silly ADD node_modules/whatwg-url
+998 silly ADD node_modules/os-paths
+999 silly ADD node_modules/xdg-portable
+1000 silly ADD node_modules/fsevents
+1001 silly ADD node_modules/color-name
+1002 silly ADD node_modules/color-convert
+1003 silly ADD node_modules/ansi-styles
+1004 silly ADD node_modules/ansi-regex
+1005 silly ADD node_modules/get-east-asian-width
+1006 silly ADD node_modules/emoji-regex
+1007 silly ADD node_modules/mimic-function
+1008 silly ADD node_modules/onetime
+1009 silly ADD node_modules/sisteransi
+1010 silly ADD node_modules/restore-cursor
+1011 silly ADD node_modules/strip-ansi
+1012 silly ADD node_modules/string-width
+1013 silly ADD node_modules/stdin-discarder
+1014 silly ADD node_modules/log-symbols
+1015 silly ADD node_modules/log-symbols/node_modules/is-unicode-supported
+1016 silly ADD node_modules/is-unicode-supported
+1017 silly ADD node_modules/is-interactive
+1018 silly ADD node_modules/cli-spinners
+1019 silly ADD node_modules/cli-cursor
+1020 silly ADD node_modules/chalk
+1021 silly ADD node_modules/is-wsl
+1022 silly ADD node_modules/is-docker
+1023 silly ADD node_modules/web-streams-polyfill
+1024 silly ADD node_modules/node-domexception
+1025 silly ADD node_modules/formdata-polyfill
+1026 silly ADD node_modules/fetch-blob
+1027 silly ADD node_modules/data-uri-to-buffer
+1028 silly ADD node_modules/semver
+1029 silly ADD node_modules/safer-buffer
+1030 silly ADD node_modules/resolve-pkg-maps
+1031 silly ADD node_modules/universalify
+1032 silly ADD node_modules/jsonfile
+1033 silly ADD node_modules/graceful-fs
+1034 silly ADD node_modules/pure-rand
+1035 silly ADD node_modules/debug
+1036 silly ADD
+1037 silly ADD
+1038 silly ADD
+1039 silly ADD
+1040 silly ADD
+1041 silly ADD
+1042 silly ADD
+1043 silly ADD
+1044 silly ADD
+1045 silly ADD
+1046 silly ADD
+1047 silly ADD
+1048 silly ADD
+1049 silly ADD
+1050 silly ADD
+1051 silly ADD
+1052 silly ADD
+1053 silly ADD
+1054 silly ADD
+1055 silly ADD
+1056 silly ADD
+1057 silly ADD node_modules/@esbuild/darwin-arm64
+1058 silly ADD
+1059 silly ADD
+1060 silly ADD
+1061 silly ADD
+1062 silly ADD node_modules/fast-check
+1063 silly ADD node_modules/uuid
+1064 silly ADD node_modules/ms
+1065 silly ADD node_modules/make-dir
+1066 silly ADD node_modules/env-paths
+1067 silly ADD node_modules/ci-info
+1068 silly ADD node_modules/type-fest
+1069 silly ADD node_modules/undici-types
+1070 silly ADD node_modules/@prisma/engines-version
+1071 silly ADD node_modules/prompts
+1072 silly ADD node_modules/prompts/node_modules/kleur
+1073 silly ADD node_modules/@prisma/schema-files-loader
+1074 silly ADD node_modules/@prisma/schema-engine-wasm
+1075 silly ADD node_modules/@prisma/prisma-schema-wasm
+1076 silly ADD node_modules/@prisma/get-platform
+1077 silly ADD node_modules/@prisma/generator-helper
+1078 silly ADD node_modules/@prisma/fetch-engine
+1079 silly ADD node_modules/@prisma/engines
+1080 silly ADD node_modules/@prisma/driver-adapter-utils
+1081 silly ADD node_modules/@prisma/dmmf
+1082 silly ADD node_modules/esbuild-register
+1083 silly ADD node_modules/esbuild
+1084 silly ADD node_modules/iconv-lite
+1085 silly ADD node_modules/chardet
+1086 silly ADD node_modules/@types/node
+1087 silly ADD node_modules/@inquirer/external-editor
+1088 silly ADD node_modules/wrap-ansi
+1089 silly ADD node_modules/wrap-ansi/node_modules/ansi-regex
+1090 silly ADD node_modules/wrap-ansi/node_modules/emoji-regex
+1091 silly ADD node_modules/wrap-ansi/node_modules/strip-ansi
+1092 silly ADD node_modules/wrap-ansi/node_modules/string-width
+1093 silly ADD node_modules/signal-exit
+1094 silly ADD node_modules/mute-stream
+1095 silly ADD node_modules/cli-width
+1096 silly ADD node_modules/yoctocolors-cjs
+1097 silly ADD node_modules/ansi-escapes
+1098 silly ADD node_modules/@inquirer/type
+1099 silly ADD node_modules/@inquirer/figures
+1100 silly ADD node_modules/@inquirer/core
+1101 silly ADD node_modules/@inquirer/select
+1102 silly ADD node_modules/@inquirer/search
+1103 silly ADD node_modules/@inquirer/rawlist
+1104 silly ADD node_modules/@inquirer/password
+1105 silly ADD node_modules/@inquirer/number
+1106 silly ADD node_modules/@inquirer/input
+1107 silly ADD node_modules/@inquirer/expand
+1108 silly ADD node_modules/@inquirer/editor
+1109 silly ADD node_modules/@inquirer/confirm
+1110 silly ADD node_modules/@inquirer/checkbox
+1111 silly ADD node_modules/xdg-app-paths
+1112 silly ADD node_modules/ts-pattern
+1113 silly ADD node_modules/ora
+1114 silly ADD node_modules/open
+1115 silly ADD node_modules/node-fetch
+1116 silly ADD node_modules/kleur
+1117 silly ADD node_modules/get-tsconfig
+1118 silly ADD node_modules/fs-extra
+1119 silly ADD node_modules/effect
+1120 silly ADD node_modules/dotenv
+1121 silly ADD node_modules/checkpoint-client
+1122 silly ADD node_modules/checkpoint-client/node_modules/node-fetch
+1123 silly ADD node_modules/async-listen
+1124 silly ADD node_modules/arg
+1125 silly ADD node_modules/@prisma/internals
+1126 silly ADD node_modules/@prisma/generator
+1127 silly ADD node_modules/@prisma/debug
+1128 silly ADD node_modules/@prisma/config
+1129 silly ADD node_modules/@inquirer/prompts
+1130 silly ADD node_modules/@prisma/cli-init
+1131 timing command:install Completed in 4405ms
+1132 verbose exit 0
+1133 timing npm Completed in 4483ms
+1134 info ok

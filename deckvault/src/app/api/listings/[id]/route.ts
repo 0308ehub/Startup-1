@@ -1,0 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { NextRequest } from "next/server";
+
+export async function PATCH(req: NextRequest, { params }: any) {
+	const body = await req.json();
+	return Response.json({ ok: true, id: params.id, updates: body });
+}
