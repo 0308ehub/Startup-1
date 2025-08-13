@@ -10,7 +10,7 @@ function mulberry32(a: number) {
 }
 
 export async function POST(req: NextRequest) {
-	const { deckId, seed } = await req.json();
+	const { seed } = await req.json();
 	const rng = mulberry32(Number(seed ?? 1));
 	const deck = Array.from({ length: 40 }, (_, i) => i + 1);
 	deck.sort(() => rng() - 0.5);

@@ -6,6 +6,6 @@ export async function PATCH(req: NextRequest, { params }: any) {
 	return Response.json({ ok: true, id: params.id, updates: body });
 }
 
-export async function DELETE(_: NextRequest, { params }: any) {
+export async function DELETE(_: NextRequest, { params: _params }: any) {
 	return new Response(null, { status: 204 });
 }
