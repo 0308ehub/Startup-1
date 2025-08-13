@@ -1,5 +1,4 @@
 -- Enable Row Level Security
-ALTER DATABASE postgres SET "app.jwt_secret" TO 'your-jwt-secret';
 
 -- Create profiles table
 CREATE TABLE IF NOT EXISTS profiles (
