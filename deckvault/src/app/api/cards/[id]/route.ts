@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export async function GET(req: Request, { params }: any) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+	const resolvedParams = await params;
 	// Mock data for now to avoid Prisma build issues
 	const mockCard = {
-		id: params.id,
+		id: resolvedParams.id, // Use the params.id
 		name: "Blue-Eyes White Dragon",
 		slug: "blue-eyes-white-dragon",
 		type: "Monster",
