@@ -1,0 +1,1430 @@
+0 verbose cli /usr/local/bin/node /usr/local/bin/npm
+1 info using npm@10.2.4
+2 info using node@v20.11.0
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/usr/local/lib/node_modules/npm/npmrc Completed in 0ms
+6 timing config:load:builtin Completed in 0ms
+7 timing config:load:cli Completed in 1ms
+8 timing config:load:env Completed in 1ms
+9 timing config:load:file:/Users/alanwei/Startup-1/deckvault/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 1ms
+11 timing config:load:file:/Users/alanwei/.npmrc Completed in 0ms
+12 timing config:load:user Completed in 0ms
+13 timing config:load:file:/usr/local/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 1ms
+16 timing config:load Completed in 5ms
+17 timing npm:load:configload Completed in 5ms
+18 timing config:load:flatten Completed in 1ms
+19 timing npm:load:mkdirpcache Completed in 0ms
+20 timing npm:load:mkdirplogs Completed in 0ms
+21 verbose title npm install @supabase/supabase-js @supabase/ssr
+22 verbose argv "install" "@supabase/supabase-js" "@supabase/ssr"
+23 timing npm:load:setTitle Completed in 7ms
+24 timing npm:load:display Completed in 0ms
+25 verbose logfile logs-max:10 dir:/Users/alanwei/Startup-1/.npm-cache/_logs/2025-08-13T20_13_24_371Z-
+26 verbose logfile /Users/alanwei/Startup-1/.npm-cache/_logs/2025-08-13T20_13_24_371Z-debug-0.log
+27 timing npm:load:logFile Completed in 5ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 26ms
+31 timing arborist:ctor Completed in 1ms
+32 silly logfile done cleaning log files
+33 timing idealTree:init Completed in 104ms
+34 timing idealTree:userRequests Completed in 1ms
+35 silly idealTree buildDeps
+36 silly fetch manifest @supabase/supabase-js@*
+37 verbose shrinkwrap failed to load node_modules/.package-lock.json out of date, updated: node_modules
+38 http fetch GET 200 https://registry.npmjs.org/@supabase%2fsupabase-js 266ms (cache miss)
+39 silly fetch manifest @supabase/ssr@*
+40 http fetch GET 200 https://registry.npmjs.org/@supabase%2fssr 157ms (cache miss)
+41 silly placeDep ROOT @supabase/ssr@0.6.1 OK for: deckvault@0.1.0 want: *
+42 silly placeDep ROOT @supabase/supabase-js@2.55.0 OK for: @supabase/ssr@0.6.1 want: ^2.43.4
+43 silly fetch manifest cookie@^1.0.1
+44 silly fetch manifest @supabase/auth-js@2.71.1
+45 silly fetch manifest @supabase/functions-js@2.4.5
+46 silly fetch manifest @supabase/node-fetch@2.6.15
+47 silly fetch manifest @supabase/postgrest-js@1.19.4
+48 silly fetch manifest @supabase/realtime-js@2.15.1
+49 silly fetch manifest @supabase/storage-js@^2.10.4
+50 silly placeDep ROOT @supabase/supabase-js@2.55.0 REPLACE for: deckvault@0.1.0 want: *
+51 http fetch GET 200 https://registry.npmjs.org/@supabase%2fauth-js 93ms (cache miss)
+52 http fetch GET 200 https://registry.npmjs.org/@supabase%2fstorage-js 154ms (cache miss)
+53 http fetch GET 200 https://registry.npmjs.org/@supabase%2fnode-fetch 163ms (cache miss)
+54 http fetch GET 200 https://registry.npmjs.org/@supabase%2frealtime-js 165ms (cache miss)
+55 http fetch GET 200 https://registry.npmjs.org/@supabase%2ffunctions-js 171ms (cache miss)
+56 http fetch GET 200 https://registry.npmjs.org/@supabase%2fpostgrest-js 174ms (cache miss)
+57 http fetch GET 200 https://registry.npmjs.org/cookie 184ms (cache revalidated)
+58 timing idealTree:#root Completed in 627ms
+59 silly placeDep node_modules/@supabase/ssr cookie@1.0.2 OK for: @supabase/ssr@0.6.1 want: ^1.0.1
+60 timing idealTree:node_modules/@supabase/ssr Completed in 1ms
+61 silly placeDep ROOT @supabase/auth-js@2.71.1 OK for: @supabase/supabase-js@2.55.0 want: 2.71.1
+62 silly fetch manifest @supabase/node-fetch@^2.6.14
+63 silly placeDep ROOT @supabase/functions-js@2.4.5 OK for: @supabase/supabase-js@2.55.0 want: 2.4.5
+64 silly placeDep ROOT @supabase/node-fetch@2.6.15 OK for: @supabase/supabase-js@2.55.0 want: 2.6.15
+65 silly fetch manifest whatwg-url@^5.0.0
+66 silly placeDep ROOT @supabase/postgrest-js@1.19.4 OK for: @supabase/supabase-js@2.55.0 want: 1.19.4
+67 silly placeDep ROOT @supabase/realtime-js@2.15.1 OK for: @supabase/supabase-js@2.55.0 want: 2.15.1
+68 silly fetch manifest @types/phoenix@^1.6.6
+69 silly fetch manifest @types/ws@^8.18.1
+70 silly placeDep ROOT @supabase/storage-js@2.10.5 OK for: @supabase/supabase-js@2.55.0 want: ^2.10.4
+71 http fetch GET 200 https://registry.npmjs.org/@types%2fphoenix 63ms (cache miss)
+72 http fetch GET 200 https://registry.npmjs.org/@types%2fws 72ms (cache miss)
+73 http fetch GET 200 https://registry.npmjs.org/whatwg-url 98ms (cache revalidated)
+74 timing idealTree:node_modules/@supabase/supabase-js Completed in 103ms
+75 timing idealTree:node_modules/@supabase/auth-js Completed in 0ms
+76 timing idealTree:node_modules/@supabase/functions-js Completed in 0ms
+77 silly placeDep node_modules/@supabase/node-fetch whatwg-url@5.0.0 OK for: @supabase/node-fetch@2.6.15 want: ^5.0.0
+78 silly fetch manifest tr46@~0.0.3
+79 silly fetch manifest webidl-conversions@^3.0.0
+80 http fetch GET 200 https://registry.npmjs.org/tr46 43ms (cache revalidated)
+81 http fetch GET 200 https://registry.npmjs.org/webidl-conversions 53ms (cache revalidated)
+82 timing idealTree:node_modules/@supabase/node-fetch Completed in 58ms
+83 timing idealTree:node_modules/@supabase/postgrest-js Completed in 0ms
+84 silly placeDep ROOT @types/phoenix@1.6.6 OK for: @supabase/realtime-js@2.15.1 want: ^1.6.6
+85 silly placeDep ROOT @types/ws@8.18.1 OK for: @supabase/realtime-js@2.15.1 want: ^8.18.1
+86 timing idealTree:node_modules/@supabase/realtime-js Completed in 2ms
+87 timing idealTree:node_modules/@supabase/storage-js Completed in 0ms
+88 timing idealTree:node_modules/@tailwindcss/oxide-wasm32-wasi Completed in 0ms
+89 timing idealTree:node_modules/@types/phoenix Completed in 0ms
+90 timing idealTree:node_modules/@types/ws Completed in 0ms
+91 silly placeDep node_modules/@supabase/node-fetch tr46@0.0.3 OK for: whatwg-url@5.0.0 want: ~0.0.3
+92 silly placeDep node_modules/@supabase/node-fetch webidl-conversions@3.0.1 OK for: whatwg-url@5.0.0 want: ^3.0.0
+93 timing idealTree:node_modules/@supabase/node-fetch/node_modules/whatwg-url Completed in 2ms
+94 timing idealTree:node_modules/@supabase/node-fetch/node_modules/tr46 Completed in 0ms
+95 timing idealTree:node_modules/@supabase/node-fetch/node_modules/webidl-conversions Completed in 0ms
+96 timing idealTree:node_modules/@supabase/ssr/node_modules/cookie Completed in 0ms
+97 timing idealTree:buildDeps Completed in 794ms
+98 timing idealTree:fixDepFlags Completed in 7ms
+99 warn EBADENGINE Unsupported engine {
+99 warn EBADENGINE   package: 'vite@7.1.2',
+99 warn EBADENGINE   required: { node: '^20.19.0 || >=22.12.0' },
+99 warn EBADENGINE   current: { node: 'v20.11.0', npm: '10.2.4' }
+99 warn EBADENGINE }
+100 timing idealTree Completed in 913ms
+101 timing reify:loadTrees Completed in 914ms
+102 timing reify:diffTrees Completed in 5ms
+103 silly reify moves {}
+104 timing reify:retireShallow Completed in 0ms
+105 timing reify:createSparse Completed in 6ms
+106 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-wasm32-wasi
+107 silly reify mark deleted [
+107 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-wasm32-wasi'
+107 silly reify ]
+108 timing reifyNode:node_modules/@tailwindcss/oxide-wasm32-wasi Completed in 1ms
+109 timing arborist:ctor Completed in 0ms
+110 timing reify:diffTrees Completed in 3ms
+111 timing reify:loadBundles Completed in 5ms
+112 silly audit bulk request {
+112 silly audit   '@adobe/css-tools': [ '4.4.4' ],
+112 silly audit   '@alloc/quick-lru': [ '5.2.0' ],
+112 silly audit   '@ampproject/remapping': [ '2.3.0' ],
+112 silly audit   '@asamuzakjp/css-color': [ '3.2.0' ],
+112 silly audit   'lru-cache': [ '10.4.3', '6.0.0' ],
+112 silly audit   '@auth/prisma-adapter': [ '2.10.0' ],
+112 silly audit   '@auth/core': [ '0.40.0' ],
+112 silly audit   jose: [ '6.0.12', '4.15.9' ],
+112 silly audit   oauth4webapi: [ '3.7.0' ],
+112 silly audit   'preact-render-to-string': [ '6.5.11', '5.2.6' ],
+112 silly audit   '@babel/code-frame': [ '7.27.1' ],
+112 silly audit   '@babel/helper-validator-identifier': [ '7.27.1' ],
+112 silly audit   '@babel/runtime': [ '7.28.2' ],
+112 silly audit   '@csstools/color-helpers': [ '5.0.2' ],
+112 silly audit   '@csstools/css-calc': [ '2.1.4' ],
+112 silly audit   '@csstools/css-color-parser': [ '3.0.10' ],
+112 silly audit   '@csstools/css-parser-algorithms': [ '3.0.5' ],
+112 silly audit   '@csstools/css-tokenizer': [ '3.0.4' ],
+112 silly audit   '@emnapi/core': [ '1.4.5' ],
+112 silly audit   '@emnapi/runtime': [ '1.4.5' ],
+112 silly audit   '@emnapi/wasi-threads': [ '1.0.4' ],
+112 silly audit   '@esbuild/aix-ppc64': [ '0.25.9' ],
+112 silly audit   '@esbuild/android-arm': [ '0.25.9' ],
+112 silly audit   '@esbuild/android-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/android-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/darwin-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/darwin-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/freebsd-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/freebsd-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-arm': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-ia32': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-loong64': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-mips64el': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-ppc64': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-riscv64': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-s390x': [ '0.25.9' ],
+112 silly audit   '@esbuild/linux-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/netbsd-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/netbsd-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/openbsd-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/openbsd-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/openharmony-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/sunos-x64': [ '0.25.9' ],
+112 silly audit   '@esbuild/win32-arm64': [ '0.25.9' ],
+112 silly audit   '@esbuild/win32-ia32': [ '0.25.9' ],
+112 silly audit   '@esbuild/win32-x64': [ '0.25.9' ],
+112 silly audit   '@eslint-community/eslint-utils': [ '4.7.0' ],
+112 silly audit   'eslint-visitor-keys': [ '3.4.3', '4.2.1' ],
+112 silly audit   '@eslint-community/regexpp': [ '4.12.1' ],
+112 silly audit   '@eslint/config-array': [ '0.21.0' ],
+112 silly audit   '@eslint/config-helpers': [ '0.3.1' ],
+112 silly audit   '@eslint/core': [ '0.15.2' ],
+112 silly audit   '@eslint/eslintrc': [ '3.3.1' ],
+112 silly audit   '@eslint/js': [ '9.33.0' ],
+112 silly audit   '@eslint/object-schema': [ '2.1.6' ],
+112 silly audit   '@eslint/plugin-kit': [ '0.3.5' ],
+112 silly audit   '@humanfs/core': [ '0.19.1' ],
+112 silly audit   '@humanfs/node': [ '0.16.6' ],
+112 silly audit   '@humanwhocodes/retry': [ '0.3.1', '0.4.3' ],
+112 silly audit   '@humanwhocodes/module-importer': [ '1.0.1' ],
+112 silly audit   '@img/sharp-darwin-arm64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-darwin-x64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-libvips-darwin-arm64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-darwin-x64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linux-arm': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linux-arm64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linux-ppc64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linux-s390x': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linux-x64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linuxmusl-arm64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-libvips-linuxmusl-x64': [ '1.2.0' ],
+112 silly audit   '@img/sharp-linux-arm': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linux-arm64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linux-ppc64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linux-s390x': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linux-x64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linuxmusl-arm64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-linuxmusl-x64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-wasm32': [ '0.34.3' ],
+112 silly audit   '@img/sharp-win32-arm64': [ '0.34.3' ],
+112 silly audit   '@img/sharp-win32-ia32': [ '0.34.3' ],
+112 silly audit   '@img/sharp-win32-x64': [ '0.34.3' ],
+112 silly audit   '@isaacs/fs-minipass': [ '4.0.1' ],
+112 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+112 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+112 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+112 silly audit   '@jridgewell/trace-mapping': [ '0.3.30' ],
+112 silly audit   '@napi-rs/wasm-runtime': [ '0.2.12' ],
+112 silly audit   '@next-auth/prisma-adapter': [ '1.0.7' ],
+112 silly audit   '@next/env': [ '15.4.6' ],
+112 silly audit   '@next/eslint-plugin-next': [ '15.4.6' ],
+112 silly audit   '@next/swc-darwin-arm64': [ '15.4.6' ],
+112 silly audit   '@next/swc-darwin-x64': [ '15.4.6' ],
+112 silly audit   '@next/swc-linux-arm64-gnu': [ '15.4.6' ],
+112 silly audit   '@next/swc-linux-arm64-musl': [ '15.4.6' ],
+112 silly audit   '@next/swc-linux-x64-gnu': [ '15.4.6' ],
+112 silly audit   '@next/swc-linux-x64-musl': [ '15.4.6' ],
+112 silly audit   '@next/swc-win32-arm64-msvc': [ '15.4.6' ],
+112 silly audit   '@next/swc-win32-x64-msvc': [ '15.4.6' ],
+112 silly audit   '@nodelib/fs.scandir': [ '2.1.5' ],
+112 silly audit   '@nodelib/fs.stat': [ '2.0.5' ],
+112 silly audit   '@nodelib/fs.walk': [ '1.2.8' ],
+112 silly audit   '@nolyfill/is-core-module': [ '1.0.39' ],
+112 silly audit   '@panva/hkdf': [ '1.2.1' ],
+112 silly audit   '@playwright/test': [ '1.54.2' ],
+112 silly audit   '@prisma/client': [ '6.14.0' ],
+112 silly audit   '@prisma/config': [ '6.14.0' ],
+112 silly audit   '@prisma/debug': [ '6.14.0' ],
+112 silly audit   '@prisma/engines': [ '6.14.0' ],
+112 silly audit   '@prisma/engines-version': [ '6.14.0-25.717184b7b35ea05dfa71a3236b7af656013e1e49' ],
+112 silly audit   '@prisma/fetch-engine': [ '6.14.0' ],
+112 silly audit   '@prisma/get-platform': [ '6.14.0' ],
+112 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-android-arm64': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-darwin-arm64': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-darwin-x64': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-freebsd-x64': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-loongarch64-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.46.2' ],
+112 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.46.2' ],
+112 silly audit   '@rtsao/scc': [ '1.1.0' ],
+112 silly audit   '@rushstack/eslint-patch': [ '1.12.0' ],
+112 silly audit   '@standard-schema/spec': [ '1.0.0' ],
+112 silly audit   '@swc/helpers': [ '0.5.15' ],
+112 silly audit   '@tailwindcss/node': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.1.11' ],
+112 silly audit   '@tailwindcss/postcss': [ '4.1.11' ],
+112 silly audit   '@tanstack/query-core': [ '5.83.1' ],
+112 silly audit   '@tanstack/query-devtools': [ '5.84.0' ],
+112 silly audit   '@tanstack/react-query': [ '5.85.0' ],
+112 silly audit   '@tanstack/react-query-devtools': [ '5.85.0' ],
+112 silly audit   '@testing-library/dom': [ '10.4.1' ],
+112 silly audit   'ansi-styles': [ '5.2.0', '4.3.0' ],
+112 silly audit   'aria-query': [ '5.3.0', '5.3.2' ],
+112 silly audit   'pretty-format': [ '27.5.1', '3.8.0' ],
+112 silly audit   'react-is': [ '17.0.2', '16.13.1' ],
+112 silly audit   '@testing-library/jest-dom': [ '6.6.4' ],
+112 silly audit   'dom-accessibility-api': [ '0.6.3', '0.5.16' ],
+112 silly audit   '@testing-library/react': [ '16.3.0' ],
+112 silly audit   '@testing-library/user-event': [ '14.6.1' ],
+112 silly audit   '@tybys/wasm-util': [ '0.10.0' ],
+112 silly audit   '@types/aria-query': [ '5.0.4' ],
+112 silly audit   '@types/chai': [ '5.2.2' ],
+112 silly audit   '@types/deep-eql': [ '4.0.2' ],
+112 silly audit   '@types/estree': [ '1.0.8' ],
+112 silly audit   '@types/json-schema': [ '7.0.15' ],
+112 silly audit   '@types/json5': [ '0.0.29' ],
+112 silly audit   '@types/node': [ '20.19.10' ],
+112 silly audit   '@types/react': [ '19.1.10' ],
+112 silly audit   '@types/react-dom': [ '19.1.7' ],
+112 silly audit   '@typescript-eslint/eslint-plugin': [ '8.39.1' ],
+112 silly audit   ignore: [ '7.0.5', '5.3.2' ],
+112 silly audit   '@typescript-eslint/parser': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/project-service': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/scope-manager': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/tsconfig-utils': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/type-utils': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/types': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/typescript-estree': [ '8.39.1' ],
+112 silly audit   'brace-expansion': [ '2.0.2', '1.1.12' ],
+112 silly audit   'fast-glob': [ '3.3.3', '3.3.1' ],
+112 silly audit   'glob-parent': [ '5.1.2', '6.0.2' ],
+112 silly audit   minimatch: [ '9.0.5', '3.1.2' ],
+112 silly audit   '@typescript-eslint/utils': [ '8.39.1' ],
+112 silly audit   '@typescript-eslint/visitor-keys': [ '8.39.1' ],
+112 silly audit   '@unrs/resolver-binding-android-arm-eabi': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-android-arm64': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-darwin-arm64': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-darwin-x64': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-freebsd-x64': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-arm-gnueabihf': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-arm-musleabihf': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-arm64-gnu': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-arm64-musl': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-ppc64-gnu': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-riscv64-gnu': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-riscv64-musl': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-s390x-gnu': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-x64-gnu': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-linux-x64-musl': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-wasm32-wasi': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-win32-arm64-msvc': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-win32-ia32-msvc': [ '1.11.1' ],
+112 silly audit   '@unrs/resolver-binding-win32-x64-msvc': [ '1.11.1' ],
+112 silly audit   '@vitest/expect': [ '3.2.4' ],
+112 silly audit   '@vitest/mocker': [ '3.2.4' ],
+112 silly audit   '@vitest/pretty-format': [ '3.2.4' ],
+112 silly audit   '@vitest/runner': [ '3.2.4' ],
+112 silly audit   '@vitest/snapshot': [ '3.2.4' ],
+112 silly audit   '@vitest/spy': [ '3.2.4' ],
+112 silly audit   '@vitest/utils': [ '3.2.4' ],
+112 silly audit   acorn: [ '8.15.0' ],
+112 silly audit   'acorn-jsx': [ '5.3.2' ],
+112 silly audit   'agent-base': [ '7.1.4' ],
+112 silly audit   ajv: [ '6.12.6' ],
+112 silly audit   'ansi-regex': [ '5.0.1' ],
+112 silly audit   argparse: [ '2.0.1' ],
+112 silly audit   'array-buffer-byte-length': [ '1.0.2' ],
+112 silly audit   'array-includes': [ '3.1.9' ],
+112 silly audit   'array.prototype.findlast': [ '1.2.5' ],
+112 silly audit   'array.prototype.findlastindex': [ '1.2.6' ],
+112 silly audit   'array.prototype.flat': [ '1.3.3' ],
+112 silly audit   'array.prototype.flatmap': [ '1.3.3' ],
+112 silly audit   'array.prototype.tosorted': [ '1.1.4' ],
+112 silly audit   'arraybuffer.prototype.slice': [ '1.0.4' ],
+112 silly audit   'assertion-error': [ '2.0.1' ],
+112 silly audit   'ast-types-flow': [ '0.0.8' ],
+112 silly audit   'async-function': [ '1.0.0' ],
+112 silly audit   'available-typed-arrays': [ '1.0.7' ],
+112 silly audit   'axe-core': [ '4.10.3' ],
+112 silly audit   'axobject-query': [ '4.1.0' ],
+112 silly audit   'balanced-match': [ '1.0.2' ],
+112 silly audit   bcryptjs: [ '3.0.2' ],
+112 silly audit   braces: [ '3.0.3' ],
+112 silly audit   c12: [ '3.1.0' ],
+112 silly audit   cac: [ '6.7.14' ],
+112 silly audit   'call-bind': [ '1.0.8' ],
+112 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+112 silly audit   'call-bound': [ '1.0.4' ],
+112 silly audit   callsites: [ '3.1.0' ],
+112 silly audit   'caniuse-lite': [ '1.0.30001734' ],
+112 silly audit   chai: [ '5.2.1' ],
+112 silly audit   chalk: [ '4.1.2' ],
+112 silly audit   'check-error': [ '2.1.1' ],
+112 silly audit   chokidar: [ '4.0.3' ],
+112 silly audit   chownr: [ '3.0.0' ],
+112 silly audit   citty: [ '0.1.6' ],
+112 silly audit   'class-variance-authority': [ '0.7.1' ],
+112 silly audit   'client-only': [ '0.0.1' ],
+112 silly audit   clsx: [ '2.1.1' ],
+112 silly audit   color: [ '4.2.3' ],
+112 silly audit   'color-convert': [ '2.0.1' ],
+112 silly audit   'color-name': [ '1.1.4' ],
+112 silly audit   'color-string': [ '1.9.1' ],
+112 silly audit   'concat-map': [ '0.0.1' ],
+112 silly audit   confbox: [ '0.2.2' ],
+112 silly audit   consola: [ '3.4.2' ],
+112 silly audit   cookie: [ '0.7.2', '1.0.2' ],
+112 silly audit   'cross-spawn': [ '7.0.6' ],
+112 silly audit   'css.escape': [ '1.5.1' ],
+112 silly audit   cssstyle: [ '4.6.0' ],
+112 silly audit   csstype: [ '3.1.3' ],
+112 silly audit   'damerau-levenshtein': [ '1.0.8' ],
+112 silly audit   'data-urls': [ '5.0.0' ],
+112 silly audit   'data-view-buffer': [ '1.0.2' ],
+112 silly audit   'data-view-byte-length': [ '1.0.2' ],
+112 silly audit   'data-view-byte-offset': [ '1.0.1' ],
+112 silly audit   'date-fns': [ '4.1.0' ],
+112 silly audit   debug: [ '4.4.1', '3.2.7' ],
+112 silly audit   'decimal.js': [ '10.6.0' ],
+112 silly audit   'deep-eql': [ '5.0.2' ],
+112 silly audit   'deep-is': [ '0.1.4' ],
+112 silly audit   'deepmerge-ts': [ '7.1.5' ],
+112 silly audit   'define-data-property': [ '1.1.4' ],
+112 silly audit   'define-properties': [ '1.2.1' ],
+112 silly audit   defu: [ '6.1.4' ],
+112 silly audit   dequal: [ '2.0.3' ],
+112 silly audit   destr: [ '2.0.5' ],
+112 silly audit   'detect-libc': [ '2.0.4' ],
+112 silly audit   doctrine: [ '2.1.0' ],
+112 silly audit   dotenv: [ '16.6.1' ],
+112 silly audit   'dunder-proto': [ '1.0.1' ],
+112 silly audit   effect: [ '3.16.12' ],
+112 silly audit   'emoji-regex': [ '9.2.2' ],
+112 silly audit   empathic: [ '2.0.0' ],
+112 silly audit   'enhanced-resolve': [ '5.18.3' ],
+112 silly audit   entities: [ '6.0.1' ],
+112 silly audit   'es-abstract': [ '1.24.0' ],
+112 silly audit   'es-define-property': [ '1.0.1' ],
+112 silly audit   'es-errors': [ '1.3.0' ],
+112 silly audit   'es-iterator-helpers': [ '1.2.1' ],
+112 silly audit   'es-module-lexer': [ '1.7.0' ],
+112 silly audit   'es-object-atoms': [ '1.1.1' ],
+112 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+112 silly audit   'es-shim-unscopables': [ '1.1.0' ],
+112 silly audit   'es-to-primitive': [ '1.3.0' ],
+112 silly audit   esbuild: [ '0.25.9' ],
+112 silly audit   'escape-string-regexp': [ '4.0.0' ],
+112 silly audit   eslint: [ '9.33.0' ],
+112 silly audit   'eslint-config-next': [ '15.4.6' ],
+112 silly audit   'eslint-import-resolver-node': [ '0.3.9' ],
+112 silly audit   'eslint-import-resolver-typescript': [ '3.10.1' ],
+112 silly audit   'eslint-module-utils': [ '2.12.1' ],
+112 silly audit   'eslint-plugin-import': [ '2.32.0' ],
+112 silly audit   semver: [ '6.3.1', '7.7.2' ],
+112 silly audit   'eslint-plugin-jsx-a11y': [ '6.10.2' ],
+112 silly audit   'eslint-plugin-react': [ '7.37.5' ],
+112 silly audit   'eslint-plugin-react-hooks': [ '5.2.0' ],
+112 silly audit   resolve: [ '2.0.0-next.5', '1.22.10' ],
+112 silly audit   'eslint-scope': [ '8.4.0' ],
+112 silly audit   espree: [ '10.4.0' ],
+112 silly audit   esquery: [ '1.6.0' ],
+112 silly audit   esrecurse: [ '4.3.0' ],
+112 silly audit   estraverse: [ '5.3.0' ],
+112 silly audit   'estree-walker': [ '3.0.3' ],
+112 silly audit   esutils: [ '2.0.3' ],
+112 silly audit   'expect-type': [ '1.2.2' ],
+112 silly audit   exsolve: [ '1.0.7' ],
+112 silly audit   'fast-check': [ '3.23.2' ],
+112 silly audit   'fast-deep-equal': [ '3.1.3' ],
+112 silly audit   'fast-json-stable-stringify': [ '2.1.0' ],
+112 silly audit   'fast-levenshtein': [ '2.0.6' ],
+112 silly audit   fastq: [ '1.19.1' ],
+112 silly audit   'file-entry-cache': [ '8.0.0' ],
+112 silly audit   'fill-range': [ '7.1.1' ],
+112 silly audit   'find-up': [ '5.0.0' ],
+112 silly audit   'flat-cache': [ '4.0.1' ],
+112 silly audit   flatted: [ '3.3.3' ],
+112 silly audit   'for-each': [ '0.3.5' ],
+112 silly audit   fsevents: [ '2.3.2', '2.3.3' ],
+112 silly audit   'function-bind': [ '1.1.2' ],
+112 silly audit   'function.prototype.name': [ '1.1.8' ],
+112 silly audit   'functions-have-names': [ '1.2.3' ],
+112 silly audit   'get-intrinsic': [ '1.3.0' ],
+112 silly audit   'get-proto': [ '1.0.1' ],
+112 silly audit   'get-symbol-description': [ '1.1.0' ],
+112 silly audit   'get-tsconfig': [ '4.10.1' ],
+112 silly audit   giget: [ '2.0.0' ],
+112 silly audit   globals: [ '14.0.0' ],
+112 silly audit   globalthis: [ '1.0.4' ],
+112 silly audit   gopd: [ '1.2.0' ],
+112 silly audit   'graceful-fs': [ '4.2.11' ],
+112 silly audit   graphemer: [ '1.4.0' ],
+112 silly audit   'has-bigints': [ '1.1.0' ],
+112 silly audit   'has-flag': [ '4.0.0' ],
+112 silly audit   'has-property-descriptors': [ '1.0.2' ],
+112 silly audit   'has-proto': [ '1.2.0' ],
+112 silly audit   'has-symbols': [ '1.1.0' ],
+112 silly audit   'has-tostringtag': [ '1.0.2' ],
+112 silly audit   hasown: [ '2.0.2' ],
+112 silly audit   'html-encoding-sniffer': [ '4.0.0' ],
+112 silly audit   'http-proxy-agent': [ '7.0.2' ],
+112 silly audit   'https-proxy-agent': [ '7.0.6' ],
+112 silly audit   'iconv-lite': [ '0.6.3' ],
+112 silly audit   'import-fresh': [ '3.3.1' ],
+112 silly audit   imurmurhash: [ '0.1.4' ],
+112 silly audit   'indent-string': [ '4.0.0' ],
+112 silly audit   'internal-slot': [ '1.1.0' ],
+112 silly audit   'is-array-buffer': [ '3.0.5' ],
+112 silly audit   'is-arrayish': [ '0.3.2' ],
+112 silly audit   'is-async-function': [ '2.1.1' ],
+112 silly audit   'is-bigint': [ '1.1.0' ],
+112 silly audit   'is-boolean-object': [ '1.2.2' ],
+112 silly audit   'is-bun-module': [ '2.0.0' ],
+112 silly audit   'is-callable': [ '1.2.7' ],
+112 silly audit   'is-core-module': [ '2.16.1' ],
+112 silly audit   'is-data-view': [ '1.0.2' ],
+112 silly audit   'is-date-object': [ '1.1.0' ],
+112 silly audit   'is-extglob': [ '2.1.1' ],
+112 silly audit   'is-finalizationregistry': [ '1.1.1' ],
+112 silly audit   'is-generator-function': [ '1.1.0' ],
+112 silly audit   'is-glob': [ '4.0.3' ],
+112 silly audit   'is-map': [ '2.0.3' ],
+112 silly audit   'is-negative-zero': [ '2.0.3' ],
+112 silly audit   'is-number': [ '7.0.0' ],
+112 silly audit   'is-number-object': [ '1.1.1' ],
+112 silly audit   'is-potential-custom-element-name': [ '1.0.1' ],
+112 silly audit   'is-regex': [ '1.2.1' ],
+112 silly audit   'is-set': [ '2.0.3' ],
+112 silly audit   'is-shared-array-buffer': [ '1.0.4' ],
+112 silly audit   'is-string': [ '1.1.1' ],
+112 silly audit   'is-symbol': [ '1.1.1' ],
+112 silly audit   'is-typed-array': [ '1.1.15' ],
+112 silly audit   'is-weakmap': [ '2.0.2' ],
+112 silly audit   'is-weakref': [ '1.1.1' ],
+112 silly audit   'is-weakset': [ '2.0.4' ],
+112 silly audit   isarray: [ '2.0.5' ],
+112 silly audit   isexe: [ '2.0.0' ],
+112 silly audit   'iterator.prototype': [ '1.1.5' ],
+112 silly audit   jiti: [ '2.5.1' ],
+112 silly audit   'js-tokens': [ '4.0.0', '9.0.1' ],
+112 silly audit   'js-yaml': [ '4.1.0' ],
+112 silly audit   jsdom: [ '26.1.0' ],
+112 silly audit   'json-buffer': [ '3.0.1' ],
+112 silly audit   'json-schema-traverse': [ '0.4.1' ],
+112 silly audit   'json-stable-stringify-without-jsonify': [ '1.0.1' ],
+112 silly audit   json5: [ '1.0.2' ],
+112 silly audit   'jsx-ast-utils': [ '3.3.5' ],
+112 silly audit   keyv: [ '4.5.4' ],
+112 silly audit   'language-subtag-registry': [ '0.3.23' ],
+112 silly audit   'language-tags': [ '1.0.9' ],
+112 silly audit   levn: [ '0.4.1' ],
+112 silly audit   lightningcss: [ '1.30.1' ],
+112 silly audit   'lightningcss-darwin-arm64': [ '1.30.1' ],
+112 silly audit   'lightningcss-darwin-x64': [ '1.30.1' ],
+112 silly audit   'lightningcss-freebsd-x64': [ '1.30.1' ],
+112 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.30.1' ],
+112 silly audit   'lightningcss-linux-arm64-gnu': [ '1.30.1' ],
+112 silly audit   'lightningcss-linux-arm64-musl': [ '1.30.1' ],
+112 silly audit   'lightningcss-linux-x64-gnu': [ '1.30.1' ],
+112 silly audit   'lightningcss-linux-x64-musl': [ '1.30.1' ],
+112 silly audit   'lightningcss-win32-arm64-msvc': [ '1.30.1' ],
+112 silly audit   'lightningcss-win32-x64-msvc': [ '1.30.1' ],
+112 silly audit   'locate-path': [ '6.0.0' ],
+112 silly audit   lodash: [ '4.17.21' ],
+112 silly audit   'lodash.merge': [ '4.6.2' ],
+112 silly audit   'loose-envify': [ '1.4.0' ],
+112 silly audit   loupe: [ '3.2.0' ],
+112 silly audit   'lucide-react': [ '0.539.0' ],
+112 silly audit   'lz-string': [ '1.5.0' ],
+112 silly audit   'magic-string': [ '0.30.17' ],
+112 silly audit   'math-intrinsics': [ '1.1.0' ],
+112 silly audit   merge2: [ '1.4.1' ],
+112 silly audit   micromatch: [ '4.0.8' ],
+112 silly audit   'min-indent': [ '1.0.1' ],
+112 silly audit   minimist: [ '1.2.8' ],
+112 silly audit   minipass: [ '7.1.2' ],
+112 silly audit   minizlib: [ '3.0.2' ],
+112 silly audit   mkdirp: [ '3.0.1' ],
+112 silly audit   ms: [ '2.1.3' ],
+112 silly audit   nanoid: [ '3.3.11' ],
+112 silly audit   'napi-postinstall': [ '0.3.3' ],
+112 silly audit   'natural-compare': [ '1.4.0' ],
+112 silly audit   next: [ '15.4.6' ],
+112 silly audit   'next-auth': [ '4.24.11' ],
+112 silly audit   postcss: [ '8.4.31', '8.5.6' ],
+112 silly audit   'node-fetch-native': [ '1.6.7' ],
+112 silly audit   nodemailer: [ '6.10.1' ],
+112 silly audit   nwsapi: [ '2.2.21' ],
+112 silly audit   nypm: [ '0.6.1' ],
+112 silly audit   oauth: [ '0.9.15' ],
+112 silly audit   'object-assign': [ '4.1.1' ],
+112 silly audit   'object-hash': [ '2.2.0' ],
+112 silly audit   'object-inspect': [ '1.13.4' ],
+112 silly audit   'object-keys': [ '1.1.1' ],
+112 silly audit   'object.assign': [ '4.1.7' ],
+112 silly audit   'object.entries': [ '1.1.9' ],
+112 silly audit   'object.fromentries': [ '2.0.8' ],
+112 silly audit   'object.groupby': [ '1.0.3' ],
+112 silly audit   'object.values': [ '1.2.1' ],
+112 silly audit   ohash: [ '2.0.11' ],
+112 silly audit   'oidc-token-hash': [ '5.1.1' ],
+112 silly audit   'openid-client': [ '5.7.1' ],
+112 silly audit   optionator: [ '0.9.4' ],
+112 silly audit   'own-keys': [ '1.0.1' ],
+112 silly audit   'p-limit': [ '3.1.0' ],
+112 silly audit   'p-locate': [ '5.0.0' ],
+112 silly audit   'parent-module': [ '1.0.1' ],
+112 silly audit   parse5: [ '7.3.0' ],
+112 silly audit   'path-exists': [ '4.0.0' ],
+112 silly audit   'path-key': [ '3.1.1' ],
+112 silly audit   'path-parse': [ '1.0.7' ],
+112 silly audit   pathe: [ '2.0.3' ],
+112 silly audit   pathval: [ '2.0.1' ],
+112 silly audit   'perfect-debounce': [ '1.0.0' ],
+112 silly audit   picocolors: [ '1.1.1' ],
+112 silly audit   picomatch: [ '2.3.1', '4.0.3' ],
+112 silly audit   'pkg-types': [ '2.2.0' ],
+112 silly audit   playwright: [ '1.54.2' ],
+112 silly audit   'playwright-core': [ '1.54.2' ],
+112 silly audit   'possible-typed-array-names': [ '1.1.0' ],
+112 silly audit   preact: [ '10.24.3' ],
+112 silly audit   'prelude-ls': [ '1.2.1' ],
+112 silly audit   prisma: [ '6.14.0' ],
+112 silly audit   'prop-types': [ '15.8.1' ],
+112 silly audit   punycode: [ '2.3.1' ],
+112 silly audit   'pure-rand': [ '6.1.0' ],
+112 silly audit   'queue-microtask': [ '1.2.3' ],
+112 silly audit   rc9: [ '2.1.2' ],
+112 silly audit   react: [ '19.1.0' ],
+112 silly audit   'react-dom': [ '19.1.0' ],
+112 silly audit   readdirp: [ '4.1.2' ],
+112 silly audit   redent: [ '3.0.0' ],
+112 silly audit   'reflect.getprototypeof': [ '1.0.10' ],
+112 silly audit   'regexp.prototype.flags': [ '1.5.4' ],
+112 silly audit   'resolve-from': [ '4.0.0' ],
+112 silly audit   'resolve-pkg-maps': [ '1.0.0' ],
+112 silly audit   reusify: [ '1.1.0' ],
+112 silly audit   rollup: [ '4.46.2' ],
+112 silly audit   'rrweb-cssom': [ '0.8.0' ],
+112 silly audit   'run-parallel': [ '1.2.0' ],
+112 silly audit   'safe-array-concat': [ '1.1.3' ],
+112 silly audit   'safe-push-apply': [ '1.0.0' ],
+112 silly audit   'safe-regex-test': [ '1.1.0' ],
+112 silly audit   'safer-buffer': [ '2.1.2' ],
+112 silly audit   saxes: [ '6.0.0' ],
+112 silly audit   scheduler: [ '0.26.0' ],
+112 silly audit   'set-function-length': [ '1.2.2' ],
+112 silly audit   'set-function-name': [ '2.0.2' ],
+112 silly audit   'set-proto': [ '1.0.0' ],
+112 silly audit   sharp: [ '0.34.3' ],
+112 silly audit   'shebang-command': [ '2.0.0' ],
+112 silly audit   'shebang-regex': [ '3.0.0' ],
+112 silly audit   'side-channel': [ '1.1.0' ],
+112 silly audit   'side-channel-list': [ '1.0.0' ],
+112 silly audit   'side-channel-map': [ '1.0.1' ],
+112 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+112 silly audit   siginfo: [ '2.0.0' ],
+112 silly audit   'simple-swizzle': [ '0.2.2' ],
+112 silly audit   'source-map-js': [ '1.2.1' ],
+112 silly audit   'stable-hash': [ '0.0.5' ],
+112 silly audit   stackback: [ '0.0.2' ],
+112 silly audit   'std-env': [ '3.9.0' ],
+112 silly audit   'stop-iteration-iterator': [ '1.1.0' ],
+112 silly audit   'string.prototype.includes': [ '2.0.1' ],
+112 silly audit   'string.prototype.matchall': [ '4.0.12' ],
+112 silly audit   'string.prototype.repeat': [ '1.0.0' ],
+112 silly audit   'string.prototype.trim': [ '1.2.10' ],
+112 silly audit   'string.prototype.trimend': [ '1.0.9' ],
+112 silly audit   'string.prototype.trimstart': [ '1.0.8' ],
+112 silly audit   'strip-bom': [ '3.0.0' ],
+112 silly audit   'strip-indent': [ '3.0.0' ],
+112 silly audit   'strip-json-comments': [ '3.1.1' ],
+112 silly audit   'strip-literal': [ '3.0.0' ],
+112 silly audit   'styled-jsx': [ '5.1.6' ],
+112 silly audit   'supports-color': [ '7.2.0' ],
+112 silly audit   'supports-preserve-symlinks-flag': [ '1.0.0' ],
+112 silly audit   'symbol-tree': [ '3.2.4' ],
+112 silly audit   tailwindcss: [ '4.1.11' ],
+112 silly audit   tapable: [ '2.2.2' ],
+112 silly audit   tar: [ '7.4.3' ],
+112 silly audit   yallist: [ '5.0.0', '4.0.0' ],
+112 silly audit   tinybench: [ '2.9.0' ],
+112 silly audit   tinyexec: [ '1.0.1', '0.3.2' ],
+112 silly audit   tinyglobby: [ '0.2.14' ],
+112 silly audit   fdir: [ '6.4.6' ],
+112 silly audit   tinypool: [ '1.1.1' ],
+112 silly audit   tinyrainbow: [ '2.0.0' ],
+112 silly audit   tinyspy: [ '4.0.3' ],
+112 silly audit   tldts: [ '6.1.86' ],
+112 silly audit   'tldts-core': [ '6.1.86' ],
+112 silly audit   'to-regex-range': [ '5.0.1' ],
+112 silly audit   'tough-cookie': [ '5.1.2' ],
+112 silly audit   tr46: [ '5.1.1', '0.0.3' ],
+112 silly audit   'ts-api-utils': [ '2.1.0' ],
+112 silly audit   'tsconfig-paths': [ '3.15.0' ],
+112 silly audit   tslib: [ '2.8.1' ],
+112 silly audit   tsx: [ '4.20.4' ],
+112 silly audit   'type-check': [ '0.4.0' ],
+112 silly audit   'typed-array-buffer': [ '1.0.3' ],
+112 silly audit   'typed-array-byte-length': [ '1.0.3' ],
+112 silly audit   'typed-array-byte-offset': [ '1.0.4' ],
+112 silly audit   'typed-array-length': [ '1.0.7' ],
+112 silly audit   typescript: [ '5.9.2' ],
+112 silly audit   'unbox-primitive': [ '1.1.0' ],
+112 silly audit   'undici-types': [ '6.21.0' ],
+112 silly audit   'unrs-resolver': [ '1.11.1' ],
+112 silly audit   'uri-js': [ '4.4.1' ],
+112 silly audit   uuid: [ '8.3.2' ],
+112 silly audit   vite: [ '7.1.2' ],
+112 silly audit   'vite-node': [ '3.2.4' ],
+112 silly audit   vitest: [ '3.2.4' ],
+112 silly audit   'w3c-xmlserializer': [ '5.0.0' ],
+112 silly audit   'webidl-conversions': [ '7.0.0', '3.0.1' ],
+112 silly audit   'whatwg-encoding': [ '3.1.1' ],
+112 silly audit   'whatwg-mimetype': [ '4.0.0' ],
+112 silly audit   'whatwg-url': [ '14.2.0', '5.0.0' ],
+112 silly audit   which: [ '2.0.2' ],
+112 silly audit   'which-boxed-primitive': [ '1.1.1' ],
+112 silly audit   'which-builtin-type': [ '1.2.1' ],
+112 silly audit   'which-collection': [ '1.0.2' ],
+112 silly audit   'which-typed-array': [ '1.1.19' ],
+112 silly audit   'why-is-node-running': [ '2.3.0' ],
+112 silly audit   'word-wrap': [ '1.2.5' ],
+112 silly audit   ws: [ '8.18.3' ],
+112 silly audit   'xml-name-validator': [ '5.0.0' ],
+112 silly audit   xmlchars: [ '2.2.0' ],
+112 silly audit   'yocto-queue': [ '0.1.0' ],
+112 silly audit   zod: [ '4.0.17' ],
+112 silly audit   zustand: [ '5.0.7' ],
+112 silly audit   '@supabase/ssr': [ '0.6.1' ],
+112 silly audit   '@supabase/supabase-js': [ '2.55.0' ],
+112 silly audit   '@supabase/auth-js': [ '2.71.1' ],
+112 silly audit   '@supabase/functions-js': [ '2.4.5' ],
+112 silly audit   '@supabase/node-fetch': [ '2.6.15' ],
+112 silly audit   '@supabase/postgrest-js': [ '1.19.4' ],
+112 silly audit   '@supabase/realtime-js': [ '2.15.1' ],
+112 silly audit   '@supabase/storage-js': [ '2.10.5' ],
+112 silly audit   '@types/phoenix': [ '1.6.6' ],
+112 silly audit   '@types/ws': [ '8.18.1' ],
+112 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.1.11' ]
+112 silly audit }
+113 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-win32-x64-msvc
+114 silly reify mark deleted [
+114 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-win32-x64-msvc'
+114 silly reify ]
+115 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-win32-arm64-msvc
+116 silly reify mark deleted [
+116 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-win32-arm64-msvc'
+116 silly reify ]
+117 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-x64-musl
+118 silly reify mark deleted [
+118 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-x64-musl'
+118 silly reify ]
+119 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-x64-gnu
+120 silly reify mark deleted [
+120 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-x64-gnu'
+120 silly reify ]
+121 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm64-musl
+122 silly reify mark deleted [
+122 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm64-musl'
+122 silly reify ]
+123 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm64-gnu
+124 silly reify mark deleted [
+124 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm64-gnu'
+124 silly reify ]
+125 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm-gnueabihf
+126 silly reify mark deleted [
+126 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-linux-arm-gnueabihf'
+126 silly reify ]
+127 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-freebsd-x64
+128 silly reify mark deleted [
+128 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-freebsd-x64'
+128 silly reify ]
+129 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-darwin-x64
+130 silly reify mark deleted [
+130 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/lightningcss-darwin-x64'
+130 silly reify ]
+131 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-x64-msvc
+132 silly reify mark deleted [
+132 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-x64-msvc'
+132 silly reify ]
+133 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-ia32-msvc
+134 silly reify mark deleted [
+134 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-ia32-msvc'
+134 silly reify ]
+135 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-arm64-msvc
+136 silly reify mark deleted [
+136 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-win32-arm64-msvc'
+136 silly reify ]
+137 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-wasm32-wasi
+138 silly reify mark deleted [
+138 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-wasm32-wasi'
+138 silly reify ]
+139 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-x64-musl
+140 silly reify mark deleted [
+140 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-x64-musl'
+140 silly reify ]
+141 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-x64-gnu
+142 silly reify mark deleted [
+142 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-x64-gnu'
+142 silly reify ]
+143 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-s390x-gnu
+144 silly reify mark deleted [
+144 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-s390x-gnu'
+144 silly reify ]
+145 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-riscv64-musl
+146 silly reify mark deleted [
+146 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-riscv64-musl'
+146 silly reify ]
+147 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-riscv64-gnu
+148 silly reify mark deleted [
+148 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-riscv64-gnu'
+148 silly reify ]
+149 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-ppc64-gnu
+150 silly reify mark deleted [
+150 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-ppc64-gnu'
+150 silly reify ]
+151 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm64-musl
+152 silly reify mark deleted [
+152 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm64-musl'
+152 silly reify ]
+153 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm64-gnu
+154 silly reify mark deleted [
+154 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm64-gnu'
+154 silly reify ]
+155 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm-musleabihf
+156 silly reify mark deleted [
+156 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm-musleabihf'
+156 silly reify ]
+157 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf
+158 silly reify mark deleted [
+158 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-linux-arm-gnueabihf'
+158 silly reify ]
+159 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-freebsd-x64
+160 silly reify mark deleted [
+160 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-freebsd-x64'
+160 silly reify ]
+161 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-darwin-x64
+162 silly reify mark deleted [
+162 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-darwin-x64'
+162 silly reify ]
+163 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-android-arm64
+164 silly reify mark deleted [
+164 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-android-arm64'
+164 silly reify ]
+165 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-android-arm-eabi
+166 silly reify mark deleted [
+166 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@unrs/resolver-binding-android-arm-eabi'
+166 silly reify ]
+167 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-win32-x64-msvc
+168 silly reify mark deleted [
+168 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-win32-x64-msvc'
+168 silly reify ]
+169 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-win32-arm64-msvc
+170 silly reify mark deleted [
+170 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-win32-arm64-msvc'
+170 silly reify ]
+171 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-x64-musl
+172 silly reify mark deleted [
+172 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-x64-musl'
+172 silly reify ]
+173 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-x64-gnu
+174 silly reify mark deleted [
+174 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-x64-gnu'
+174 silly reify ]
+175 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm64-musl
+176 silly reify mark deleted [
+176 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm64-musl'
+176 silly reify ]
+177 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm64-gnu
+178 silly reify mark deleted [
+178 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm64-gnu'
+178 silly reify ]
+179 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf
+180 silly reify mark deleted [
+180 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-linux-arm-gnueabihf'
+180 silly reify ]
+181 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-freebsd-x64
+182 silly reify mark deleted [
+182 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-freebsd-x64'
+182 silly reify ]
+183 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-darwin-x64
+184 silly reify mark deleted [
+184 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-darwin-x64'
+184 silly reify ]
+185 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-android-arm64
+186 silly reify mark deleted [
+186 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@tailwindcss/oxide-android-arm64'
+186 silly reify ]
+187 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-x64-msvc
+188 silly reify mark deleted [
+188 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-x64-msvc'
+188 silly reify ]
+189 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-ia32-msvc
+190 silly reify mark deleted [
+190 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-ia32-msvc'
+190 silly reify ]
+191 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-arm64-msvc
+192 silly reify mark deleted [
+192 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-win32-arm64-msvc'
+192 silly reify ]
+193 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-x64-musl
+194 silly reify mark deleted [
+194 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-x64-musl'
+194 silly reify ]
+195 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-x64-gnu
+196 silly reify mark deleted [
+196 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-x64-gnu'
+196 silly reify ]
+197 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-s390x-gnu
+198 silly reify mark deleted [
+198 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-s390x-gnu'
+198 silly reify ]
+199 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-riscv64-musl
+200 silly reify mark deleted [
+200 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-riscv64-musl'
+200 silly reify ]
+201 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-riscv64-gnu
+202 silly reify mark deleted [
+202 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-riscv64-gnu'
+202 silly reify ]
+203 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-ppc64-gnu
+204 silly reify mark deleted [
+204 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-ppc64-gnu'
+204 silly reify ]
+205 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-loongarch64-gnu
+206 silly reify mark deleted [
+206 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-loongarch64-gnu'
+206 silly reify ]
+207 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm64-musl
+208 silly reify mark deleted [
+208 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm64-musl'
+208 silly reify ]
+209 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm64-gnu
+210 silly reify mark deleted [
+210 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm64-gnu'
+210 silly reify ]
+211 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm-musleabihf
+212 silly reify mark deleted [
+212 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm-musleabihf'
+212 silly reify ]
+213 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm-gnueabihf
+214 silly reify mark deleted [
+214 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-linux-arm-gnueabihf'
+214 silly reify ]
+215 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-freebsd-x64
+216 silly reify mark deleted [
+216 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-freebsd-x64'
+216 silly reify ]
+217 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-freebsd-arm64
+218 silly reify mark deleted [
+218 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-freebsd-arm64'
+218 silly reify ]
+219 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-darwin-x64
+220 silly reify mark deleted [
+220 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-darwin-x64'
+220 silly reify ]
+221 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-android-arm64
+222 silly reify mark deleted [
+222 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-android-arm64'
+222 silly reify ]
+223 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-android-arm-eabi
+224 silly reify mark deleted [
+224 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@rollup/rollup-android-arm-eabi'
+224 silly reify ]
+225 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-win32-x64-msvc
+226 silly reify mark deleted [
+226 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-win32-x64-msvc'
+226 silly reify ]
+227 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-win32-arm64-msvc
+228 silly reify mark deleted [
+228 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-win32-arm64-msvc'
+228 silly reify ]
+229 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-x64-musl
+230 silly reify mark deleted [
+230 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-x64-musl'
+230 silly reify ]
+231 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-x64-gnu
+232 silly reify mark deleted [
+232 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-x64-gnu'
+232 silly reify ]
+233 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-arm64-musl
+234 silly reify mark deleted [
+234 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-arm64-musl'
+234 silly reify ]
+235 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-arm64-gnu
+236 silly reify mark deleted [
+236 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-linux-arm64-gnu'
+236 silly reify ]
+237 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-darwin-x64
+238 silly reify mark deleted [
+238 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@next/swc-darwin-x64'
+238 silly reify ]
+239 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-x64
+240 silly reify mark deleted [
+240 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-x64'
+240 silly reify ]
+241 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-ia32
+242 silly reify mark deleted [
+242 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-ia32'
+242 silly reify ]
+243 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-arm64
+244 silly reify mark deleted [
+244 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-win32-arm64'
+244 silly reify ]
+245 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-wasm32
+246 silly reify mark deleted [ '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-wasm32' ]
+247 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linuxmusl-x64
+248 silly reify mark deleted [
+248 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linuxmusl-x64'
+248 silly reify ]
+249 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linuxmusl-arm64
+250 silly reify mark deleted [
+250 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linuxmusl-arm64'
+250 silly reify ]
+251 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-x64
+252 silly reify mark deleted [
+252 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-x64'
+252 silly reify ]
+253 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-s390x
+254 silly reify mark deleted [
+254 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-s390x'
+254 silly reify ]
+255 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-ppc64
+256 silly reify mark deleted [
+256 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-ppc64'
+256 silly reify ]
+257 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-arm64
+258 silly reify mark deleted [
+258 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-arm64'
+258 silly reify ]
+259 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-arm
+260 silly reify mark deleted [
+260 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-linux-arm'
+260 silly reify ]
+261 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linuxmusl-x64
+262 silly reify mark deleted [
+262 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linuxmusl-x64'
+262 silly reify ]
+263 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linuxmusl-arm64
+264 silly reify mark deleted [
+264 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linuxmusl-arm64'
+264 silly reify ]
+265 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-x64
+266 silly reify mark deleted [
+266 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-x64'
+266 silly reify ]
+267 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-s390x
+268 silly reify mark deleted [
+268 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-s390x'
+268 silly reify ]
+269 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-ppc64
+270 silly reify mark deleted [
+270 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-ppc64'
+270 silly reify ]
+271 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-arm64
+272 silly reify mark deleted [
+272 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-arm64'
+272 silly reify ]
+273 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-arm
+274 silly reify mark deleted [
+274 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-linux-arm'
+274 silly reify ]
+275 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-darwin-x64
+276 silly reify mark deleted [
+276 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-libvips-darwin-x64'
+276 silly reify ]
+277 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-darwin-x64
+278 silly reify mark deleted [
+278 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@img/sharp-darwin-x64'
+278 silly reify ]
+279 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-x64
+280 silly reify mark deleted [
+280 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-x64'
+280 silly reify ]
+281 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-ia32
+282 silly reify mark deleted [
+282 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-ia32'
+282 silly reify ]
+283 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-arm64
+284 silly reify mark deleted [
+284 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/win32-arm64'
+284 silly reify ]
+285 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/sunos-x64
+286 silly reify mark deleted [
+286 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/sunos-x64'
+286 silly reify ]
+287 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openharmony-arm64
+288 silly reify mark deleted [
+288 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openharmony-arm64'
+288 silly reify ]
+289 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openbsd-x64
+290 silly reify mark deleted [
+290 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openbsd-x64'
+290 silly reify ]
+291 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openbsd-arm64
+292 silly reify mark deleted [
+292 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/openbsd-arm64'
+292 silly reify ]
+293 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/netbsd-x64
+294 silly reify mark deleted [
+294 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/netbsd-x64'
+294 silly reify ]
+295 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/netbsd-arm64
+296 silly reify mark deleted [
+296 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/netbsd-arm64'
+296 silly reify ]
+297 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-x64
+298 silly reify mark deleted [
+298 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-x64'
+298 silly reify ]
+299 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-s390x
+300 silly reify mark deleted [
+300 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-s390x'
+300 silly reify ]
+301 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-riscv64
+302 silly reify mark deleted [
+302 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-riscv64'
+302 silly reify ]
+303 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-ppc64
+304 silly reify mark deleted [
+304 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-ppc64'
+304 silly reify ]
+305 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-mips64el
+306 silly reify mark deleted [
+306 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-mips64el'
+306 silly reify ]
+307 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-loong64
+308 silly reify mark deleted [
+308 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-loong64'
+308 silly reify ]
+309 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-ia32
+310 silly reify mark deleted [
+310 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-ia32'
+310 silly reify ]
+311 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-arm64
+312 silly reify mark deleted [
+312 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-arm64'
+312 silly reify ]
+313 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-arm
+314 silly reify mark deleted [
+314 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/linux-arm'
+314 silly reify ]
+315 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/freebsd-x64
+316 silly reify mark deleted [
+316 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/freebsd-x64'
+316 silly reify ]
+317 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/freebsd-arm64
+318 silly reify mark deleted [
+318 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/freebsd-arm64'
+318 silly reify ]
+319 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/darwin-x64
+320 silly reify mark deleted [
+320 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/darwin-x64'
+320 silly reify ]
+321 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-x64
+322 silly reify mark deleted [
+322 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-x64'
+322 silly reify ]
+323 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-arm64
+324 silly reify mark deleted [
+324 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-arm64'
+324 silly reify ]
+325 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-arm
+326 silly reify mark deleted [
+326 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/android-arm'
+326 silly reify ]
+327 verbose reify failed optional dependency /Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/aix-ppc64
+328 silly reify mark deleted [
+328 silly reify   '/Users/alanwei/Startup-1/deckvault/node_modules/@esbuild/aix-ppc64'
+328 silly reify ]
+329 timing reifyNode:node_modules/lightningcss-win32-x64-msvc Completed in 11ms
+330 timing reifyNode:node_modules/lightningcss-win32-arm64-msvc Completed in 11ms
+331 timing reifyNode:node_modules/lightningcss-linux-x64-musl Completed in 11ms
+332 timing reifyNode:node_modules/lightningcss-linux-x64-gnu Completed in 11ms
+333 timing reifyNode:node_modules/lightningcss-linux-arm64-musl Completed in 11ms
+334 timing reifyNode:node_modules/lightningcss-linux-arm64-gnu Completed in 11ms
+335 timing reifyNode:node_modules/lightningcss-linux-arm-gnueabihf Completed in 11ms
+336 timing reifyNode:node_modules/lightningcss-freebsd-x64 Completed in 11ms
+337 timing reifyNode:node_modules/lightningcss-darwin-x64 Completed in 11ms
+338 timing reifyNode:node_modules/@unrs/resolver-binding-win32-x64-msvc Completed in 11ms
+339 timing reifyNode:node_modules/@unrs/resolver-binding-win32-ia32-msvc Completed in 11ms
+340 timing reifyNode:node_modules/@unrs/resolver-binding-win32-arm64-msvc Completed in 11ms
+341 timing reifyNode:node_modules/@unrs/resolver-binding-wasm32-wasi Completed in 11ms
+342 timing reifyNode:node_modules/@unrs/resolver-binding-linux-x64-musl Completed in 11ms
+343 timing reifyNode:node_modules/@unrs/resolver-binding-linux-x64-gnu Completed in 10ms
+344 timing reifyNode:node_modules/@unrs/resolver-binding-linux-s390x-gnu Completed in 10ms
+345 timing reifyNode:node_modules/@unrs/resolver-binding-linux-riscv64-musl Completed in 10ms
+346 timing reifyNode:node_modules/@unrs/resolver-binding-linux-riscv64-gnu Completed in 10ms
+347 timing reifyNode:node_modules/@unrs/resolver-binding-linux-ppc64-gnu Completed in 10ms
+348 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm64-musl Completed in 10ms
+349 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm64-gnu Completed in 10ms
+350 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm-musleabihf Completed in 10ms
+351 timing reifyNode:node_modules/@unrs/resolver-binding-linux-arm-gnueabihf Completed in 10ms
+352 timing reifyNode:node_modules/@unrs/resolver-binding-freebsd-x64 Completed in 10ms
+353 timing reifyNode:node_modules/@unrs/resolver-binding-darwin-x64 Completed in 10ms
+354 timing reifyNode:node_modules/@unrs/resolver-binding-android-arm64 Completed in 10ms
+355 timing reifyNode:node_modules/@unrs/resolver-binding-android-arm-eabi Completed in 10ms
+356 timing reifyNode:node_modules/@tailwindcss/oxide-win32-x64-msvc Completed in 10ms
+357 timing reifyNode:node_modules/@tailwindcss/oxide-win32-arm64-msvc Completed in 10ms
+358 timing reifyNode:node_modules/@tailwindcss/oxide-linux-x64-musl Completed in 10ms
+359 timing reifyNode:node_modules/@tailwindcss/oxide-linux-x64-gnu Completed in 9ms
+360 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm64-musl Completed in 9ms
+361 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm64-gnu Completed in 10ms
+362 timing reifyNode:node_modules/@tailwindcss/oxide-linux-arm-gnueabihf Completed in 10ms
+363 timing reifyNode:node_modules/@tailwindcss/oxide-freebsd-x64 Completed in 10ms
+364 timing reifyNode:node_modules/@tailwindcss/oxide-darwin-x64 Completed in 10ms
+365 timing reifyNode:node_modules/@tailwindcss/oxide-android-arm64 Completed in 10ms
+366 timing reifyNode:node_modules/@rollup/rollup-win32-x64-msvc Completed in 10ms
+367 timing reifyNode:node_modules/@rollup/rollup-win32-ia32-msvc Completed in 10ms
+368 timing reifyNode:node_modules/@rollup/rollup-win32-arm64-msvc Completed in 10ms
+369 timing reifyNode:node_modules/@rollup/rollup-linux-x64-musl Completed in 10ms
+370 timing reifyNode:node_modules/@rollup/rollup-linux-x64-gnu Completed in 10ms
+371 timing reifyNode:node_modules/@rollup/rollup-linux-s390x-gnu Completed in 10ms
+372 timing reifyNode:node_modules/@rollup/rollup-linux-riscv64-musl Completed in 10ms
+373 timing reifyNode:node_modules/@rollup/rollup-linux-riscv64-gnu Completed in 10ms
+374 timing reifyNode:node_modules/@rollup/rollup-linux-ppc64-gnu Completed in 10ms
+375 timing reifyNode:node_modules/@rollup/rollup-linux-loongarch64-gnu Completed in 10ms
+376 timing reifyNode:node_modules/@rollup/rollup-linux-arm64-musl Completed in 10ms
+377 timing reifyNode:node_modules/@rollup/rollup-linux-arm64-gnu Completed in 10ms
+378 timing reifyNode:node_modules/@rollup/rollup-linux-arm-musleabihf Completed in 10ms
+379 timing reifyNode:node_modules/@rollup/rollup-linux-arm-gnueabihf Completed in 10ms
+380 timing reifyNode:node_modules/@rollup/rollup-freebsd-x64 Completed in 10ms
+381 timing reifyNode:node_modules/@rollup/rollup-freebsd-arm64 Completed in 9ms
+382 timing reifyNode:node_modules/@rollup/rollup-darwin-x64 Completed in 9ms
+383 timing reifyNode:node_modules/@rollup/rollup-android-arm64 Completed in 8ms
+384 timing reifyNode:node_modules/@rollup/rollup-android-arm-eabi Completed in 8ms
+385 timing reifyNode:node_modules/@next/swc-win32-x64-msvc Completed in 8ms
+386 timing reifyNode:node_modules/@next/swc-win32-arm64-msvc Completed in 8ms
+387 timing reifyNode:node_modules/@next/swc-linux-x64-musl Completed in 8ms
+388 timing reifyNode:node_modules/@next/swc-linux-x64-gnu Completed in 8ms
+389 timing reifyNode:node_modules/@next/swc-linux-arm64-musl Completed in 8ms
+390 timing reifyNode:node_modules/@next/swc-linux-arm64-gnu Completed in 8ms
+391 timing reifyNode:node_modules/@next/swc-darwin-x64 Completed in 8ms
+392 timing reifyNode:node_modules/@img/sharp-win32-x64 Completed in 8ms
+393 timing reifyNode:node_modules/@img/sharp-win32-ia32 Completed in 8ms
+394 timing reifyNode:node_modules/@img/sharp-win32-arm64 Completed in 8ms
+395 timing reifyNode:node_modules/@img/sharp-wasm32 Completed in 8ms
+396 timing reifyNode:node_modules/@img/sharp-linuxmusl-x64 Completed in 8ms
+397 timing reifyNode:node_modules/@img/sharp-linuxmusl-arm64 Completed in 8ms
+398 timing reifyNode:node_modules/@img/sharp-linux-x64 Completed in 8ms
+399 timing reifyNode:node_modules/@img/sharp-linux-s390x Completed in 8ms
+400 timing reifyNode:node_modules/@img/sharp-linux-ppc64 Completed in 8ms
+401 timing reifyNode:node_modules/@img/sharp-linux-arm64 Completed in 8ms
+402 timing reifyNode:node_modules/@img/sharp-linux-arm Completed in 8ms
+403 timing reifyNode:node_modules/@img/sharp-libvips-linuxmusl-x64 Completed in 8ms
+404 timing reifyNode:node_modules/@img/sharp-libvips-linuxmusl-arm64 Completed in 8ms
+405 timing reifyNode:node_modules/@img/sharp-libvips-linux-x64 Completed in 8ms
+406 timing reifyNode:node_modules/@img/sharp-libvips-linux-s390x Completed in 8ms
+407 timing reifyNode:node_modules/@img/sharp-libvips-linux-ppc64 Completed in 8ms
+408 timing reifyNode:node_modules/@img/sharp-libvips-linux-arm64 Completed in 8ms
+409 timing reifyNode:node_modules/@img/sharp-libvips-linux-arm Completed in 8ms
+410 timing reifyNode:node_modules/@img/sharp-libvips-darwin-x64 Completed in 8ms
+411 timing reifyNode:node_modules/@img/sharp-darwin-x64 Completed in 8ms
+412 timing reifyNode:node_modules/@esbuild/win32-x64 Completed in 7ms
+413 timing reifyNode:node_modules/@esbuild/win32-ia32 Completed in 8ms
+414 timing reifyNode:node_modules/@esbuild/win32-arm64 Completed in 8ms
+415 timing reifyNode:node_modules/@esbuild/sunos-x64 Completed in 8ms
+416 timing reifyNode:node_modules/@esbuild/openharmony-arm64 Completed in 8ms
+417 timing reifyNode:node_modules/@esbuild/openbsd-x64 Completed in 8ms
+418 timing reifyNode:node_modules/@esbuild/openbsd-arm64 Completed in 8ms
+419 timing reifyNode:node_modules/@esbuild/netbsd-x64 Completed in 8ms
+420 timing reifyNode:node_modules/@esbuild/netbsd-arm64 Completed in 8ms
+421 timing reifyNode:node_modules/@esbuild/linux-x64 Completed in 8ms
+422 timing reifyNode:node_modules/@esbuild/linux-s390x Completed in 8ms
+423 timing reifyNode:node_modules/@esbuild/linux-riscv64 Completed in 8ms
+424 timing reifyNode:node_modules/@esbuild/linux-ppc64 Completed in 8ms
+425 timing reifyNode:node_modules/@esbuild/linux-mips64el Completed in 8ms
+426 timing reifyNode:node_modules/@esbuild/linux-loong64 Completed in 8ms
+427 timing reifyNode:node_modules/@esbuild/linux-ia32 Completed in 8ms
+428 timing reifyNode:node_modules/@esbuild/linux-arm64 Completed in 8ms
+429 timing reifyNode:node_modules/@esbuild/linux-arm Completed in 8ms
+430 timing reifyNode:node_modules/@esbuild/freebsd-x64 Completed in 8ms
+431 timing reifyNode:node_modules/@esbuild/freebsd-arm64 Completed in 8ms
+432 timing reifyNode:node_modules/@esbuild/darwin-x64 Completed in 8ms
+433 timing reifyNode:node_modules/@esbuild/android-x64 Completed in 8ms
+434 timing reifyNode:node_modules/@esbuild/android-arm64 Completed in 8ms
+435 timing reifyNode:node_modules/@esbuild/android-arm Completed in 8ms
+436 timing reifyNode:node_modules/@esbuild/aix-ppc64 Completed in 8ms
+437 silly tarball no local data for @types/ws@https://registry.npmjs.org/@types/ws/-/ws-8.18.1.tgz. Extracting by manifest.
+438 silly tarball no local data for @supabase/realtime-js@https://registry.npmjs.org/@supabase/realtime-js/-/realtime-js-2.15.1.tgz. Extracting by manifest.
+439 silly tarball no local data for @supabase/storage-js@https://registry.npmjs.org/@supabase/storage-js/-/storage-js-2.10.5.tgz. Extracting by manifest.
+440 silly tarball no local data for @supabase/postgrest-js@https://registry.npmjs.org/@supabase/postgrest-js/-/postgrest-js-1.19.4.tgz. Extracting by manifest.
+441 silly tarball no local data for @types/phoenix@https://registry.npmjs.org/@types/phoenix/-/phoenix-1.6.6.tgz. Extracting by manifest.
+442 silly tarball no local data for @supabase/node-fetch@https://registry.npmjs.org/@supabase/node-fetch/-/node-fetch-2.6.15.tgz. Extracting by manifest.
+443 silly tarball no local data for @supabase/auth-js@https://registry.npmjs.org/@supabase/auth-js/-/auth-js-2.71.1.tgz. Extracting by manifest.
+444 silly tarball no local data for @supabase/supabase-js@https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.55.0.tgz. Extracting by manifest.
+445 silly tarball no local data for @supabase/ssr@https://registry.npmjs.org/@supabase/ssr/-/ssr-0.6.1.tgz. Extracting by manifest.
+446 silly tarball no local data for @supabase/functions-js@https://registry.npmjs.org/@supabase/functions-js/-/functions-js-2.4.5.tgz. Extracting by manifest.
+447 silly tarball no local data for cookie@https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz. Extracting by manifest.
+448 timing reifyNode:node_modules/@supabase/node-fetch/node_modules/webidl-conversions Completed in 40ms
+449 timing reifyNode:node_modules/@supabase/node-fetch/node_modules/whatwg-url Completed in 41ms
+450 timing reifyNode:node_modules/@supabase/node-fetch/node_modules/tr46 Completed in 42ms
+451 http fetch GET 200 https://registry.npmjs.org/@types/phoenix/-/phoenix-1.6.6.tgz 70ms (cache miss)
+452 timing reifyNode:node_modules/@types/phoenix Completed in 89ms
+453 http fetch GET 200 https://registry.npmjs.org/@types/ws/-/ws-8.18.1.tgz 72ms (cache miss)
+454 timing reifyNode:node_modules/@types/ws Completed in 90ms
+455 http fetch GET 200 https://registry.npmjs.org/@supabase/node-fetch/-/node-fetch-2.6.15.tgz 76ms (cache miss)
+456 timing reifyNode:node_modules/@supabase/node-fetch Completed in 94ms
+457 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 105ms
+458 timing auditReport:getReport Completed in 109ms
+459 silly audit report {}
+460 timing auditReport:init Completed in 0ms
+461 timing reify:audit Completed in 109ms
+462 http fetch GET 200 https://registry.npmjs.org/@supabase/postgrest-js/-/postgrest-js-1.19.4.tgz 102ms (cache miss)
+463 timing reifyNode:node_modules/@supabase/postgrest-js Completed in 120ms
+464 http fetch GET 200 https://registry.npmjs.org/@supabase/realtime-js/-/realtime-js-2.15.1.tgz 105ms (cache miss)
+465 timing reifyNode:node_modules/@supabase/realtime-js Completed in 124ms
+466 http fetch GET 200 https://registry.npmjs.org/@supabase/storage-js/-/storage-js-2.10.5.tgz 110ms (cache miss)
+467 timing reifyNode:node_modules/@supabase/storage-js Completed in 129ms
+468 http fetch GET 200 https://registry.npmjs.org/cookie/-/cookie-1.0.2.tgz 112ms (cache miss)
+469 timing reifyNode:node_modules/@supabase/ssr/node_modules/cookie Completed in 132ms
+470 http fetch GET 200 https://registry.npmjs.org/@supabase/functions-js/-/functions-js-2.4.5.tgz 167ms (cache miss)
+471 timing reifyNode:node_modules/@supabase/functions-js Completed in 188ms
+472 http fetch GET 200 https://registry.npmjs.org/@supabase/auth-js/-/auth-js-2.71.1.tgz 188ms (cache miss)
+473 timing reifyNode:node_modules/@supabase/auth-js Completed in 207ms
+474 http fetch GET 200 https://registry.npmjs.org/@supabase/ssr/-/ssr-0.6.1.tgz 188ms (cache miss)
+475 timing reifyNode:node_modules/@supabase/ssr Completed in 208ms
+476 http fetch GET 200 https://registry.npmjs.org/@supabase/supabase-js/-/supabase-js-2.55.0.tgz 201ms (cache miss)
+477 timing reifyNode:node_modules/@supabase/supabase-js Completed in 220ms
+478 timing reify:unpack Completed in 221ms
+479 timing reify:unretire Completed in 1ms
+480 timing build:queue Completed in 1ms
+481 timing build:deps Completed in 1ms
+482 timing build Completed in 1ms
+483 timing reify:build Completed in 1ms
+484 timing reify:trash Completed in 3ms
+485 timing reify:save Completed in 72ms
+486 timing reify Completed in 1285ms
+487 silly ADD node_modules/@types/ws
+488 silly ADD node_modules/@types/phoenix
+489 silly ADD node_modules/@supabase/storage-js
+490 silly ADD node_modules/@supabase/realtime-js
+491 silly ADD node_modules/@supabase/postgrest-js
+492 silly ADD node_modules/@supabase/node-fetch
+493 silly ADD node_modules/@supabase/node-fetch/node_modules/webidl-conversions
+494 silly ADD node_modules/@supabase/node-fetch/node_modules/tr46
+495 silly ADD node_modules/@supabase/node-fetch/node_modules/whatwg-url
+496 silly ADD node_modules/@supabase/functions-js
+497 silly ADD node_modules/@supabase/auth-js
+498 silly ADD node_modules/@supabase/supabase-js
+499 silly ADD node_modules/@supabase/ssr
+500 silly ADD node_modules/@supabase/ssr/node_modules/cookie
+501 silly ADD
+502 silly ADD
+503 silly ADD
+504 silly ADD
+505 silly ADD
+506 silly ADD
+507 silly ADD
+508 silly ADD
+509 silly ADD
+510 silly ADD
+511 silly ADD
+512 silly ADD
+513 silly ADD
+514 silly ADD
+515 silly ADD
+516 silly ADD
+517 silly ADD
+518 silly ADD
+519 silly ADD
+520 silly ADD
+521 silly ADD
+522 silly ADD
+523 silly ADD
+524 silly ADD
+525 silly ADD
+526 silly ADD
+527 silly ADD
+528 silly ADD
+529 silly ADD
+530 silly ADD
+531 silly ADD
+532 silly ADD
+533 silly ADD
+534 silly ADD
+535 silly ADD
+536 silly ADD
+537 silly ADD
+538 silly ADD
+539 silly ADD
+540 silly ADD
+541 silly ADD
+542 silly ADD
+543 silly ADD
+544 silly ADD
+545 silly ADD
+546 silly ADD
+547 silly ADD
+548 silly ADD
+549 silly ADD
+550 silly ADD
+551 silly ADD
+552 silly ADD
+553 silly ADD
+554 silly ADD
+555 silly ADD
+556 silly ADD
+557 silly ADD
+558 silly ADD
+559 silly ADD
+560 silly ADD
+561 silly ADD
+562 silly ADD
+563 silly ADD
+564 silly ADD
+565 silly ADD
+566 silly ADD
+567 silly ADD
+568 silly ADD
+569 silly ADD
+570 silly ADD
+571 silly ADD
+572 silly ADD
+573 silly ADD
+574 silly ADD
+575 silly ADD
+576 silly ADD
+577 silly ADD
+578 silly ADD
+579 silly ADD
+580 silly ADD
+581 silly ADD
+582 silly ADD
+583 silly ADD
+584 silly ADD
+585 silly ADD
+586 silly ADD
+587 silly ADD
+588 silly ADD
+589 silly ADD
+590 silly ADD
+591 silly ADD
+592 silly ADD
+593 silly ADD
+594 silly ADD
+595 silly ADD
+596 silly ADD
+597 silly ADD
+598 silly ADD
+599 silly ADD
+600 silly ADD
+601 silly ADD
+602 silly ADD
+603 silly ADD
+604 silly ADD
+605 silly ADD
+606 silly ADD
+607 silly ADD
+608 silly ADD
+609 silly ADD
+610 timing command:install Completed in 1290ms
+611 verbose exit 0
+612 timing npm Completed in 1467ms
+613 info ok
