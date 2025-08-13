@@ -1,2 +1,2 @@
 # Startup-1
-First iteration
+A platform for TCGs that consolidates player collections
