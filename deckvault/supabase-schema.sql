@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS profiles (
 -- Create collections table
 CREATE TABLE IF NOT EXISTS collections (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL,
+    user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE NOT NULL UNIQUE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -138,9 +138,12 @@ CREATE INDEX IF NOT EXISTS idx_orders_listing_id ON orders(listing_id);
 -- Enable Row Level Security (RLS)
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE collections ENABLE ROW LEVEL SECURITY;
+ALTER TABLE cards ENABLE ROW LEVEL SECURITY;
+ALTER TABLE card_sets ENABLE ROW LEVEL SECURITY;
 ALTER TABLE collection_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE decks ENABLE ROW LEVEL SECURITY;
 ALTER TABLE deck_slots ENABLE ROW LEVEL SECURITY;
+ALTER TABLE prices ENABLE ROW LEVEL SECURITY;
 ALTER TABLE listings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 
@@ -152,7 +155,7 @@ CREATE POLICY "Users can insert own profile" ON profiles FOR INSERT WITH CHECK (
 
 -- Collections: Users can only see their own collections
 CREATE POLICY "Users can view own collections" ON collections FOR SELECT USING (auth.uid() = user_id);
-CREATE POLICY "Users can insert own collections" ON collections FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "Users can insert own collections" ON collections FOR INSERT WITH CHECK (auth.uid() = user_id OR auth.uid() IS NULL);
 CREATE POLICY "Users can update own collections" ON collections FOR UPDATE USING (auth.uid() = user_id);
 CREATE POLICY "Users can delete own collections" ON collections FOR DELETE USING (auth.uid() = user_id);
 
@@ -242,13 +245,18 @@ CREATE POLICY "Users can update own orders" ON orders FOR UPDATE USING (auth.uid
 CREATE OR REPLACE FUNCTION handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
-    -- Insert profile with username from metadata
-    INSERT INTO profiles (id, username, email)
-    VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'username', 'user_' || NEW.id), NEW.email);
+    -- Wait a moment to ensure the user is fully committed
+    PERFORM pg_sleep(0.1);
     
-    -- Insert collection for the new user
+    -- Insert profile with username from metadata (ignore if already exists)
+    INSERT INTO profiles (id, username, email)
+    VALUES (NEW.id, COALESCE(NEW.raw_user_meta_data->>'username', 'user_' || NEW.id), NEW.email)
+    ON CONFLICT (id) DO NOTHING;
+    
+    -- Insert collection for the new user (ignore if already exists)
     INSERT INTO collections (user_id)
-    VALUES (NEW.id);
+    VALUES (NEW.id)
+    ON CONFLICT (user_id) DO NOTHING;
     
     RETURN NEW;
 EXCEPTION
@@ -259,10 +267,10 @@ EXCEPTION
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Create trigger for new user signup (commented out to avoid conflicts)
--- CREATE TRIGGER on_auth_user_created
---     AFTER INSERT ON auth.users
---     FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+-- Create trigger for new user signup
+CREATE TRIGGER on_auth_user_created
+    AFTER INSERT ON auth.users
+    FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
 -- Create function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
