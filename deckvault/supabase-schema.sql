@@ -19,16 +19,37 @@ CREATE TABLE IF NOT EXISTS collections (
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Create cards table
+-- Create cards table (updated to match CSV structure)
 CREATE TABLE IF NOT EXISTS cards (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-    name TEXT NOT NULL,
-    slug TEXT UNIQUE NOT NULL,
-    type TEXT NOT NULL,
+    product_id TEXT UNIQUE,
+    clean_name TEXT,
+    image_url TEXT,
+    category_id TEXT,
+    group_id TEXT,
+    url TEXT,
+    modified_on TIMESTAMP WITH TIME ZONE,
+    image_count INTEGER,
+    ext_rarity TEXT,
+    ext_number TEXT,
+    ext_sub_type TEXT,
+    ext_oracle_text TEXT,
+    low_price DECIMAL(10,2),
+    mid_price DECIMAL(10,2),
+    high_price DECIMAL(10,2),
+    market_price DECIMAL(10,2),
+    direct_low_price DECIMAL(10,2),
+    sub_type_name TEXT,
+    ext_p TEXT,
+    ext_t TEXT,
+    ext_flavor_text TEXT,
+    -- Keep original fields for compatibility
+    name TEXT,
+    slug TEXT,
+    type TEXT,
     attribute TEXT,
     level INTEGER,
     archetype TEXT,
-    image_url TEXT,
     legal_tcg BOOLEAN DEFAULT true,
     legal_ocg BOOLEAN DEFAULT true,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
@@ -118,6 +139,12 @@ CREATE TABLE IF NOT EXISTS orders (
 CREATE INDEX IF NOT EXISTS idx_profiles_username ON profiles(username);
 CREATE INDEX IF NOT EXISTS idx_profiles_email ON profiles(email);
 CREATE INDEX IF NOT EXISTS idx_collections_user_id ON collections(user_id);
+CREATE INDEX IF NOT EXISTS idx_cards_clean_name ON cards(clean_name);
+CREATE INDEX IF NOT EXISTS idx_cards_product_id ON cards(product_id);
+CREATE INDEX IF NOT EXISTS idx_cards_category_id ON cards(category_id);
+CREATE INDEX IF NOT EXISTS idx_cards_group_id ON cards(group_id);
+CREATE INDEX IF NOT EXISTS idx_cards_ext_rarity ON cards(ext_rarity);
+CREATE INDEX IF NOT EXISTS idx_cards_ext_sub_type ON cards(ext_sub_type);
 CREATE INDEX IF NOT EXISTS idx_cards_name ON cards(name);
 CREATE INDEX IF NOT EXISTS idx_cards_slug ON cards(slug);
 CREATE INDEX IF NOT EXISTS idx_cards_archetype ON cards(archetype);
