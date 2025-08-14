@@ -27,7 +27,24 @@ function SignInForm() {
         });
         
         if (error) {
-            setMessage(`Error: ${error.message}`);
+            // Provide more specific error messages
+            let errorMessage = "Sign in failed";
+            
+            switch (error.message) {
+                case "Invalid login credentials":
+                    errorMessage = "Invalid email or password. Please check your credentials and try again.";
+                    break;
+                case "Email not confirmed":
+                    errorMessage = "Please check your email and click the confirmation link before signing in.";
+                    break;
+                case "Too many requests":
+                    errorMessage = "Too many failed attempts. Please wait a moment before trying again.";
+                    break;
+                default:
+                    errorMessage = `Error: ${error.message}`;
+            }
+            
+            setMessage(errorMessage);
             setIsLoading(false);
         } else if (data.user) {
             // Successful sign in - redirect to the intended page
@@ -110,7 +127,7 @@ function SignInForm() {
 
                         {message && (
                             <div className={`text-sm p-3 rounded-md ${
-                                message.startsWith("Error") 
+                                message.startsWith("Error") || message.includes("Invalid") || message.includes("failed")
                                     ? "bg-red-50 text-red-700 border border-red-200" 
                                     : "bg-green-50 text-green-700 border border-green-200"
                             }`}>
