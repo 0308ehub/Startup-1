@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { getSupabaseBrowser } from "@/lib/supabase/browser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 
@@ -8,35 +8,83 @@ export default function AuthCallbackPage() {
     const [message, setMessage] = useState("Processing...");
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
+    const searchParams = useSearchParams();
 
     useEffect(() => {
         async function handleAuthCallback() {
             const supabase = getSupabaseBrowser();
             
             try {
-                // Get the session from the URL
-                const { data, error } = await supabase.auth.getSession();
+                // Debug: Log URL parameters
+                console.log('URL params:', Object.fromEntries(searchParams.entries()));
                 
-                if (error) {
-                    setMessage("Authentication error. Please try signing in again.");
-                    setIsLoading(false);
-                    setTimeout(() => {
-                        router.push('/sign-in');
-                    }, 3000);
-                    return;
-                }
+                // Get the access_token and refresh_token from URL params
+                const accessToken = searchParams.get('access_token');
+                const refreshToken = searchParams.get('refresh_token');
 
-                if (data.session) {
-                    setMessage("Email confirmed successfully! Redirecting to dashboard...");
-                    setTimeout(() => {
-                        router.push('/dashboard');
-                    }, 2000);
+                console.log('Access token exists:', !!accessToken);
+                console.log('Refresh token exists:', !!refreshToken);
+
+                if (accessToken && refreshToken) {
+                    // Set the session with the tokens from the URL
+                    const { data, error } = await supabase.auth.setSession({
+                        access_token: accessToken,
+                        refresh_token: refreshToken,
+                    });
+
+                    console.log('Session set result:', { data: !!data.session, error: error?.message });
+
+                    if (error) {
+                        console.error('Session error:', error);
+                        setMessage("Authentication error. Please try signing in again.");
+                        setIsLoading(false);
+                        setTimeout(() => {
+                            router.push('/sign-in');
+                        }, 3000);
+                        return;
+                    }
+
+                    if (data.session) {
+                        console.log('User email confirmed:', data.session.user.email_confirmed_at);
+                        setMessage("Email confirmed successfully! Redirecting to dashboard...");
+                        setTimeout(() => {
+                            router.push('/dashboard');
+                        }, 2000);
+                    } else {
+                        setMessage("No session found. Please try signing in again.");
+                        setIsLoading(false);
+                        setTimeout(() => {
+                            router.push('/sign-in');
+                        }, 3000);
+                    }
                 } else {
-                    setMessage("No session found. Please try signing in again.");
-                    setIsLoading(false);
-                    setTimeout(() => {
-                        router.push('/sign-in');
-                    }, 3000);
+                    // If no tokens in URL, try to get current session
+                    const { data, error } = await supabase.auth.getSession();
+                    
+                    console.log('Current session result:', { data: !!data.session, error: error?.message });
+                    
+                    if (error) {
+                        setMessage("Authentication error. Please try signing in again.");
+                        setIsLoading(false);
+                        setTimeout(() => {
+                            router.push('/sign-in');
+                        }, 3000);
+                        return;
+                    }
+
+                    if (data.session) {
+                        console.log('User email confirmed:', data.session.user.email_confirmed_at);
+                        setMessage("Email confirmed successfully! Redirecting to dashboard...");
+                        setTimeout(() => {
+                            router.push('/dashboard');
+                        }, 2000);
+                    } else {
+                        setMessage("No session found. Please try signing in again.");
+                        setIsLoading(false);
+                        setTimeout(() => {
+                            router.push('/sign-in');
+                        }, 3000);
+                    }
                 }
             } catch (error) {
                 console.error('Auth callback error:', error);
@@ -49,7 +97,7 @@ export default function AuthCallbackPage() {
         }
 
         handleAuthCallback();
-    }, [router]);
+    }, [router, searchParams]);
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50">
