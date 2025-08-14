@@ -35,6 +35,43 @@ function SignUpForm() {
             setMessage(`Error: ${error.message}`);
             setLoading(false);
         } else if (data.user) {
+            // Wait a moment for the user to be fully created
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Create profile manually
+            const { error: profileError } = await supabase
+                .from('profiles')
+                .insert([
+                    {
+                        id: data.user.id,
+                        username: username,
+                        email: email,
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    }
+                ]);
+                
+            if (profileError) {
+                console.error('Profile creation error:', profileError);
+                // Don't show error to user - profile might have been created by trigger
+            }
+            
+            // Create collection manually
+            const { error: collectionError } = await supabase
+                .from('collections')
+                .insert([
+                    {
+                        user_id: data.user.id,
+                        created_at: new Date().toISOString(),
+                        updated_at: new Date().toISOString()
+                    }
+                ]);
+                
+            if (collectionError) {
+                console.error('Collection creation error:', collectionError);
+                // Don't show error to user - collection might have been created by trigger
+            }
+            
             setMessage("Account created successfully! You can now sign in with your email and password.");
             // Redirect to sign-in page after a short delay
             setTimeout(() => {

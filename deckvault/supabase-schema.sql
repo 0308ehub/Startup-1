@@ -259,10 +259,10 @@ EXCEPTION
 END;
 $$ LANGUAGE plpgsql SECURITY DEFINER;
 
--- Create trigger for new user signup
-CREATE TRIGGER on_auth_user_created
-    AFTER INSERT ON auth.users
-    FOR EACH ROW EXECUTE FUNCTION handle_new_user();
+-- Create trigger for new user signup (commented out to avoid conflicts)
+-- CREATE TRIGGER on_auth_user_created
+--     AFTER INSERT ON auth.users
+--     FOR EACH ROW EXECUTE FUNCTION handle_new_user();
 
 -- Create function to update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at_column()
