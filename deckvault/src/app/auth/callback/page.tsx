@@ -1,10 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { getSupabaseBrowser } from "@/lib/supabase/browser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 
-export default function AuthCallbackPage() {
+function AuthCallbackContent() {
     const [message, setMessage] = useState("Processing...");
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
@@ -118,5 +118,30 @@ export default function AuthCallbackPage() {
                 </Card>
             </div>
         </div>
+    );
+}
+
+export default function AuthCallbackPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center bg-slate-50">
+                <div className="w-full max-w-md px-6">
+                    <Card className="shadow-lg">
+                        <CardHeader className="text-center pb-6">
+                            <CardTitle className="text-2xl font-bold">Email Confirmation</CardTitle>
+                            <p className="text-slate-600 mt-2">Loading...</p>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="text-center">
+                                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                                <p className="text-sm text-slate-700">Processing your email confirmation...</p>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            </div>
+        }>
+            <AuthCallbackContent />
+        </Suspense>
     );
 }
