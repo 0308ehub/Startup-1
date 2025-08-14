@@ -2,9 +2,19 @@
 import { useEffect, useState } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase/browser";
 
+interface AuthData {
+    session: unknown | null;
+    sessionError: unknown | null;
+}
+
+interface ProfileData {
+    profile: unknown | null;
+    profileError: unknown | null;
+}
+
 export default function TestAuthPage() {
-    const [authData, setAuthData] = useState<any>(null);
-    const [profileData, setProfileData] = useState<any>(null);
+    const [authData, setAuthData] = useState<AuthData | null>(null);
+    const [profileData, setProfileData] = useState<ProfileData | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
