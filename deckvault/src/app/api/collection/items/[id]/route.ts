@@ -7,6 +7,6 @@ export async function PATCH(req: NextRequest, { params }: any) {
 }
 
 export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }) {
-	const resolvedParams = await params;
+	await params; // Await to handle the promise but don't use the result
 	return new Response(null, { status: 204 });
 }

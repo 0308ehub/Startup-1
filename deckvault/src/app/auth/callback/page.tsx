@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { getSupabaseBrowser } from "@/lib/supabase/browser";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 
@@ -8,7 +8,6 @@ export default function AuthCallbackPage() {
     const [message, setMessage] = useState("Processing...");
     const [isLoading, setIsLoading] = useState(true);
     const router = useRouter();
-    const searchParams = useSearchParams();
 
     useEffect(() => {
         async function handleAuthCallback() {

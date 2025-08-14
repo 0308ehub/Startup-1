@@ -1,10 +1,6 @@
-export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function GET(req: Request, { params: _params }: { params: Promise<{ id: string }> }) {
 	const { searchParams } = new URL(req.url);
-	const range = searchParams.get("range") === "90d" ? 90 : 30;
-	const resolvedParams = await params;
-	
-	// Use the range parameter to filter mock data
-	const daysAgo = range === 90 ? 90 : 30;
+	const _range = searchParams.get("range") === "90d" ? 90 : 30;
 	
 	// Mock price data for now to avoid Prisma build issues
 	const mockPrices = [

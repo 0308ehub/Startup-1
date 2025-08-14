@@ -95,18 +95,18 @@ function SignUpForm() {
                     <Card className="shadow-lg">
                         <CardHeader className="text-center pb-6">
                             <CardTitle className="text-2xl font-bold">Check Your Email</CardTitle>
-                            <p className="text-slate-600 mt-2">We've sent a verification link to your email</p>
+                            <p className="text-slate-600 mt-2">We&apos;ve sent a verification link to your email</p>
                         </CardHeader>
                         <CardContent className="space-y-4">
                             <div className="bg-blue-50 text-blue-700 border border-blue-200 rounded-md p-4">
                                 <p className="text-sm">
-                                    We've sent a verification email to <strong>{email}</strong>. 
+                                    We&apos;ve sent a verification email to <strong>{email}</strong>. 
                                     Please check your inbox and click the confirmation link to complete your registration.
                                 </p>
                             </div>
                             
                             <div className="text-sm text-slate-600 space-y-2">
-                                <p>Didn't receive the email?</p>
+                                <p>Didn&apos;t receive the email?</p>
                                 <ul className="list-disc list-inside space-y-1 text-xs">
                                     <li>Check your spam folder</li>
                                     <li>Make sure you entered the correct email address</li>
