@@ -33,7 +33,6 @@ export default async function Navbar() {
 					<Link href="/dashboard">Dashboard</Link>
 					<Link href="/collection">Collection</Link>
 					<Link href="/decks">Decks</Link>
-					<Link href="/market">Market</Link>
 				</nav>
 				<div className="flex items-center gap-2">
 					{displayName ? (

@@ -25,8 +25,6 @@ model User {
 
   collections Collection[]
   decks       Deck[]
-  listings    Listing[]
-  orders      Order[]   @relation("BuyerOrders")
 
   accounts    Account[]
   sessions    Session[]
@@ -98,7 +96,6 @@ model CardSet {
   prices   Price[]
   items    CollectionItem[]
   slots    DeckSlot[]
-  listings Listing[]
 
   @@index([cardId])
   @@index([setCode])
@@ -166,34 +163,4 @@ model Price {
   @@index([cardSetId, source, asOf])
 }
 
-model Listing {
-  id        String   @id @default(cuid())
-  sellerId  String
-  cardSetId String
-  price     Decimal
-  quantity  Int
-  status    String   @default("ACTIVE")
-  createdAt DateTime @default(now())
-  User      User     @relation(fields: [sellerId], references: [id])
-  CardSet   CardSet  @relation(fields: [cardSetId], references: [id])
-  orders    Order[]
 
-  @@index([sellerId])
-  @@index([cardSetId])
-  @@index([status])
-}
-
-model Order {
-  id        String   @id @default(cuid())
-  buyerId   String
-  listingId String
-  quantity  Int
-  total     Decimal
-  status    String   @default("PENDING")
-  createdAt DateTime @default(now())
-  Buyer     User     @relation("BuyerOrders", fields: [buyerId], references: [id])
-  Listing   Listing  @relation(fields: [listingId], references: [id])
-
-  @@index([buyerId])
-  @@index([listingId])
-}

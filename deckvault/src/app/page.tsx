@@ -6,8 +6,8 @@ export default function Home() {
 	return (
 		<div className="space-y-10">
 			<section className="text-center space-y-4 py-10">
-				<h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Build. Test. Trade. Track.</h1>
-				<p className="text-slate-600 max-w-2xl mx-auto">DeckVault is your Yu-Gi-Oh! command center — a fast catalog, clean deck builder, goldfish simulator, and a simple marketplace.</p>
+				<h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">Build. Test. Track.</h1>
+				<p className="text-slate-600 max-w-2xl mx-auto">DeckVault is your Yu-Gi-Oh! command center — a fast catalog, clean deck builder, and goldfish simulator.</p>
 				<div className="flex gap-3 justify-center">
 					<Link href="/catalog"><Button variant="secondary">Browse Catalog</Button></Link>
 					<Link href="/dashboard"><Button>Open Dashboard</Button></Link>

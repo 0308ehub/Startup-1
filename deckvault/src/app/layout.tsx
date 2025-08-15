@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
 	title: "DeckVault",
-	description: "Yu-Gi-Oh! Portfolio, Deck Builder, Tester, and Marketplace",
+	description: "Yu-Gi-Oh! Portfolio, Deck Builder, and Tester",
 };
 
 export default function RootLayout({
