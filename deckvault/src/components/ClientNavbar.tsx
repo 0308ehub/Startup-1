@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/Button";
 import { getSupabaseBrowser } from "@/lib/supabase/browser";
 
 export default function ClientNavbar() {
-	const [user, setUser] = useState<{ id: string; email?: string; user_metadata?: { username?: string } } | null>(null);
-	const [profile, setProfile] = useState<{ username: string } | null>(null);
+	type MinimalUser = { id: string; email?: string; user_metadata?: { username?: string } };
+	const [user, setUser] = useState<MinimalUser | null>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -16,41 +16,16 @@ export default function ClientNavbar() {
 				const supabase = getSupabaseBrowser();
 				const { data: { user } } = await supabase.auth.getUser();
 				if (!isMounted) return;
-				if (user) {
-					setUser(user);
-					const { data: profileData } = await supabase
-						.from('profiles')
-						.select('username')
-						.eq('id', user.id)
-						.single();
-					if (!isMounted) return;
-					setProfile(profileData || null);
-				}
-			} catch {
-				// swallow; show anon state
+				setUser(user as MinimalUser | null);
 			} finally {
 				if (isMounted) setLoading(false);
 			}
 		}
 		loadUser();
 
-		const { data: { subscription } } = getSupabaseBrowser().auth.onAuthStateChange(async (event, session) => {
-			try {
-				if (session?.user) {
-					setUser(session.user);
-					const { data: profileData } = await getSupabaseBrowser()
-						.from('profiles')
-						.select('username')
-						.eq('id', session.user.id)
-						.single();
-					setProfile(profileData || null);
-				} else {
-					setUser(null);
-					setProfile(null);
-				}
-			} finally {
-				setLoading(false);
-			}
+		const { data: { subscription } } = getSupabaseBrowser().auth.onAuthStateChange(async (_event, session) => {
+			setUser((session?.user as MinimalUser) || null);
+			setLoading(false);
 		});
 		return () => {
 			isMounted = false;
@@ -58,7 +33,7 @@ export default function ClientNavbar() {
 		};
 	}, []);
 
-	const displayName = profile?.username || user?.user_metadata?.username || user?.email;
+	const displayName = user?.user_metadata?.username || user?.email;
 
 	return (
 		<header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white">
