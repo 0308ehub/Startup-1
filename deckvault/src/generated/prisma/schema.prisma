@@ -1,0 +1,199 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String?  @unique
+  imageUrl  String?
+  region    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  collections Collection[]
+  decks       Deck[]
+  listings    Listing[]
+  orders      Order[]      @relation("BuyerOrders")
+
+  accounts Account[]
+  sessions Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Card {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  type      String
+  attribute String?
+  level     Int?
+  archetype String?
+  imageUrl  String?
+  legalTCG  Boolean   @default(true)
+  legalOCG  Boolean   @default(true)
+  sets      CardSet[]
+  createdAt DateTime  @default(now())
+
+  @@index([name])
+  @@index([archetype])
+}
+
+model CardSet {
+  id       String           @id @default(cuid())
+  cardId   String
+  setCode  String
+  setName  String
+  rarity   String
+  edition  String?
+  sku      String           @unique
+  Card     Card             @relation(fields: [cardId], references: [id])
+  prices   Price[]
+  items    CollectionItem[]
+  slots    DeckSlot[]
+  listings Listing[]
+
+  @@index([cardId])
+  @@index([setCode])
+  @@index([rarity])
+}
+
+model Collection {
+  id     String           @id @default(cuid())
+  userId String
+  items  CollectionItem[]
+  User   User             @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model CollectionItem {
+  id            String     @id @default(cuid())
+  collectionId  String
+  cardSetId     String
+  quantity      Int
+  condition     String
+  purchasePrice Decimal?
+  Collection    Collection @relation(fields: [collectionId], references: [id])
+  CardSet       CardSet    @relation(fields: [cardSetId], references: [id])
+
+  @@unique([collectionId, cardSetId])
+  @@index([cardSetId])
+}
+
+model Deck {
+  id        String     @id @default(cuid())
+  userId    String
+  name      String
+  format    String
+  slots     DeckSlot[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  User      User       @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model DeckSlot {
+  id        String  @id @default(cuid())
+  deckId    String
+  cardSetId String
+  section   String
+  qty       Int
+  Deck      Deck    @relation(fields: [deckId], references: [id])
+  CardSet   CardSet @relation(fields: [cardSetId], references: [id])
+
+  @@unique([deckId, cardSetId, section])
+  @@index([cardSetId])
+}
+
+model Price {
+  id        String   @id @default(cuid())
+  cardSetId String
+  source    String
+  currency  String
+  value     Decimal
+  asOf      DateTime
+  CardSet   CardSet  @relation(fields: [cardSetId], references: [id])
+
+  @@index([cardSetId, source, asOf])
+}
+
+model Listing {
+  id        String   @id @default(cuid())
+  sellerId  String
+  cardSetId String
+  price     Decimal
+  quantity  Int
+  status    String   @default("ACTIVE")
+  createdAt DateTime @default(now())
+  User      User     @relation(fields: [sellerId], references: [id])
+  CardSet   CardSet  @relation(fields: [cardSetId], references: [id])
+  orders    Order[]
+
+  @@index([sellerId])
+  @@index([cardSetId])
+  @@index([status])
+}
+
+model Order {
+  id        String   @id @default(cuid())
+  buyerId   String
+  listingId String
+  quantity  Int
+  total     Decimal
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  Buyer     User     @relation("BuyerOrders", fields: [buyerId], references: [id])
+  Listing   Listing  @relation(fields: [listingId], references: [id])
+
+  @@index([buyerId])
+  @@index([listingId])
+}
