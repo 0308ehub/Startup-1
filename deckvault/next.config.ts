@@ -2,6 +2,22 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['@supabase/supabase-js'],
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tcgplayer-cdn.tcgplayer.com',
+        port: '',
+        pathname: '/product/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.ygoprodeck.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   async headers() {
     return [
       {

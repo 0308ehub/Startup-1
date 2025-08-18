@@ -24,6 +24,7 @@ export default function CatalogPage() {
   const [currentPage, setCurrentPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
 
   const ITEMS_PER_PAGE = 100;
 
@@ -62,6 +63,7 @@ export default function CatalogPage() {
         if (reset) {
           setCards(data.data);
           setCurrentPage(0);
+          setImageErrors(new Set()); // Reset image errors
         } else {
           setCards(prev => [...prev, ...data.data]);
         }
@@ -98,6 +100,7 @@ export default function CatalogPage() {
         setCards(data.data);
         setCurrentPage(0);
         setHasMore(false); // Search results don't have pagination
+        setImageErrors(new Set()); // Reset image errors
       } else {
         setError(data.error || 'Failed to search cards');
       }
@@ -114,6 +117,10 @@ export default function CatalogPage() {
       setCurrentPage(prev => prev + 1);
       loadCards(nextOffset);
     }
+  };
+
+  const handleImageError = (cardId: string) => {
+    setImageErrors(prev => new Set(prev).add(cardId));
   };
 
   useEffect(() => {
@@ -167,22 +174,23 @@ export default function CatalogPage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
             {cards.map((card) => (
               <div key={card.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
-                <div className="relative aspect-[3/4]">
-                  {card.imageUrl ? (
+                <div className="relative aspect-[3/4] bg-gray-100">
+                  {card.imageUrl && !imageErrors.has(card.id) ? (
                     <Image
                       src={card.imageUrl}
                       alt={card.name}
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.style.display = 'none';
-                      }}
+                      onError={() => handleImageError(card.id)}
+                      priority={cards.indexOf(card) < 10} // Prioritize first 10 images
                     />
                   ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-gray-500 text-xs">No Image</span>
+                    <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+                      <div className="text-center p-4">
+                        <div className="w-12 h-16 bg-gray-400 rounded mx-auto mb-2"></div>
+                        <span className="text-gray-500 text-xs">No Image</span>
+                      </div>
                     </div>
                   )}
                 </div>
