@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { createSupabaseServer } from "@/lib/supabase/server";
 
-export const dynamic = "force-dynamic";
+
 
 export default async function Navbar() {
 	const supabase = await createSupabaseServer();
