@@ -22,8 +22,8 @@ async function debugCategories() {
     
     const tokenData = await tokenResponse.json();
     
-    // Get categories
-    const categoriesResponse = await fetch('https://api.tcgplayer.com/v1.39.0/catalog/categories', {
+    // Get all categories with higher limit
+    const categoriesResponse = await fetch('https://api.tcgplayer.com/v1.39.0/catalog/categories?limit=100', {
       headers: {
         'Accept': 'application/json',
         'Authorization': `bearer ${tokenData.access_token}`,
