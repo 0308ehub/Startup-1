@@ -10,6 +10,26 @@ function AuthCallbackContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
 
+    // Helper function to sync user with Prisma database
+    async function syncUserWithPrisma() {
+        try {
+            const syncResponse = await fetch('/api/auth/sync-user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            
+            if (syncResponse.ok) {
+                console.log('User synced with Prisma database');
+            } else {
+                console.error('Failed to sync user with Prisma database');
+            }
+        } catch (error) {
+            console.error('Error syncing user:', error);
+        }
+    }
+
     useEffect(() => {
         async function handleAuthCallback() {
             const supabase = getSupabaseBrowser();
@@ -46,6 +66,10 @@ function AuthCallbackContent() {
 
                     if (data.session) {
                         console.log('User email confirmed:', data.session.user.email_confirmed_at);
+                        
+                        // Sync user with Prisma database
+                        await syncUserWithPrisma();
+                        
                         setMessage("Email confirmed successfully! Redirecting to dashboard...");
                         setTimeout(() => {
                             router.push('/dashboard');
@@ -74,6 +98,10 @@ function AuthCallbackContent() {
 
                     if (data.session) {
                         console.log('User email confirmed:', data.session.user.email_confirmed_at);
+                        
+                        // Sync user with Prisma database
+                        await syncUserWithPrisma();
+                        
                         setMessage("Email confirmed successfully! Redirecting to dashboard...");
                         setTimeout(() => {
                             router.push('/dashboard');
