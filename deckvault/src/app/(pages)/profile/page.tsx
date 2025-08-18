@@ -7,8 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-    const [user, setUser] = useState<any>(null);
-    const [profile, setProfile] = useState<any>(null);
+    const [user, setUser] = useState<{ id: string; email?: string; user_metadata?: { username?: string; avatar_url?: string } } | null>(null);
+    const [profile, setProfile] = useState<{ id: string; username: string; email: string; region?: string } | null>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [message, setMessage] = useState("");
@@ -59,6 +59,11 @@ export default function ProfilePage() {
         const supabase = getSupabaseBrowser();
 
         try {
+            if (!user) {
+                setMessage("User not found");
+                return;
+            }
+            
             if (profile) {
                 // Update existing profile
                 const { error } = await supabase
@@ -83,7 +88,7 @@ export default function ProfilePage() {
                     .insert({
                         id: user.id,
                         username,
-                        email: user.email,
+                        email: user.email || '',
                         region,
                         avatar_url: user.user_metadata?.avatar_url || null
                     });
@@ -92,7 +97,7 @@ export default function ProfilePage() {
                     setMessage(`Error creating profile: ${error.message}`);
                 } else {
                     setMessage("Profile created successfully!");
-                    setProfile({ id: user.id, username, email: user.email, region });
+                    setProfile({ id: user.id, username, email: user.email || '', region });
                 }
             }
         } catch (error) {

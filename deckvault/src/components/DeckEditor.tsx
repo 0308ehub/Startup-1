@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 
-export default function DeckEditor({ deckId: _deckId }: { deckId: string }) {
+export default function DeckEditor() {
 	const [main, setMain] = useState<number>(40);
 	const [extra, setExtra] = useState<number>(0);
 	const [side, setSide] = useState<number>(0);

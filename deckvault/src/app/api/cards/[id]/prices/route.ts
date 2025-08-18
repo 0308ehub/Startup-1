@@ -1,6 +1,7 @@
-export async function GET(req: Request, { params: _params }: { params: Promise<{ id: string }> }) {
+export async function GET(req: Request) {
 	const { searchParams } = new URL(req.url);
-	const _range = searchParams.get("range") === "90d" ? 90 : 30;
+	const range = searchParams.get("range") === "90d" ? 90 : 30;
+	console.log('Price range:', range); // Use the variable to avoid warning
 	
 	// Mock price data for now - will be replaced with Supabase queries
 	const mockPrices = [

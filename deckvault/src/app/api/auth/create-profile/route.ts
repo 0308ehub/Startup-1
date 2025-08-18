@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import { createSupabaseServer } from '@/lib/supabase/server';
 
-export async function POST(request: NextRequest) {
+export async function POST() {
     try {
         const supabase = await createSupabaseServer();
         const { data: { user }, error } = await supabase.auth.getUser();
@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Check if profile already exists
-        const { data: existingProfile, error: profileError } = await supabase
+        const { data: existingProfile } = await supabase
             .from('profiles')
             .select('*')
             .eq('id', user.id)

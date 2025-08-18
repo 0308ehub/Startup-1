@@ -25,7 +25,7 @@ export default async function CardDetailsPage(props: { params: Promise<{ slug: s
 		<div className="p-6 space-y-4">
 			<h1 className="text-2xl font-semibold">{card.name}</h1>
 			<div className="grid gap-4">
-				{card.card_sets?.map((set: any) => (
+				{card.card_sets?.map((set: { id: string; set_code: string; set_name: string; rarity: string; prices?: Array<{ value: number }> }) => (
 					<div key={set.id} className="border rounded p-3">
 						<div>{set.set_code} • {set.set_name} • {set.rarity}</div>
 						<div>Latest: {set.prices?.[0]?.value?.toString?.() ?? "—"}</div>
