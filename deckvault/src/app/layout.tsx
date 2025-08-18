@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/next";
 
+export const dynamic = "force-dynamic";
+
 const geistSans = Geist({
 	variable: "--font-geist-sans",
 	subsets: ["latin"],
@@ -26,9 +28,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" className="light">
-			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900`} suppressHydrationWarning>
+			<body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-50 text-slate-900 text-[15px] md:text-base`} suppressHydrationWarning>
 				<Navbar />
-				<main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
+				<main className="mx-auto max-w-6xl px-4 py-8 text-[15px] md:text-base">{children}</main>
 				<Analytics />
 			</body>
 		</html>

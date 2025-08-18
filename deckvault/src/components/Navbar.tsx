@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { createSupabaseServer } from "@/lib/supabase/server";
 
+export const dynamic = "force-dynamic";
+
 export default async function Navbar() {
 	const supabase = await createSupabaseServer();
 	const { data: { user } } = await supabase.auth.getUser();
@@ -26,7 +28,7 @@ export default async function Navbar() {
 
 	return (
 		<header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-			<div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
+			<div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between text-[15px] md:text-base">
 				<Link href="/" className="font-semibold tracking-tight">DeckVault</Link>
 				<nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
 					<Link href="/catalog">Catalog</Link>
