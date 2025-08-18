@@ -4,7 +4,7 @@ export async function GET(req: Request) {
 	const page = parseInt(searchParams.get("page") || "1");
 	const limit = parseInt(searchParams.get("limit") || "20");
 	
-	// Mock data for now to avoid Prisma build issues
+	// Mock data for now - will be replaced with Supabase queries
 	const mockCards = [
 		{
 			id: "1",

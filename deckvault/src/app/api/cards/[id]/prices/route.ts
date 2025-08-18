@@ -2,7 +2,7 @@ export async function GET(req: Request, { params: _params }: { params: Promise<{
 	const { searchParams } = new URL(req.url);
 	const _range = searchParams.get("range") === "90d" ? 90 : 30;
 	
-	// Mock price data for now to avoid Prisma build issues
+	// Mock price data for now - will be replaced with Supabase queries
 	const mockPrices = [
 		{
 			id: "price1",

@@ -1,6 +1,6 @@
 export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
 	const resolvedParams = await params;
-	// Mock data for now to avoid Prisma build issues
+	// Mock data for now - will be replaced with Supabase queries
 	const mockCard = {
 		id: resolvedParams.id, // Use the params.id
 		name: "Blue-Eyes White Dragon",
