@@ -26,7 +26,7 @@ export default function ClientNavbar() {
 					if (!isMounted) return;
 					setProfile(profileData || null);
 				}
-			} catch (_) {
+			} catch {
 				// swallow; show anon state
 			} finally {
 				if (isMounted) setLoading(false);
@@ -34,7 +34,7 @@ export default function ClientNavbar() {
 		}
 		loadUser();
 
-		const { data: { subscription } } = getSupabaseBrowser().auth.onAuthStateChange(async (_event, session) => {
+		const { data: { subscription } } = getSupabaseBrowser().auth.onAuthStateChange(async (event, session) => {
 			try {
 				if (session?.user) {
 					setUser(session.user);

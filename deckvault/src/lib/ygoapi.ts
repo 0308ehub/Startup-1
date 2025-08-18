@@ -1,4 +1,13 @@
 
+interface YugiohCard {
+  id: number;
+  name: string;
+  card_images: Array<{
+    image_url_small?: string;
+    image_url?: string;
+  }>;
+}
+
 export async function searchYugiohCards(searchTerm: string) {
   try {
     const response = await fetch(`https://db.ygoprodeck.com/api/v7/cardinfo.php?fname=${encodeURIComponent(searchTerm)}`);
@@ -10,7 +19,7 @@ export async function searchYugiohCards(searchTerm: string) {
     if (!data.data || !Array.isArray(data.data)) {
         return [];
     }
-    return data.data.map((card: any) => ({
+    return data.data.map((card: YugiohCard) => ({
       id: card.id,
       name: card.name,
       imageUrl: card.card_images[0]?.image_url_small || card.card_images[0]?.image_url, // Prefer small, fallback to normal
