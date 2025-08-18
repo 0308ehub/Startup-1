@@ -131,7 +131,23 @@ class TCGPlayerAPI {
 
   async getYuGiOhCategory(): Promise<TCGPlayerCategory | null> {
     const categories = await this.getCategories();
-    return categories.find(cat => cat.name === 'YuGiOh') || null;
+    
+    // Try different possible names for Yu-Gi-Oh!
+    const yugiohCategory = categories.find(cat => 
+      cat.name === 'YuGiOh' || 
+      cat.name === 'Yu-Gi-Oh!' ||
+      cat.name === 'Yu-Gi-Oh' ||
+      cat.name.toLowerCase().includes('yugioh') ||
+      cat.name.toLowerCase().includes('yugi')
+    );
+    
+    if (yugiohCategory) {
+      console.log(`Found Yu-Gi-Oh! category: ${yugiohCategory.name} (ID: ${yugiohCategory.categoryId})`);
+    } else {
+      console.log('Yu-Gi-Oh! category not found. Available categories:', categories.map(c => c.name));
+    }
+    
+    return yugiohCategory || null;
   }
 
   async getProducts(categoryId: number, offset: number = 0, limit: number = 100): Promise<TCGPlayerProduct[]> {
