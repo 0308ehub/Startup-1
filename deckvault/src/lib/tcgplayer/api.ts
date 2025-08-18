@@ -56,6 +56,18 @@ interface TCGPlayerAPIResponse<T> {
   results: T;
 }
 
+interface TCGPlayerSearchFilter {
+  name: string;
+  values: string[];
+}
+
+interface TCGPlayerSearchRequest {
+  sort: string;
+  limit: number;
+  offset: number;
+  filters: TCGPlayerSearchFilter[];
+}
+
 class TCGPlayerAPI {
   private publicKey: string;
   private privateKey: string;
@@ -124,6 +136,26 @@ class TCGPlayerAPI {
     return response.json();
   }
 
+  private async makeSearchRequest<T>(categoryId: number, searchData: TCGPlayerSearchRequest): Promise<TCGPlayerAPIResponse<T>> {
+    const token = await this.getBearerToken();
+    
+    const response = await fetch(`https://api.tcgplayer.com/v1.39.0/catalog/categories/${categoryId}/search`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(searchData),
+    });
+
+    if (!response.ok) {
+      throw new Error(`TCGplayer search request failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
   async getCategories(): Promise<TCGPlayerCategory[]> {
     // Get all categories by using a large limit
     const data = await this.makeRequest<TCGPlayerCategory[]>('/catalog/categories?limit=100');
@@ -152,8 +184,29 @@ class TCGPlayerAPI {
   }
 
   async getProducts(categoryId: number, offset: number = 0, limit: number = 100): Promise<TCGPlayerProduct[]> {
-    const data = await this.makeRequest<TCGPlayerProduct[]>(`/catalog/products?categoryId=${categoryId}&offset=${offset}&limit=${limit}`);
-    return data.results || [];
+    // Use search endpoint to filter for only cards
+    const searchData: TCGPlayerSearchRequest = {
+      sort: 'ProductName ASC',
+      limit,
+      offset,
+      filters: [
+        {
+          name: 'CardType',
+          values: ['MainDeckMonster', 'ExtraDeckMonster', 'Spell', 'Trap']
+        }
+      ]
+    };
+
+    const data = await this.makeSearchRequest<number[]>(categoryId, searchData);
+    
+    if (data.results && data.results.length > 0) {
+      // Get product details for the returned product IDs
+      const productIds = data.results;
+      const productsData = await this.makeRequest<TCGPlayerProduct[]>(`/catalog/products/${productIds.join(',')}`);
+      return productsData.results || [];
+    }
+    
+    return [];
   }
 
   async getProductDetails(productIds: number[]): Promise<TCGPlayerProduct[]> {
@@ -168,9 +221,33 @@ class TCGPlayerAPI {
   }
 
   async searchProducts(categoryId: number, searchTerm: string, offset: number = 0, limit: number = 100): Promise<TCGPlayerProduct[]> {
-    // Use the products endpoint with productName filter instead of the search endpoint
-    const data = await this.makeRequest<TCGPlayerProduct[]>(`/catalog/products?categoryId=${categoryId}&productName=${encodeURIComponent(searchTerm)}&offset=${offset}&limit=${limit}`);
-    return data.results || [];
+    // Use search endpoint with product name filter and card type filter
+    const searchData: TCGPlayerSearchRequest = {
+      sort: 'ProductName ASC',
+      limit,
+      offset,
+      filters: [
+        {
+          name: 'ProductName',
+          values: [searchTerm]
+        },
+        {
+          name: 'CardType',
+          values: ['MainDeckMonster', 'ExtraDeckMonster', 'Spell', 'Trap']
+        }
+      ]
+    };
+
+    const data = await this.makeSearchRequest<number[]>(categoryId, searchData);
+    
+    if (data.results && data.results.length > 0) {
+      // Get product details for the returned product IDs
+      const productIds = data.results;
+      const productsData = await this.makeRequest<TCGPlayerProduct[]>(`/catalog/products/${productIds.join(',')}`);
+      return productsData.results || [];
+    }
+    
+    return [];
   }
 }
 
