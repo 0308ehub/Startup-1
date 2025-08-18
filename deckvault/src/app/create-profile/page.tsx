@@ -3,16 +3,16 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 
-export default function TestSyncPage() {
+export default function CreateProfilePage() {
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
 
-    async function syncUser() {
+    async function createProfile() {
         setIsLoading(true);
-        setMessage("Syncing user...");
+        setMessage("Creating profile...");
         
         try {
-            const response = await fetch('/api/auth/sync-existing-users', {
+            const response = await fetch('/api/auth/create-profile', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -23,6 +23,10 @@ export default function TestSyncPage() {
             
             if (response.ok) {
                 setMessage(`Success: ${data.message}`);
+                // Redirect to dashboard after a short delay
+                setTimeout(() => {
+                    window.location.href = '/dashboard';
+                }, 2000);
             } else {
                 setMessage(`Error: ${data.error}`);
             }
@@ -38,16 +42,16 @@ export default function TestSyncPage() {
             <div className="w-full max-w-md px-6">
                 <Card className="shadow-lg">
                     <CardHeader className="text-center pb-6">
-                        <CardTitle className="text-2xl font-bold">Test User Sync</CardTitle>
-                        <p className="text-slate-600 mt-2">Sync current user with Prisma database</p>
+                        <CardTitle className="text-2xl font-bold">Create Profile</CardTitle>
+                        <p className="text-slate-600 mt-2">Set up your user profile</p>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <Button 
                             className="w-full" 
-                            onClick={syncUser}
+                            onClick={createProfile}
                             disabled={isLoading}
                         >
-                            {isLoading ? "Syncing..." : "Sync User"}
+                            {isLoading ? "Creating..." : "Create Profile"}
                         </Button>
                         
                         {message && (

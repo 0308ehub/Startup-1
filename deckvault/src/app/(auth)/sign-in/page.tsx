@@ -47,24 +47,6 @@ function SignInForm() {
             setMessage(errorMessage);
             setIsLoading(false);
         } else if (data.user) {
-            // Sync user with Prisma database
-            try {
-                const syncResponse = await fetch('/api/auth/sync-user', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-                
-                if (syncResponse.ok) {
-                    console.log('User synced with Prisma database');
-                } else {
-                    console.error('Failed to sync user with Prisma database');
-                }
-            } catch (error) {
-                console.error('Error syncing user:', error);
-            }
-            
             // Successful sign in - redirect to the intended page
             router.push(redirectTo);
         }

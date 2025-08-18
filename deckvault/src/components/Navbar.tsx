@@ -11,8 +11,16 @@ export default async function Navbar() {
 	
 	let displayName = null;
 	if (user) {
-		// Get username from user metadata or fallback to email
-		displayName = user.user_metadata?.username || user.email;
+		// Get username from profiles table or fallback to email
+		const { data: profile, error } = await supabase
+			.from('profiles')
+			.select('username')
+			.eq('id', user.id)
+			.single();
+			
+		console.log('Navbar - Profile lookup:', { profile, error: error?.message });
+		
+		displayName = profile?.username || user.user_metadata?.username || user.email;
 		console.log('Navbar - Display name:', displayName);
 	}
 
