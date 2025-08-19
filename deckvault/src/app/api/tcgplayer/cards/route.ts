@@ -1,5 +1,129 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+interface TCGPlayerToken {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  userName: string;
+  '.issued': string;
+  '.expires': string;
+}
+
+interface TCGPlayerProduct {
+  productId: number;
+  name: string;
+  cleanName: string;
+  imageUrl: string;
+  categoryId: number;
+  groupId: number;
+  url: string;
+  modifiedOn: string;
+  imageCount: number;
+  presaleInfo: Record<string, unknown>;
+  extendedData: Record<string, unknown>[];
+}
+
+interface TCGPlayerSearchRequest {
+  sort: string;
+  limit: number;
+  offset: number;
+  filters: Array<{
+    name: string;
+    values: string[];
+  }>;
+}
+
+async function getBearerToken(): Promise<string> {
+  const publicKey = process.env.TCGPLAYER_PUBLIC_KEY;
+  const privateKey = process.env.TCGPLAYER_PRIVATE_KEY;
+  
+  if (!publicKey || !privateKey) {
+    throw new Error('TCGPlayer API keys not found in environment variables');
+  }
+
+  const response = await fetch('https://api.tcgplayer.com/token', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      grant_type: 'client_credentials',
+      client_id: publicKey,
+      client_secret: privateKey,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to get bearer token: ${response.statusText}`);
+  }
+
+  const tokenData: TCGPlayerToken = await response.json();
+  return tokenData.access_token;
+}
+
+async function searchProducts(token: string, searchTerm?: string, offset: number = 0, limit: number = 100): Promise<number[]> {
+  // Yu-Gi-Oh! category ID is 2
+  const categoryId = 2;
+  
+  const searchData: TCGPlayerSearchRequest = {
+    sort: 'ProductName ASC',
+    limit,
+    offset,
+    filters: [
+      {
+        name: 'CardType',
+        values: ['MainDeckMonster', 'ExtraDeckMonster', 'Spell', 'Trap']
+      }
+    ]
+  };
+
+  // Add search filter if search term is provided
+  if (searchTerm && searchTerm.trim()) {
+    searchData.filters.push({
+      name: 'ProductName',
+      values: [searchTerm.trim()]
+    });
+  }
+
+  const response = await fetch(`https://api.tcgplayer.com/v1.39.0/catalog/categories/${categoryId}/search`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(searchData),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Search request failed: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.results || [];
+}
+
+async function getProductDetails(token: string, productIds: number[]): Promise<TCGPlayerProduct[]> {
+  if (productIds.length === 0) {
+    return [];
+  }
+
+  const ids = productIds.join(',');
+  const response = await fetch(`https://api.tcgplayer.com/v1.39.0/catalog/products/${ids}`, {
+    headers: {
+      'Accept': 'application/json',
+      'Authorization': `bearer ${token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Product details request failed: ${response.statusText}`);
+  }
+
+  const data = await response.json();
+  return data.results || [];
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -7,146 +131,53 @@ export async function GET(request: NextRequest) {
     const offset = parseInt(searchParams.get('offset') || '0');
     const limit = parseInt(searchParams.get('limit') || '50');
 
-    // For now, return mock data to get the catalog working
-    // TODO: Fix TCGPlayer API integration
-    const mockCards = [
-      {
-        id: "21715",
-        name: "4-Starred Ladybug of Doom",
-        cleanName: "4 Starred Ladybug of Doom",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21715_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21716",
-        name: "7 Colored Fish",
-        cleanName: "7 Colored Fish",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21716_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21717",
-        name: "7 Completed",
-        cleanName: "7 Completed",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21717_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21718",
-        name: "8-Claws Scorpion",
-        cleanName: "8 Claws Scorpion",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21718_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21719",
-        name: "A Cat of Ill Omen",
-        cleanName: "A Cat of Ill Omen",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21719_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21720",
-        name: "A Feint Plan",
-        cleanName: "A Feint Plan",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21720_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21721",
-        name: "A Legendary Ocean",
-        cleanName: "A Legendary Ocean",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21721_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21722",
-        name: "A Man with Wdjat",
-        cleanName: "A Man with Wdjat",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21722_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21723",
-        name: "A Wingbeat of Giant Dragon",
-        cleanName: "A Wingbeat of Giant Dragon",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21723_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      },
-      {
-        id: "21724",
-        name: "Adhesion Trap Hole",
-        cleanName: "Adhesion Trap Hole",
-        imageUrl: "https://tcgplayer-cdn.tcgplayer.com/product/21724_200w.jpg",
-        categoryId: 2,
-        groupId: 1,
-        url: "",
-        modifiedOn: new Date().toISOString(),
-        imageCount: 1,
-      }
-    ];
+    console.log(`🔍 Fetching Yu-Gi-Oh! cards: search="${search}", offset=${offset}, limit=${limit}`);
 
-    // Filter by search term if provided
-    let filteredCards = mockCards;
-    if (search) {
-      filteredCards = mockCards.filter(card => 
-        card.name.toLowerCase().includes(search.toLowerCase()) ||
-        card.cleanName.toLowerCase().includes(search.toLowerCase())
-      );
+    // Get bearer token
+    const token = await getBearerToken();
+    console.log('✅ Got bearer token');
+
+    // Search for products
+    const productIds = await searchProducts(token, search || undefined, offset, limit);
+    console.log(`✅ Found ${productIds.length} product IDs`);
+
+    if (productIds.length === 0) {
+      return NextResponse.json({
+        success: true,
+        data: [],
+        total: 0,
+        hasMore: false,
+      });
     }
 
-    // Apply pagination
-    const startIndex = offset;
-    const endIndex = startIndex + limit;
-    const paginatedCards = filteredCards.slice(startIndex, endIndex);
+    // Get product details
+    const products = await getProductDetails(token, productIds);
+    console.log(`✅ Retrieved ${products.length} product details`);
+
+    // Transform products to match expected format
+    const cards = products.map(product => ({
+      id: product.productId.toString(),
+      name: product.name,
+      cleanName: product.cleanName,
+      imageUrl: product.imageUrl,
+      categoryId: product.categoryId,
+      groupId: product.groupId,
+      url: product.url,
+      modifiedOn: product.modifiedOn,
+      imageCount: product.imageCount,
+    }));
 
     return NextResponse.json({
       success: true,
-      data: paginatedCards,
-      total: filteredCards.length,
-      hasMore: endIndex < filteredCards.length,
+      data: cards,
+      total: cards.length,
+      hasMore: productIds.length === limit, // If we got the full limit, there might be more
     });
 
   } catch (error) {
-    console.error('Error fetching cards:', error);
+    console.error('❌ Error fetching cards:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch cards' },
+      { error: 'Failed to fetch cards', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
