@@ -2,6 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
+import CardModal from '@/components/CardModal';
 
 interface TCGPlayerCard {
   id: string;
@@ -30,6 +31,8 @@ export default function CatalogPage() {
   const [isSearching, setIsSearching] = useState(false);
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
   const [pricesLoading, setPricesLoading] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<CardWithPrice | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const ITEMS_PER_PAGE = 100;
 
@@ -139,6 +142,16 @@ export default function CatalogPage() {
     setImageErrors(prev => new Set(prev).add(cardId));
   };
 
+  const handleCardClick = (card: CardWithPrice) => {
+    setSelectedCard(card);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCard(null);
+  };
+
   const fetchPrices = async (cardIds: string[]) => {
     try {
       setPricesLoading(true);
@@ -225,7 +238,11 @@ export default function CatalogPage() {
         <>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
             {cards.map((card) => (
-              <div key={card.id} className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
+              <div 
+                key={card.id} 
+                className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-200 bg-white cursor-pointer transform hover:-translate-y-1"
+                onClick={() => handleCardClick(card)}
+              >
                 <div className="relative aspect-[3/4] bg-gray-100">
                   {card.imageUrl && !imageErrors.has(card.id) ? (
                     <Image
@@ -304,6 +321,13 @@ export default function CatalogPage() {
           )}
         </>
       )}
+
+      {/* Card Modal */}
+      <CardModal
+        card={selectedCard}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
