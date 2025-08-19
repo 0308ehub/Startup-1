@@ -81,6 +81,16 @@ interface TCGPlayerProductPricing {
   }>;
 }
 
+// Based on TCGPlayer API documentation
+interface TCGPlayerPricingResult {
+  productId: number;
+  prices: Record<string, number>;
+  skus: Array<{
+    skuId: number;
+    prices: Record<string, number>;
+  }>;
+}
+
 interface TCGPlayerAPIResponse<T> {
   success: boolean;
   errors: string[];
@@ -153,7 +163,9 @@ class TCGPlayerAPI {
   private async makeRequest<T>(endpoint: string): Promise<TCGPlayerAPIResponse<T>> {
     const token = await this.getBearerToken();
     
-    const response = await fetch(`https://api.tcgplayer.com/v1.39.0${endpoint}`, {
+    const url = `https://api.tcgplayer.com/v1.40.0${endpoint}`;
+    
+    const response = await fetch(url, {
       headers: {
         'Accept': 'application/json',
         'Authorization': `bearer ${token}`,
@@ -161,6 +173,8 @@ class TCGPlayerAPI {
     });
 
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`TCGplayer API request failed: ${response.status} - ${errorText}`);
       throw new Error(`TCGplayer API request failed: ${response.statusText}`);
     }
 

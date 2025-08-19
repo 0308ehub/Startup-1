@@ -253,11 +253,17 @@ export default function CatalogPage() {
                   <div className="flex justify-between items-center mt-2">
                     <p className="text-xs text-gray-500">ID: {card.id}</p>
                     {card.price !== undefined ? (
-                      <span className="text-sm font-semibold text-green-600">
-                        ${card.price.toFixed(2)}
-                      </span>
+                      <div className="text-right">
+                        <span className="text-sm font-semibold text-green-600">
+                          ${card.price.toFixed(2)}
+                        </span>
+                        <p className="text-xs text-gray-500">Market</p>
+                      </div>
                     ) : pricesLoading ? (
-                      <div className="animate-pulse bg-gray-200 h-4 w-12 rounded"></div>
+                      <div className="text-right">
+                        <div className="animate-pulse bg-gray-200 h-4 w-12 rounded mb-1"></div>
+                        <div className="animate-pulse bg-gray-200 h-3 w-8 rounded"></div>
+                      </div>
                     ) : (
                       <span className="text-xs text-gray-400">No price</span>
                     )}
