@@ -50,6 +50,37 @@ interface TCGPlayerSKU {
   printing: string;
 }
 
+interface TCGPlayerPrice {
+  skuId: number;
+  productId: number;
+  lowPrice: number;
+  midPrice: number;
+  highPrice: number;
+  marketPrice: number;
+  directLowPrice: number;
+  subTypeName: string;
+}
+
+interface TCGPlayerPrice {
+  skuId: number;
+  productId: number;
+  lowPrice: number;
+  midPrice: number;
+  highPrice: number;
+  marketPrice: number;
+  directLowPrice: number;
+  subTypeName: string;
+}
+
+interface TCGPlayerProductPricing {
+  productId: number;
+  prices: Record<string, number>;
+  skus: Array<{
+    skuId: number;
+    prices: Record<string, number>;
+  }>;
+}
+
 interface TCGPlayerAPIResponse<T> {
   success: boolean;
   errors: string[];
@@ -248,6 +279,30 @@ class TCGPlayerAPI {
     }
     
     return [];
+  }
+
+  async getProductPrices(productIds: number[]): Promise<TCGPlayerProductPricing[]> {
+    const ids = productIds.join(',');
+    const data = await this.makeRequest<TCGPlayerProductPricing[]>(`/pricing/product/${ids}`);
+    return data.results || [];
+  }
+
+  async getSKUPrices(skuIds: number[]): Promise<TCGPlayerPrice[]> {
+    const ids = skuIds.join(',');
+    const data = await this.makeRequest<TCGPlayerPrice[]>(`/pricing/sku/${ids}`);
+    return data.results || [];
+  }
+
+  async getProductBuylistPrices(productIds: number[]): Promise<TCGPlayerProductPricing[]> {
+    const ids = productIds.join(',');
+    const data = await this.makeRequest<TCGPlayerProductPricing[]>(`/pricing/buy/product/${ids}`);
+    return data.results || [];
+  }
+
+  async getSKUBuylistPrices(skuIds: number[]): Promise<TCGPlayerPrice[]> {
+    const ids = skuIds.join(',');
+    const data = await this.makeRequest<TCGPlayerPrice[]>(`/pricing/buy/sku/${ids}`);
+    return data.results || [];
   }
 }
 

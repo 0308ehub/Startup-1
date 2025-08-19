@@ -15,8 +15,12 @@ interface TCGPlayerCard {
   imageCount: number;
 }
 
+interface CardWithPrice extends TCGPlayerCard {
+  price?: number;
+}
+
 export default function CatalogPage() {
-  const [cards, setCards] = useState<TCGPlayerCard[]>([]);
+  const [cards, setCards] = useState<CardWithPrice[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchLoading, setSearchLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,6 +29,7 @@ export default function CatalogPage() {
   const [hasMore, setHasMore] = useState(true);
   const [isSearching, setIsSearching] = useState(false);
   const [imageErrors, setImageErrors] = useState<Set<string>>(new Set());
+  const [pricesLoading, setPricesLoading] = useState(false);
 
   const ITEMS_PER_PAGE = 100;
 
@@ -60,14 +65,20 @@ export default function CatalogPage() {
       const data = await response.json();
       
       if (data.success) {
+        const newCards = data.data.map((card: TCGPlayerCard) => ({ ...card, price: undefined }));
+        
         if (reset) {
-          setCards(data.data);
+          setCards(newCards);
           setCurrentPage(0);
           setImageErrors(new Set()); // Reset image errors
         } else {
-          setCards(prev => [...prev, ...data.data]);
+          setCards(prev => [...prev, ...newCards]);
         }
         setHasMore(data.data.length === ITEMS_PER_PAGE);
+        
+        // Fetch prices for the new cards
+        const cardIds = data.data.map((card: TCGPlayerCard) => card.id);
+        fetchPrices(cardIds);
       } else {
         setError(data.error || 'Failed to fetch cards');
       }
@@ -97,10 +108,15 @@ export default function CatalogPage() {
       const data = await response.json();
       
       if (data.success) {
-        setCards(data.data);
+        const newCards = data.data.map((card: TCGPlayerCard) => ({ ...card, price: undefined }));
+        setCards(newCards);
         setCurrentPage(0);
         setHasMore(false); // Search results don't have pagination
         setImageErrors(new Set()); // Reset image errors
+        
+        // Fetch prices for the search results
+        const cardIds = data.data.map((card: TCGPlayerCard) => card.id);
+        fetchPrices(cardIds);
       } else {
         setError(data.error || 'Failed to search cards');
       }
@@ -121,6 +137,42 @@ export default function CatalogPage() {
 
   const handleImageError = (cardId: string) => {
     setImageErrors(prev => new Set(prev).add(cardId));
+  };
+
+  const fetchPrices = async (cardIds: string[]) => {
+    try {
+      setPricesLoading(true);
+      const productIds = cardIds.map(id => parseInt(id));
+      
+      const response = await fetch('/api/tcgplayer/prices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productIds }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.success) {
+        // Update cards with price information
+        setCards(prevCards => 
+          prevCards.map(card => ({
+            ...card,
+            price: data.data[parseInt(card.id)] || undefined
+          }))
+        );
+      }
+    } catch (err) {
+      console.error('Error fetching prices:', err);
+      // Don't show error to user for price fetching failures
+    } finally {
+      setPricesLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -198,7 +250,18 @@ export default function CatalogPage() {
                   <h3 className="font-medium text-sm leading-tight line-clamp-2" title={card.name}>
                     {card.name}
                   </h3>
-                  <p className="text-xs text-gray-500 mt-1">ID: {card.id}</p>
+                  <div className="flex justify-between items-center mt-2">
+                    <p className="text-xs text-gray-500">ID: {card.id}</p>
+                    {card.price !== undefined ? (
+                      <span className="text-sm font-semibold text-green-600">
+                        ${card.price.toFixed(2)}
+                      </span>
+                    ) : pricesLoading ? (
+                      <div className="animate-pulse bg-gray-200 h-4 w-12 rounded"></div>
+                    ) : (
+                      <span className="text-xs text-gray-400">No price</span>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
