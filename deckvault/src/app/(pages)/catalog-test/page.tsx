@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 
 interface Card {
@@ -20,7 +20,7 @@ export default function CatalogTestPage() {
   const [pricesLoading, setPricesLoading] = useState(false);
 
   // Mock card data with known working product IDs
-  const mockCards: Card[] = [
+  const mockCards: Card[] = useMemo(() => [
     {
       id: "21715",
       name: "4-Starred Ladybug of Doom",
@@ -87,9 +87,9 @@ export default function CatalogTestPage() {
       modifiedOn: new Date().toISOString(),
       imageCount: 1,
     }
-  ];
+  ], []);
 
-  const fetchPrices = async (cardIds: string[]) => {
+  const fetchPrices = useCallback(async (cardIds: string[]) => {
     try {
       setPricesLoading(true);
       const productIds = cardIds.map(id => parseInt(id));
@@ -122,7 +122,7 @@ export default function CatalogTestPage() {
     } finally {
       setPricesLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     // Initialize with mock cards
@@ -131,7 +131,7 @@ export default function CatalogTestPage() {
     // Fetch prices for the mock cards
     const cardIds = mockCards.map(card => card.id);
     fetchPrices(cardIds);
-  }, []);
+  }, [fetchPrices, mockCards]);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -143,7 +143,7 @@ export default function CatalogTestPage() {
         </p>
         
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h2 className="font-semibold text-blue-800 mb-2">✅ What's Working:</h2>
+          <h2 className="font-semibold text-blue-800 mb-2">✅ What&apos;s Working:</h2>
           <ul className="text-blue-700 text-sm space-y-1">
             <li>• Authentication with TCGPlayer API</li>
             <li>• Direct pricing endpoint integration</li>

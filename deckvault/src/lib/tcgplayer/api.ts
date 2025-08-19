@@ -82,14 +82,7 @@ interface TCGPlayerProductPricing {
 }
 
 // Based on TCGPlayer API documentation
-interface TCGPlayerPricingResult {
-  productId: number;
-  prices: Record<string, number>;
-  skus: Array<{
-    skuId: number;
-    prices: Record<string, number>;
-  }>;
-}
+// Removed unused interface TCGPlayerPricingResult
 
 interface TCGPlayerAPIResponse<T> {
   success: boolean;

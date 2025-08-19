@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 
@@ -33,21 +33,7 @@ export default function CatalogPage() {
 
   const ITEMS_PER_PAGE = 100;
 
-  // Debounced search effect
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      if (searchTerm.trim()) {
-        handleSearch(searchTerm);
-      } else {
-        setIsSearching(false);
-        loadCards(0, true); // Reset to first page
-      }
-    }, 300); // 300ms delay
-
-    return () => clearTimeout(timeoutId);
-  }, [searchTerm]);
-
-  const loadCards = async (offset: number = 0, reset: boolean = false) => {
+  const loadCards = useCallback(async (offset: number = 0, reset: boolean = false) => {
     try {
       setLoading(true);
       setError(null);
@@ -87,9 +73,9 @@ export default function CatalogPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const handleSearch = async (search: string) => {
+  const handleSearch = useCallback(async (search: string) => {
     try {
       setSearchLoading(true);
       setIsSearching(true);
@@ -125,7 +111,21 @@ export default function CatalogPage() {
     } finally {
       setSearchLoading(false);
     }
-  };
+  }, []);
+
+  // Debounced search effect
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchTerm.trim()) {
+        handleSearch(searchTerm);
+      } else {
+        setIsSearching(false);
+        loadCards(0, true); // Reset to first page
+      }
+    }, 300); // 300ms delay
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, handleSearch, loadCards]);
 
   const loadMore = () => {
     if (!isSearching && hasMore && !loading) {
@@ -177,7 +177,7 @@ export default function CatalogPage() {
 
   useEffect(() => {
     loadCards(0, true);
-  }, []);
+  }, [loadCards]);
 
   return (
     <div className="container mx-auto px-4 py-8">
