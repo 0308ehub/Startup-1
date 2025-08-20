@@ -45,6 +45,9 @@ export async function GET() {
 			return Response.json(newProfile);
 		}
 		
+		// If we get here, we have a profile
+		console.log('Found existing profile for user:', user.id);
+		
 		return Response.json(profile);
 	} catch (error) {
 		console.error('Error in /api/me:', error);
