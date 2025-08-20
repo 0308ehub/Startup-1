@@ -44,6 +44,7 @@ export default function CatalogPage() {
   const [cardTypeFilter, setCardTypeFilter] = useState<CardTypeFilter>('all');
   const [levelFilter, setLevelFilter] = useState<LevelFilter>('all');
   const [showFilters, setShowFilters] = useState(false);
+  const [userCollection, setUserCollection] = useState<Set<string>>(new Set());
 
   const ITEMS_PER_PAGE = 100;
 
@@ -202,6 +203,51 @@ export default function CatalogPage() {
     setCardTypeFilter('all');
     setLevelFilter('all');
     setSearchTerm('');
+  };
+
+  // Load user collection on component mount
+  useEffect(() => {
+    const loadUserCollection = async () => {
+      try {
+        const response = await fetch('/api/collection');
+        if (response.ok) {
+          const data = await response.json();
+          const collectionIds = new Set<string>(data.items.map((item: { cardId: string }) => item.cardId));
+          setUserCollection(collectionIds);
+        }
+      } catch (error) {
+        console.error('Error loading user collection:', error);
+      }
+    };
+
+    loadUserCollection();
+  }, []);
+
+  const handleAddToCollection = async (card: CardWithPrice) => {
+    try {
+      const response = await fetch('/api/collection/items', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          cardId: card.id,
+          cardName: card.name,
+          cardImage: card.imageUrl,
+          quantity: 1,
+        }),
+      });
+
+      if (response.ok) {
+        // Update local state
+        setUserCollection(prev => new Set([...prev, card.id]));
+      } else {
+        throw new Error('Failed to add card to collection');
+      }
+    } catch (error) {
+      console.error('Error adding card to collection:', error);
+      throw error;
+    }
   };
 
   const fetchPrices = async (cardIds: string[]) => {
@@ -479,9 +525,11 @@ export default function CatalogPage() {
         card={selectedCard}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
-        allCards={cards}
+        allCards={filteredCards}
         currentIndex={selectedCardIndex}
         onNavigate={handleNavigate}
+        onAddToCollection={handleAddToCollection}
+        isInCollection={selectedCard ? userCollection.has(selectedCard.id) : false}
       />
     </div>
   );

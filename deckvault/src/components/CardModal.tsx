@@ -26,6 +26,8 @@ interface CardModalProps {
   allCards: CardWithPrice[];
   currentIndex: number;
   onNavigate: (direction: 'prev' | 'next') => void;
+  onAddToCollection?: (card: CardWithPrice) => Promise<void>;
+  isInCollection?: boolean;
 }
 
 export default function CardModal({ 
@@ -34,14 +36,30 @@ export default function CardModal({
   onClose, 
   allCards, 
   currentIndex, 
-  onNavigate
+  onNavigate,
+  onAddToCollection,
+  isInCollection = false
 }: CardModalProps) {
   const [imageError, setImageError] = useState(false);
+  const [isAddingToCollection, setIsAddingToCollection] = useState(false);
 
   // Reset image error when card changes
   useEffect(() => {
     setImageError(false);
   }, [card?.id]);
+
+  const handleAddToCollection = async () => {
+    if (!card || !onAddToCollection || isInCollection) return;
+    
+    setIsAddingToCollection(true);
+    try {
+      await onAddToCollection(card);
+    } catch (error) {
+      console.error('Error adding card to collection:', error);
+    } finally {
+      setIsAddingToCollection(false);
+    }
+  };
 
   // Handle escape key and arrow keys
   useEffect(() => {
@@ -163,11 +181,32 @@ export default function CardModal({
                 </svg>
                 Add to List
               </button>
-              <button className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                </svg>
-                Add to Portfolio
+              <button 
+                onClick={handleAddToCollection}
+                disabled={isAddingToCollection}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  isInCollection 
+                    ? 'bg-green-600 text-white cursor-default'
+                    : isAddingToCollection
+                    ? 'bg-gray-400 text-white cursor-not-allowed'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                {isInCollection ? (
+                  <>
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    Added to Collection
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                    </svg>
+                    {isAddingToCollection ? 'Adding...' : 'Add to Collection'}
+                  </>
+                )}
               </button>
             </div>
 
