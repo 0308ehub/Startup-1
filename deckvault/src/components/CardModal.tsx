@@ -100,6 +100,31 @@ export default function CardModal({
         onClick={onClose}
       />
       
+      {/* Navigation Arrows - Outside modal container */}
+      {hasPrev && (
+        <button
+          onClick={() => onNavigate('prev')}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-[60] bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+          aria-label="Previous card"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      )}
+
+      {hasNext && (
+        <button
+          onClick={() => onNavigate('next')}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-[60] bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+          aria-label="Next card"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
+
       {/* Modal */}
       <div className="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
         {/* Close button */}
@@ -111,31 +136,6 @@ export default function CardModal({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-
-        {/* Navigation Arrows */}
-        {hasPrev && (
-          <button
-            onClick={() => onNavigate('prev')}
-            className="absolute -left-8 top-1/2 transform -translate-y-1/2 z-[60] bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
-            aria-label="Previous card"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        )}
-
-        {hasNext && (
-          <button
-            onClick={() => onNavigate('next')}
-            className="absolute -right-8 top-1/2 transform -translate-y-1/2 z-[60] bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
-            aria-label="Next card"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        )}
 
         <div className="flex flex-col lg:flex-row h-full">
           {/* Left side - Card Image */}
