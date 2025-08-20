@@ -26,7 +26,6 @@ interface CardModalProps {
   allCards: CardWithPrice[];
   currentIndex: number;
   onNavigate: (direction: 'prev' | 'next') => void;
-  clickedPosition?: { x: number; y: number };
 }
 
 export default function CardModal({ 
@@ -35,11 +34,9 @@ export default function CardModal({
   onClose, 
   allCards, 
   currentIndex, 
-  onNavigate,
-  clickedPosition 
+  onNavigate
 }: CardModalProps) {
   const [imageError, setImageError] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   // Reset image error when card changes
   useEffect(() => {
@@ -63,10 +60,6 @@ export default function CardModal({
     if (isOpen) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
-      
-      // Start expand animation
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 300);
     }
 
     return () => {
@@ -81,36 +74,16 @@ export default function CardModal({
   const hasPrev = currentIndex > 0;
   const hasNext = currentIndex < allCards.length - 1;
 
-  // Calculate initial position for expand animation
-  const getInitialTransform = () => {
-    if (!clickedPosition) return 'scale(0.8) translateY(20px)';
-    
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    const deltaX = (centerX - clickedPosition.x) / centerX;
-    const deltaY = (centerY - clickedPosition.y) / centerY;
-    
-    return `scale(0.8) translate(${deltaX * 50}px, ${deltaY * 50}px)`;
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div 
-        className={`absolute inset-0 bg-black transition-all duration-300 ${
-          isAnimating ? 'bg-opacity-30' : 'bg-opacity-50'
-        } backdrop-blur-sm`}
+        className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div 
-        className={`relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden transition-all duration-300 ${
-          isAnimating 
-            ? `transform ${getInitialTransform()} opacity-0` 
-            : 'transform scale-100 translate-y-0 opacity-100'
-        }`}
-      >
+      <div className="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -125,7 +98,7 @@ export default function CardModal({
         {hasPrev && (
           <button
             onClick={() => onNavigate('prev')}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
             aria-label="Previous card"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -137,7 +110,7 @@ export default function CardModal({
         {hasNext && (
           <button
             onClick={() => onNavigate('next')}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
             aria-label="Next card"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
