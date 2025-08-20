@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import CardModal from '@/components/CardModal';
+import { getSupabaseBrowser } from '@/lib/supabase/browser';
 
 interface TCGPlayerCard {
   id: string;
@@ -225,11 +226,19 @@ export default function CatalogPage() {
 
   const handleAddToCollection = async (card: CardWithPrice) => {
     try {
+      const supabase = getSupabaseBrowser();
+      const { data: { session } } = await supabase.auth.getSession();
+      
+      if (!session) {
+        throw new Error('User not authenticated');
+      }
+
       const response = await fetch('/api/collection/items', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Include cookies for authentication
         body: JSON.stringify({
           cardId: card.id,
           cardName: card.name,

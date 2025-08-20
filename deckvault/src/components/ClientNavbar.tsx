@@ -35,6 +35,12 @@ export default function ClientNavbar() {
 
 	const displayName = user?.user_metadata?.username || user?.email;
 
+	const handleSignOut = async () => {
+		const supabase = getSupabaseBrowser();
+		await supabase.auth.signOut();
+		window.location.href = "/";
+	};
+
 	return (
 		<header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white">
 			<div className="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between text-[15px] md:text-base">
@@ -69,11 +75,12 @@ export default function ClientNavbar() {
 											My Decks
 										</Link>
 										<div className="border-t border-slate-100 mt-1">
-											<form action="/api/auth/sign-out" method="post">
-												<button type="submit" className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-50">
-													Sign out
-												</button>
-											</form>
+											<button 
+												onClick={handleSignOut}
+												className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-50"
+											>
+												Sign out
+											</button>
 										</div>
 									</div>
 								</div>
