@@ -1,5 +1,4 @@
 import { createSupabaseServer } from '@/lib/supabase/server';
-import { tcgPlayerAPI } from '@/lib/tcgplayer/api';
 
 export async function GET() {
 	try {
@@ -113,9 +112,19 @@ export async function GET() {
 		let prices: { [key: number]: number } = {};
 		if (productIds.length > 0) {
 			try {
-				const pricesResponse = await tcgPlayerAPI.getPrices(productIds);
-				if (pricesResponse.success) {
-					prices = pricesResponse.data;
+				const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/tcgplayer/prices`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ productIds }),
+				});
+
+				if (response.ok) {
+					const data = await response.json();
+					if (data.success) {
+						prices = data.data;
+					}
 				}
 			} catch (error) {
 				console.error('Error fetching prices:', error);

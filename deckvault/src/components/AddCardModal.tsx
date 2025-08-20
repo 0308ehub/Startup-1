@@ -46,7 +46,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
     };
   }, [isOpen, onClose]);
 
-  // Load initial cards when modal opens
+    // Load initial cards when modal opens
   useEffect(() => {
     if (isOpen && searchTerm.length < 2) {
       const loadInitialCards = async () => {
@@ -54,9 +54,9 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
         try {
           const params = new URLSearchParams();
           params.append('limit', '20'); // Load 20 popular cards initially
-          
+
           const response = await fetch(`/api/tcgplayer/cards?${params}`);
-          
+
           if (response.ok) {
             const data = await response.json();
             if (data.success) {
@@ -72,7 +72,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
 
       loadInitialCards();
     }
-  }, [isOpen]);
+  }, [isOpen, searchTerm.length]);
 
   // Search for cards
   useEffect(() => {
