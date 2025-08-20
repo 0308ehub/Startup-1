@@ -180,7 +180,7 @@ export default function CardModal({
                 <h4 className="font-medium text-gray-700 mb-2">Raw</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">TCGPlayer</span>
+                    <span className="text-gray-600">TCGPlayer (Lowest)</span>
                     <span className="font-semibold">
                       {card.price !== undefined ? `$${card.price.toFixed(2)}` : 'N/A'}
                     </span>

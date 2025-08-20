@@ -292,7 +292,7 @@ export default function CatalogPage() {
                         <span className="text-sm font-semibold text-green-600">
                           ${card.price.toFixed(2)}
                         </span>
-                        <p className="text-xs text-gray-500">Market</p>
+                        <p className="text-xs text-gray-500">Lowest</p>
                       </div>
                     ) : pricesLoading ? (
                       <div className="text-right">

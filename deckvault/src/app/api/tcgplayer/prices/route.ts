@@ -99,21 +99,26 @@ export async function POST(request: NextRequest) {
       );
       
       if (validPrices.length > 0) {
-        // Priority: marketPrice > midPrice > lowPrice
+        // Priority: lowPrice > directLowPrice > marketPrice > midPrice
+        // This matches what TCGPlayer website typically shows (lowest available listing)
         let bestPrice = null;
         
         for (const entry of validPrices) {
-          if (entry.marketPrice !== null) {
+          if (entry.lowPrice !== null) {
+            if (bestPrice === null || entry.lowPrice < bestPrice) {
+              bestPrice = entry.lowPrice;
+            }
+          } else if (entry.directLowPrice !== null) {
+            if (bestPrice === null || entry.directLowPrice < bestPrice) {
+              bestPrice = entry.directLowPrice;
+            }
+          } else if (entry.marketPrice !== null) {
             if (bestPrice === null || entry.marketPrice < bestPrice) {
               bestPrice = entry.marketPrice;
             }
           } else if (entry.midPrice !== null) {
             if (bestPrice === null || entry.midPrice < bestPrice) {
               bestPrice = entry.midPrice;
-            }
-          } else if (entry.lowPrice !== null) {
-            if (bestPrice === null || entry.lowPrice < bestPrice) {
-              bestPrice = entry.lowPrice;
             }
           }
         }
