@@ -104,7 +104,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
+      <div className="relative bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-y-auto">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -193,8 +193,8 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
           {selectedCard && (
             <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
               <h3 className="text-lg font-semibold mb-3">Selected Card</h3>
-              <div className="flex items-center gap-4">
-                <div className="relative w-16 h-20 flex-shrink-0">
+              <div className="flex items-start gap-4">
+                <div className="relative w-24 h-32 flex-shrink-0">
                   {selectedCard.imageUrl ? (
                     <Image
                       src={selectedCard.imageUrl}
@@ -208,25 +208,33 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
                     </div>
                   )}
                 </div>
-                <div className="flex-1">
-                  <h4 className="font-medium text-gray-900">{selectedCard.name}</h4>
-                  <p className="text-sm text-gray-600">ID: {selectedCard.id}</p>
+                <div className="flex-1 flex flex-col justify-between h-32">
+                  <div>
+                    <h4 className="font-medium text-gray-900">{selectedCard.name}</h4>
+                    <p className="text-sm text-gray-600">ID: {selectedCard.id}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div>
+                      <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
+                        Quantity
+                      </label>
+                      <input
+                        id="quantity"
+                        type="number"
+                        min="1"
+                        value={quantity}
+                        onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
+                        className="w-20 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      />
+                    </div>
+                    <button
+                      onClick={handleAddCard}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                    >
+                      Add to Collection
+                    </button>
+                  </div>
                 </div>
-              </div>
-              
-              {/* Quantity Input */}
-              <div className="mt-4">
-                <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2">
-                  Quantity
-                </label>
-                <input
-                  id="quantity"
-                  type="number"
-                  min="1"
-                  value={quantity}
-                  onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                  className="w-20 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
               </div>
             </div>
           )}
@@ -238,13 +246,6 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
               className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
             >
               Cancel
-            </button>
-            <button
-              onClick={handleAddCard}
-              disabled={!selectedCard}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              Add to Collection
             </button>
           </div>
         </div>
