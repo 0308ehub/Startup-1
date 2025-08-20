@@ -65,6 +65,7 @@ export async function POST(req: NextRequest) {
 
 		// If card doesn't exist, create it
 		if (cardError || !existingCard) {
+			console.log('Creating new card with data:', { cardId, cardName, cardImage });
 			const { data: newCard, error: insertCardError } = await supabase
 				.from('cards')
 				.insert({
@@ -78,11 +79,22 @@ export async function POST(req: NextRequest) {
 
 			if (insertCardError) {
 				console.error('Error creating card:', insertCardError);
-				return Response.json({ error: 'Failed to create card' }, { status: 500 });
+				console.error('Error details:', {
+					message: insertCardError.message,
+					details: insertCardError.details,
+					hint: insertCardError.hint,
+					code: insertCardError.code
+				});
+				return Response.json({ 
+					error: 'Failed to create card',
+					details: insertCardError.message 
+				}, { status: 500 });
 			}
 			card = newCard;
+			console.log('Successfully created card:', card.id);
 		} else {
 			card = existingCard;
+			console.log('Using existing card:', card.id);
 		}
 
 		// Create a default card set for the card (if it doesn't exist)
