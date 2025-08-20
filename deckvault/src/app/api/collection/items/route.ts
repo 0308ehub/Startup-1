@@ -9,21 +9,42 @@ export async function POST(req: NextRequest) {
 		const { data: { user }, error: authError } = await supabase.auth.getUser();
 		
 		if (authError || !user) {
+			console.error('Authentication error:', authError);
+			console.error('User data:', user);
 			return Response.json({ error: 'Unauthorized' }, { status: 401 });
 		}
 
+		console.log('Authenticated user:', user.id);
+
 		const body = await req.json();
 		const { cardId, cardName, cardImage, quantity = 1 } = body;
+		
+		console.log('Adding card to collection:', { cardId, cardName, quantity });
 
-		// Get the user's collection
-		const { data: collection, error: collectionError } = await supabase
+		// Get or create the user's collection
+		let { data: collection, error: collectionError } = await supabase
 			.from('collections')
 			.select('id')
 			.eq('user_id', user.id)
 			.single();
 
 		if (collectionError || !collection) {
-			return Response.json({ error: 'Collection not found' }, { status: 404 });
+			console.log('Collection not found, creating new collection for user:', user.id);
+			// Try to create collection if it doesn't exist
+			const { data: newCollection, error: createError } = await supabase
+				.from('collections')
+				.insert({ user_id: user.id })
+				.select('id')
+				.single();
+
+			if (createError || !newCollection) {
+				console.error('Error creating collection:', createError);
+				return Response.json({ error: 'Failed to create collection' }, { status: 500 });
+			}
+			collection = newCollection;
+			console.log('Created new collection:', collection.id);
+		} else {
+			console.log('Found existing collection:', collection.id);
 		}
 
 		// First, check if the card exists in our cards table
@@ -108,6 +129,7 @@ export async function POST(req: NextRequest) {
 				return Response.json({ error: 'Failed to update collection' }, { status: 500 });
 			}
 
+			console.log('Updated existing collection item:', existingItem.id, 'new quantity:', existingItem.quantity + quantity);
 			return Response.json({ 
 				ok: true, 
 				item: { ...existingItem, quantity: existingItem.quantity + quantity },
@@ -130,6 +152,7 @@ export async function POST(req: NextRequest) {
 				return Response.json({ error: 'Failed to add card to collection' }, { status: 500 });
 			}
 
+			console.log('Added new collection item:', newItem.id);
 			return Response.json({ 
 				ok: true, 
 				item: newItem,
