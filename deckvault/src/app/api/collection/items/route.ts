@@ -11,7 +11,8 @@ export async function POST(req: NextRequest) {
 		if (authError || !user) {
 			console.error('Authentication error:', authError);
 			console.error('User data:', user);
-			return Response.json({ error: 'Unauthorized' }, { status: 401 });
+			// Return a more graceful error instead of 401
+			return Response.json({ error: 'Authentication required' }, { status: 403 });
 		}
 
 		console.log('Authenticated user:', user.id);
