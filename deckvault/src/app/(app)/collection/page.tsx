@@ -39,57 +39,31 @@ export default function CollectionPage() {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    // Mock data for demonstration
-    const mockCollection: CollectionItem[] = [
-      {
-        id: '1',
-        cardId: '21715',
-        cardName: 'Blue-Eyes White Dragon',
-        cardImage: 'https://images.ygoprodeck.com/images/cards/89631139.jpg',
-        setCode: 'CT13',
-        cardNumber: 'CT13-EN008',
-        rarity: 'UR',
-        language: 'EN',
-        quantity: 3,
-        price: 16.44,
-        priceChange: 0.48,
-        lastUpdated: '2024-01-15'
-      },
-      {
-        id: '2',
-        cardId: '21716',
-        cardName: 'Dark Magician',
-        cardImage: 'https://images.ygoprodeck.com/images/cards/46986414.jpg',
-        setCode: 'CT13',
-        cardNumber: 'CT13-EN009',
-        rarity: 'UR',
-        language: 'EN',
-        quantity: 2,
-        price: 12.50,
-        priceChange: -0.25,
-        lastUpdated: '2024-01-15'
-      },
-      {
-        id: '3',
-        cardId: '21717',
-        cardName: 'Red-Eyes Black Dragon',
-        cardImage: 'https://images.ygoprodeck.com/images/cards/74677422.jpg',
-        setCode: 'CT13',
-        cardNumber: 'CT13-EN010',
-        rarity: 'UR',
-        language: 'EN',
-        quantity: 1,
-        price: 8.75,
-        priceChange: 0.15,
-        lastUpdated: '2024-01-15'
+    // Fetch real collection data from API
+    const fetchCollection = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/collection', {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('Fetched collection data:', data);
+          setCollection(data.items || []);
+        } else {
+          console.error('Failed to fetch collection:', response.status);
+          setCollection([]);
+        }
+      } catch (error) {
+        console.error('Error fetching collection:', error);
+        setCollection([]);
+      } finally {
+        setLoading(false);
       }
-    ];
+    };
 
-    // Simulate loading
-    setTimeout(() => {
-      setCollection(mockCollection);
-      setLoading(false);
-    }, 1000);
+    fetchCollection();
   }, []);
 
   const handleSort = (field: typeof sortField) => {
@@ -536,32 +510,43 @@ export default function CollectionPage() {
        <AddCardModal
          isOpen={isAddCardModalOpen}
          onClose={() => setIsAddCardModalOpen(false)}
-         onAddCard={(cardData: { card: { id: string; name: string; imageUrl: string }; quantity: number }) => {
-           // Check if card already exists in collection
-           const existingCardIndex = collection.findIndex(item => item.cardId === cardData.card.id);
-           
-           if (existingCardIndex !== -1) {
-             // Card already exists - update quantity
-             const updatedCollection = [...collection];
-             updatedCollection[existingCardIndex].quantity += cardData.quantity;
-             setCollection(updatedCollection);
-           } else {
-             // Add new card to collection
-             const newCard: CollectionItem = {
-               id: Date.now().toString(), // Generate unique ID
-               cardId: cardData.card.id,
-               cardName: cardData.card.name,
-               cardImage: cardData.card.imageUrl,
-               setCode: 'Unknown', // Will be updated when we get more card details
-               cardNumber: `ID-${cardData.card.id}`,
-               rarity: 'Unknown',
-               language: 'EN',
-               quantity: cardData.quantity,
-               price: 0, // Will be fetched from pricing API
-               lastUpdated: new Date().toISOString().split('T')[0]
-             };
-             setCollection([...collection, newCard]);
+         onAddCard={async (cardData: { card: { id: string; name: string; imageUrl: string }; quantity: number }) => {
+           try {
+             // Add card to collection via API
+             const response = await fetch('/api/collection/items', {
+               method: 'POST',
+               headers: {
+                 'Content-Type': 'application/json',
+               },
+               credentials: 'include',
+               body: JSON.stringify({
+                 cardId: cardData.card.id,
+                 cardName: cardData.card.name,
+                 cardImage: cardData.card.imageUrl,
+                 quantity: cardData.quantity
+               })
+             });
+
+             if (response.ok) {
+               console.log('Card added successfully');
+               // Refresh collection data
+               const collectionResponse = await fetch('/api/collection', {
+                 credentials: 'include'
+               });
+               
+               if (collectionResponse.ok) {
+                 const data = await collectionResponse.json();
+                 setCollection(data.items || []);
+               }
+             } else {
+               console.error('Failed to add card:', response.status);
+               const error = await response.text();
+               console.error('Error details:', error);
+             }
+           } catch (error) {
+             console.error('Error adding card:', error);
            }
+           
            setIsAddCardModalOpen(false);
          }}
        />
