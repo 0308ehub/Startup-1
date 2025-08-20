@@ -38,6 +38,8 @@ export default function CollectionPage() {
   const [levelFilter, setLevelFilter] = useState<LevelFilter>('all');
   const [showFilters, setShowFilters] = useState(false);
   const [selectedCards, setSelectedCards] = useState<Set<string>>(new Set());
+  const [refreshingPrices, setRefreshingPrices] = useState(false);
+  const [lastPriceUpdate, setLastPriceUpdate] = useState<Date | null>(null);
 
   useEffect(() => {
     // Fetch real collection data from API
@@ -52,6 +54,7 @@ export default function CollectionPage() {
           const data = await response.json();
           console.log('Fetched collection data:', data);
           setCollection(data.items || []);
+          setLastPriceUpdate(new Date());
         } else {
           console.error('Failed to fetch collection:', response.status);
           setCollection([]);
@@ -168,6 +171,25 @@ export default function CollectionPage() {
     }
   };
 
+  const handleRefreshPrices = async () => {
+    try {
+      setRefreshingPrices(true);
+      const response = await fetch('/api/collection', {
+        credentials: 'include'
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setCollection(data.items || []);
+        setLastPriceUpdate(new Date());
+      }
+    } catch (error) {
+      console.error('Error refreshing prices:', error);
+    } finally {
+      setRefreshingPrices(false);
+    }
+  };
+
   const totalCards = collection.reduce((sum, item) => sum + item.quantity, 0);
   const totalValue = collection.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   const valueChange = collection.reduce((sum, item) => sum + (item.priceChange || 0) * item.quantity, 0);
@@ -245,6 +267,20 @@ export default function CollectionPage() {
             </div>
             <span className="text-sm text-gray-600">Shift (1M)</span>
           </div>
+          
+          {lastPriceUpdate && (
+            <div className="bg-blue-100 p-4 rounded-lg text-center">
+              <div className="flex items-center gap-2 mb-1">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-lg font-semibold text-blue-800">
+                  {lastPriceUpdate.toLocaleTimeString()}
+                </span>
+              </div>
+              <span className="text-sm text-gray-600">Prices Updated</span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -306,6 +342,16 @@ export default function CollectionPage() {
             </div>
             
             <div className="flex items-center gap-2">
+              <button 
+                onClick={handleRefreshPrices}
+                disabled={refreshingPrices}
+                className="p-2 hover:bg-gray-100 rounded disabled:opacity-50 disabled:cursor-not-allowed"
+                title="Refresh prices"
+              >
+                <svg className={`w-5 h-5 ${refreshingPrices ? 'animate-spin' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </button>
               <button className="p-2 hover:bg-gray-100 rounded">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />

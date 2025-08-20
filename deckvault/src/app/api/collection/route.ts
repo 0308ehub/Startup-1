@@ -1,4 +1,5 @@
 import { createSupabaseServer } from '@/lib/supabase/server';
+import { tcgPlayerAPI } from '@/lib/tcgplayer/api';
 
 export async function GET() {
 	try {
@@ -42,6 +43,8 @@ export async function GET() {
 
 		// Get card details for each item
 		const transformedItems = [];
+		const productIds: number[] = [];
+		
 		for (const item of items || []) {
 			// Get card set details
 			const { data: cardSet, error: cardSetError } = await supabase
@@ -82,6 +85,11 @@ export async function GET() {
 				continue;
 			}
 
+			// Collect product IDs for price fetching
+			if (card.product_id) {
+				productIds.push(parseInt(card.product_id));
+			}
+
 			transformedItems.push({
 				id: item.id,
 				cardId: card.product_id,
@@ -101,7 +109,26 @@ export async function GET() {
 			});
 		}
 
-		return Response.json({ items: transformedItems });
+		// Fetch current prices for all cards
+		let prices: { [key: number]: number } = {};
+		if (productIds.length > 0) {
+			try {
+				const pricesResponse = await tcgPlayerAPI.getPrices(productIds);
+				if (pricesResponse.success) {
+					prices = pricesResponse.data;
+				}
+			} catch (error) {
+				console.error('Error fetching prices:', error);
+			}
+		}
+
+		// Update items with current prices
+		const itemsWithPrices = transformedItems.map(item => ({
+			...item,
+			price: item.cardId ? (prices[parseInt(item.cardId)] || 0) : 0
+		}));
+
+		return Response.json({ items: itemsWithPrices });
 	} catch (error) {
 		console.error('Error fetching collection:', error);
 		return Response.json({ items: [] });
