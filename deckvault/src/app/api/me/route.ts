@@ -3,7 +3,14 @@ import { createSupabaseServer } from "@/lib/supabase/server";
 export async function GET() {
 	try {
 		const supabase = await createSupabaseServer();
+		
+		// First try to get the session
+		const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+		console.log('Session check:', { session: !!session, error: sessionError });
+		
+		// If no session, try to get user directly
 		const { data: { user }, error: authError } = await supabase.auth.getUser();
+		console.log('User check:', { user: !!user, error: authError });
 		
 		if (authError || !user) {
 			console.log('Authentication error:', authError);
