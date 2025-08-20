@@ -213,7 +213,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
                     <h4 className="font-medium text-gray-900">{selectedCard.name}</h4>
                     <p className="text-sm text-gray-600">ID: {selectedCard.id}</p>
                   </div>
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-end justify-between gap-3">
                     <div>
                       <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
                         Quantity
