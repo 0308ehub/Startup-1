@@ -46,11 +46,39 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
     };
   }, [isOpen, onClose]);
 
+  // Load initial cards when modal opens
+  useEffect(() => {
+    if (isOpen && searchTerm.length < 2) {
+      const loadInitialCards = async () => {
+        setLoading(true);
+        try {
+          const params = new URLSearchParams();
+          params.append('limit', '20'); // Load 20 popular cards initially
+          
+          const response = await fetch(`/api/tcgplayer/cards?${params}`);
+          
+          if (response.ok) {
+            const data = await response.json();
+            if (data.success) {
+              setSearchResults(data.data);
+            }
+          }
+        } catch (error) {
+          console.error('Error loading initial cards:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      loadInitialCards();
+    }
+  }, [isOpen]);
+
   // Search for cards
   useEffect(() => {
     const searchCards = async () => {
       if (searchTerm.length < 2) {
-        setSearchResults([]);
+        // Don't clear results when search term is short - keep showing initial cards
         return;
       }
 
@@ -58,7 +86,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
       try {
         const params = new URLSearchParams();
         params.append('search', searchTerm);
-        params.append('limit', '10');
+        params.append('limit', '20');
         
         const response = await fetch(`/api/tcgplayer/cards?${params}`);
         
@@ -135,59 +163,63 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
           </div>
 
           {/* Search Results */}
-          {searchTerm.length >= 2 && (
-            <div className="mb-4 flex-1 min-h-0">
-              <h3 className="text-lg font-semibold mb-3">Search Results</h3>
-              {loading ? (
-                <div className="text-center py-4">
-                  <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
-                  <p className="mt-2 text-gray-600">Searching...</p>
-                </div>
-              ) : searchResults.length > 0 ? (
-                <div className="space-y-2 max-h-48 overflow-y-auto">
-                  {searchResults.map((card) => (
-                    <div
-                      key={card.id}
-                      onClick={() => handleCardSelect(card)}
-                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
-                        selectedCard?.id === card.id 
-                          ? 'border-blue-500 bg-blue-50' 
-                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="relative w-12 h-16 flex-shrink-0">
-                          {card.imageUrl ? (
-                            <Image
-                              src={card.imageUrl}
-                              alt={card.name}
-                              fill
-                              className="object-cover rounded"
-                            />
-                          ) : (
-                            <div className="w-full h-full bg-gray-200 rounded flex items-center justify-center">
-                              <span className="text-xs text-gray-500">No Image</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-medium text-gray-900">{card.name}</h4>
-                          <p className="text-sm text-gray-600">ID: {card.id}</p>
-                        </div>
-                        {selectedCard?.id === card.id && (
-                          <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
+          <div className="mb-4 flex-1 min-h-0">
+            <h3 className="text-lg font-semibold mb-3">
+              {searchTerm.length >= 2 ? 'Search Results' : 'Popular Cards'}
+            </h3>
+            {loading ? (
+              <div className="text-center py-4">
+                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
+                <p className="mt-2 text-gray-600">
+                  {searchTerm.length >= 2 ? 'Searching...' : 'Loading cards...'}
+                </p>
+              </div>
+            ) : searchResults.length > 0 ? (
+              <div className="space-y-2 max-h-48 overflow-y-auto">
+                {searchResults.map((card) => (
+                  <div
+                    key={card.id}
+                    onClick={() => handleCardSelect(card)}
+                    className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                      selectedCard?.id === card.id 
+                        ? 'border-blue-500 bg-blue-50' 
+                        : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-12 h-16 flex-shrink-0">
+                        {card.imageUrl ? (
+                          <Image
+                            src={card.imageUrl}
+                            alt={card.name}
+                            fill
+                            className="object-cover rounded"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-gray-200 rounded flex items-center justify-center">
+                            <span className="text-xs text-gray-500">No Image</span>
+                          </div>
                         )}
                       </div>
+                      <div className="flex-1">
+                        <h4 className="font-medium text-gray-900">{card.name}</h4>
+                        <p className="text-sm text-gray-600">ID: {card.id}</p>
+                      </div>
+                      {selectedCard?.id === card.id && (
+                        <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      )}
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-gray-600 text-center py-4">No cards found</p>
-              )}
-            </div>
-          )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600 text-center py-4">
+                {searchTerm.length >= 2 ? 'No cards found' : 'No cards available'}
+              </p>
+            )}
+          </div>
 
           {/* Selected Card Details */}
           {selectedCard && (
