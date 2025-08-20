@@ -98,7 +98,7 @@ export default function CardModal({
         {hasPrev && (
           <button
             onClick={() => onNavigate('prev')}
-            className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
             aria-label="Previous card"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@ export default function CardModal({
         {hasNext && (
           <button
             onClick={() => onNavigate('next')}
-            className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
             aria-label="Next card"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
