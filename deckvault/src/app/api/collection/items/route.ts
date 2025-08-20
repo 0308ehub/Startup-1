@@ -45,7 +45,13 @@ export async function POST(req: NextRequest) {
 			finalCollection = newCollection;
 			console.log('Created new collection:', finalCollection.id);
 		} else {
-			console.log('Found existing collection:', finalCollection.id);
+			console.log('Found existing collection:', finalCollection?.id);
+		}
+
+		// Ensure we have a valid collection
+		if (!finalCollection) {
+			console.error('No collection available after creation/retrieval');
+			return Response.json({ error: 'Failed to get or create collection' }, { status: 500 });
 		}
 
 		// First, check if the card exists in our cards table
