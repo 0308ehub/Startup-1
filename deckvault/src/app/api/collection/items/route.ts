@@ -22,12 +22,13 @@ export async function POST(req: NextRequest) {
 		console.log('Adding card to collection:', { cardId, cardName, quantity });
 
 		// Get or create the user's collection
-		let { data: collection, error: collectionError } = await supabase
+		const { data: collection, error: collectionError } = await supabase
 			.from('collections')
 			.select('id')
 			.eq('user_id', user.id)
 			.single();
 
+		let finalCollection = collection;
 		if (collectionError || !collection) {
 			console.log('Collection not found, creating new collection for user:', user.id);
 			// Try to create collection if it doesn't exist
@@ -41,10 +42,10 @@ export async function POST(req: NextRequest) {
 				console.error('Error creating collection:', createError);
 				return Response.json({ error: 'Failed to create collection' }, { status: 500 });
 			}
-			collection = newCollection;
-			console.log('Created new collection:', collection.id);
+			finalCollection = newCollection;
+			console.log('Created new collection:', finalCollection.id);
 		} else {
-			console.log('Found existing collection:', collection.id);
+			console.log('Found existing collection:', finalCollection.id);
 		}
 
 		// First, check if the card exists in our cards table
@@ -113,7 +114,7 @@ export async function POST(req: NextRequest) {
 		const { data: existingItem } = await supabase
 			.from('collection_items')
 			.select('id, quantity')
-			.eq('collection_id', collection.id)
+			.eq('collection_id', finalCollection.id)
 			.eq('card_set_id', cardSet.id)
 			.single();
 
@@ -140,7 +141,7 @@ export async function POST(req: NextRequest) {
 			const { data: newItem, error: insertError } = await supabase
 				.from('collection_items')
 				.insert({
-					collection_id: collection.id,
+					collection_id: finalCollection.id,
 					card_set_id: cardSet.id,
 					quantity: quantity
 				})
