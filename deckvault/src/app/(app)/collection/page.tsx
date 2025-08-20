@@ -18,7 +18,14 @@ interface CollectionItem {
   price: number;
   priceChange?: number;
   lastUpdated: string;
+  cardType?: string; // Monster, Spell, Trap
+  level?: number; // Monster level (1-12)
+  attribute?: string; // Monster attribute
+  race?: string; // Monster race
 }
+
+type CardTypeFilter = 'all' | 'monster' | 'spell' | 'trap';
+type LevelFilter = 'all' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
 
 export default function CollectionPage() {
   const [collection, setCollection] = useState<CollectionItem[]>([]);
@@ -27,6 +34,9 @@ export default function CollectionPage() {
   const [sortField, setSortField] = useState<'cardNumber' | 'cardName' | 'price' | 'rarity' | 'language'>('cardNumber');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
   const [searchTerm, setSearchTerm] = useState('');
+  const [cardTypeFilter, setCardTypeFilter] = useState<CardTypeFilter>('all');
+  const [levelFilter, setLevelFilter] = useState<LevelFilter>('all');
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     // Mock data for demonstration
@@ -105,10 +115,28 @@ export default function CollectionPage() {
     return 0;
   });
 
-  const filteredCollection = sortedCollection.filter(item =>
-    item.cardName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.cardNumber.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCollection = sortedCollection.filter(item => {
+    // Search filter
+    const matchesSearch = searchTerm === '' || 
+      item.cardName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.cardNumber.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Card type filter
+    const matchesCardType = cardTypeFilter === 'all' || 
+      (item.cardType && item.cardType.toLowerCase() === cardTypeFilter);
+    
+    // Level filter (only applies to monsters)
+    const matchesLevel = levelFilter === 'all' || 
+      (cardTypeFilter === 'monster' && item.level && item.level.toString() === levelFilter);
+    
+    return matchesSearch && matchesCardType && matchesLevel;
+  });
+
+  const clearFilters = () => {
+    setCardTypeFilter('all');
+    setLevelFilter('all');
+    setSearchTerm('');
+  };
 
   const totalCards = collection.reduce((sum, item) => sum + item.quantity, 0);
   const totalValue = collection.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -219,6 +247,32 @@ export default function CollectionPage() {
         </div>
         
         <div className="flex items-center gap-2">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
+            </svg>
+            Filters
+            {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+              <span className="bg-blue-500 text-white text-xs px-1.5 py-0.5 rounded-full">
+                {(cardTypeFilter !== 'all' ? 1 : 0) + (levelFilter !== 'all' ? 1 : 0)}
+              </span>
+            )}
+          </button>
+
+          {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+            <button
+              onClick={clearFilters}
+              className="text-sm text-gray-600 hover:text-gray-800 underline"
+            >
+              Clear
+            </button>
+          )}
+        </div>
+        
+        <div className="flex items-center gap-2">
           <button className="p-2 hover:bg-gray-100 rounded">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
@@ -266,6 +320,76 @@ export default function CollectionPage() {
           Customize column
         </button>
       </div>
+
+      {/* Filter Panel */}
+      {showFilters && (
+        <div className="bg-gray-50 p-4 rounded-lg border mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Card Type Filter */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Card Type
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {(['all', 'monster', 'spell', 'trap'] as const).map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setCardTypeFilter(type)}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      cardTypeFilter === type
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                    }`}
+                  >
+                    {type.charAt(0).toUpperCase() + type.slice(1)}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Level Filter (only show for monsters) */}
+            {cardTypeFilter === 'monster' && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Monster Level
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {(['all', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as const).map((level) => (
+                    <button
+                      key={level}
+                      onClick={() => setLevelFilter(level)}
+                      className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                        levelFilter === level
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      {level === 'all' ? 'All Levels' : `${level}★`}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Filter Status */}
+      {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+        <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
+          <span>Filtered by:</span>
+          {cardTypeFilter !== 'all' && (
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+              {cardTypeFilter.charAt(0).toUpperCase() + cardTypeFilter.slice(1)}
+            </span>
+          )}
+          {levelFilter !== 'all' && cardTypeFilter === 'monster' && (
+            <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+              Level {levelFilter}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* Collection Table */}
       <Card>
@@ -413,8 +537,31 @@ export default function CollectionPage() {
          isOpen={isAddCardModalOpen}
          onClose={() => setIsAddCardModalOpen(false)}
          onAddCard={(cardData: { card: { id: string; name: string; imageUrl: string }; quantity: number }) => {
-           // Add card to collection logic here
-           console.log('Adding card:', cardData);
+           // Check if card already exists in collection
+           const existingCardIndex = collection.findIndex(item => item.cardId === cardData.card.id);
+           
+           if (existingCardIndex !== -1) {
+             // Card already exists - update quantity
+             const updatedCollection = [...collection];
+             updatedCollection[existingCardIndex].quantity += cardData.quantity;
+             setCollection(updatedCollection);
+           } else {
+             // Add new card to collection
+             const newCard: CollectionItem = {
+               id: Date.now().toString(), // Generate unique ID
+               cardId: cardData.card.id,
+               cardName: cardData.card.name,
+               cardImage: cardData.card.imageUrl,
+               setCode: 'Unknown', // Will be updated when we get more card details
+               cardNumber: `ID-${cardData.card.id}`,
+               rarity: 'Unknown',
+               language: 'EN',
+               quantity: cardData.quantity,
+               price: 0, // Will be fetched from pricing API
+               lastUpdated: new Date().toISOString().split('T')[0]
+             };
+             setCollection([...collection, newCard]);
+           }
            setIsAddCardModalOpen(false);
          }}
        />

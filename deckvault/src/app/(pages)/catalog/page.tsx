@@ -14,11 +14,18 @@ interface TCGPlayerCard {
   url: string;
   modifiedOn: string;
   imageCount: number;
+  cardType?: string; // Monster, Spell, Trap
+  level?: number; // Monster level (1-12)
+  attribute?: string; // Monster attribute
+  race?: string; // Monster race
 }
 
 interface CardWithPrice extends TCGPlayerCard {
   price?: number;
 }
+
+type CardTypeFilter = 'all' | 'monster' | 'spell' | 'trap';
+type LevelFilter = 'all' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
 
 export default function CatalogPage() {
   const [cards, setCards] = useState<CardWithPrice[]>([]);
@@ -34,6 +41,9 @@ export default function CatalogPage() {
   const [selectedCard, setSelectedCard] = useState<CardWithPrice | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCardIndex, setSelectedCardIndex] = useState<number>(0);
+  const [cardTypeFilter, setCardTypeFilter] = useState<CardTypeFilter>('all');
+  const [levelFilter, setLevelFilter] = useState<LevelFilter>('all');
+  const [showFilters, setShowFilters] = useState(false);
 
   const ITEMS_PER_PAGE = 100;
 
@@ -170,6 +180,30 @@ export default function CatalogPage() {
     }
   };
 
+  // Filter cards based on search term, card type, and level
+  const filteredCards = cards.filter(card => {
+    // Search filter
+    const matchesSearch = searchTerm === '' || 
+      card.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      card.cleanName.toLowerCase().includes(searchTerm.toLowerCase());
+    
+    // Card type filter
+    const matchesCardType = cardTypeFilter === 'all' || 
+      (card.cardType && card.cardType.toLowerCase() === cardTypeFilter);
+    
+    // Level filter (only applies to monsters)
+    const matchesLevel = levelFilter === 'all' || 
+      (cardTypeFilter === 'monster' && card.level && card.level.toString() === levelFilter);
+    
+    return matchesSearch && matchesCardType && matchesLevel;
+  });
+
+  const clearFilters = () => {
+    setCardTypeFilter('all');
+    setLevelFilter('all');
+    setSearchTerm('');
+  };
+
   const fetchPrices = async (cardIds: string[]) => {
     try {
       setPricesLoading(true);
@@ -215,18 +249,101 @@ export default function CatalogPage() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-4">Yu-Gi-Oh! Card Catalog</h1>
         
-        {/* Search Bar */}
-        <div className="relative max-w-md mb-6">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for cards (e.g., 'Blue-Eyes')..."
-            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
-          />
-          {searchLoading && (
-            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+        {/* Search and Filter Bar */}
+        <div className="flex flex-col gap-4 mb-6">
+          {/* Search Bar */}
+          <div className="relative max-w-md">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search for cards (e.g., 'Blue-Eyes')..."
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
+            />
+            {searchLoading && (
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
+              </div>
+            )}
+          </div>
+
+          {/* Filter Controls */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setShowFilters(!showFilters)}
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z" />
+              </svg>
+              Filters
+              {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+                <span className="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                  {(cardTypeFilter !== 'all' ? 1 : 0) + (levelFilter !== 'all' ? 1 : 0)}
+                </span>
+              )}
+            </button>
+
+            {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+              <button
+                onClick={clearFilters}
+                className="text-sm text-gray-600 hover:text-gray-800 underline"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
+
+          {/* Filter Panel */}
+          {showFilters && (
+            <div className="bg-gray-50 p-4 rounded-lg border">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Card Type Filter */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Card Type
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {(['all', 'monster', 'spell', 'trap'] as const).map((type) => (
+                      <button
+                        key={type}
+                        onClick={() => setCardTypeFilter(type)}
+                        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                          cardTypeFilter === type
+                            ? 'bg-blue-500 text-white'
+                            : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                        }`}
+                      >
+                        {type.charAt(0).toUpperCase() + type.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Level Filter (only show for monsters) */}
+                {cardTypeFilter === 'monster' && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Monster Level
+                    </label>
+                    <div className="flex flex-wrap gap-2">
+                      {(['all', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'] as const).map((level) => (
+                        <button
+                          key={level}
+                          onClick={() => setLevelFilter(level)}
+                          className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                            levelFilter === level
+                              ? 'bg-blue-500 text-white'
+                              : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'
+                          }`}
+                        >
+                          {level === 'all' ? 'All Levels' : `${level}★`}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
@@ -236,6 +353,23 @@ export default function CatalogPage() {
           <p className="text-sm text-gray-600 mb-4">
             {searchTerm ? `Searching for "${searchTerm}"...` : 'Showing all cards...'}
           </p>
+        )}
+
+        {/* Filter Status */}
+        {(cardTypeFilter !== 'all' || levelFilter !== 'all') && (
+          <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
+            <span>Filtered by:</span>
+            {cardTypeFilter !== 'all' && (
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                {cardTypeFilter.charAt(0).toUpperCase() + cardTypeFilter.slice(1)}
+              </span>
+            )}
+            {levelFilter !== 'all' && cardTypeFilter === 'monster' && (
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                Level {levelFilter}
+              </span>
+            )}
+          </div>
         )}
       </div>
 
@@ -255,7 +389,7 @@ export default function CatalogPage() {
       ) : (
         <>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 mb-8">
-            {cards.map((card) => (
+            {filteredCards.map((card) => (
               <div 
                 key={card.id} 
                 className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-200 bg-white cursor-pointer transform hover:-translate-y-1"
@@ -331,9 +465,9 @@ export default function CatalogPage() {
           )}
 
           {/* Results Count */}
-          {cards.length > 0 && (
+          {filteredCards.length > 0 && (
             <div className="text-center text-sm text-gray-600 mt-4">
-              Showing {cards.length} card{cards.length !== 1 ? 's' : ''}
+              Showing {filteredCards.length} of {cards.length} card{filteredCards.length !== 1 ? 's' : ''}
               {isSearching && searchTerm && ` for "${searchTerm}"`}
             </div>
           )}

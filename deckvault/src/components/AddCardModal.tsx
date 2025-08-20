@@ -104,7 +104,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 max-h-[80vh] overflow-hidden">
+      <div className="relative bg-white rounded-lg shadow-2xl max-w-2xl w-full mx-4 max-h-[90vh] overflow-hidden">
         {/* Close button */}
         <button
           onClick={onClose}
@@ -115,11 +115,11 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
           </svg>
         </button>
 
-        <div className="p-6">
+        <div className="p-6 flex flex-col h-full">
           <h2 className="text-2xl font-bold mb-6">Add Card to Collection</h2>
           
           {/* Search Input */}
-          <div className="mb-6">
+          <div className="mb-4">
             <label htmlFor="card-search" className="block text-sm font-medium text-gray-700 mb-2">
               Search for a card
             </label>
@@ -136,7 +136,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
 
           {/* Search Results */}
           {searchTerm.length >= 2 && (
-            <div className="mb-6">
+            <div className="mb-4 flex-1 min-h-0">
               <h3 className="text-lg font-semibold mb-3">Search Results</h3>
               {loading ? (
                 <div className="text-center py-4">
@@ -144,7 +144,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
                   <p className="mt-2 text-gray-600">Searching...</p>
                 </div>
               ) : searchResults.length > 0 ? (
-                <div className="space-y-2 max-h-60 overflow-y-auto">
+                <div className="space-y-2 max-h-48 overflow-y-auto">
                   {searchResults.map((card) => (
                     <div
                       key={card.id}
@@ -191,7 +191,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
 
           {/* Selected Card Details */}
           {selectedCard && (
-            <div className="mb-6 p-4 border border-gray-200 rounded-lg">
+            <div className="mb-4 p-4 border border-gray-200 rounded-lg bg-gray-50">
               <h3 className="text-lg font-semibold mb-3">Selected Card</h3>
               <div className="flex items-center gap-4">
                 <div className="relative w-16 h-20 flex-shrink-0">
@@ -232,7 +232,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
           )}
 
           {/* Action Buttons */}
-          <div className="flex justify-end gap-3">
+          <div className="flex justify-end gap-3 pt-4 border-t">
             <button
               onClick={onClose}
               className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
