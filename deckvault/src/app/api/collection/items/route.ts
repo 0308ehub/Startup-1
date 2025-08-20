@@ -108,25 +108,40 @@ export async function POST(req: NextRequest) {
 
 		// If card set doesn't exist, create it
 		if (cardSetError || !existingCardSet) {
+			console.log('Creating new card set for card:', card.id);
+			const cardSetData = {
+				card_id: card.id,
+				set_code: 'DEFAULT',
+				set_name: 'Default Set',
+				rarity: 'Common',
+				sku: `${cardId}_DEFAULT`
+			};
+			console.log('Card set data:', cardSetData);
+			
 			const { data: newCardSet, error: insertCardSetError } = await supabase
 				.from('card_sets')
-				.insert({
-					card_id: card.id,
-					set_code: 'DEFAULT',
-					set_name: 'Default Set',
-					rarity: 'Common',
-					sku: `${cardId}_DEFAULT`
-				})
+				.insert(cardSetData)
 				.select('id')
 				.single();
 
 			if (insertCardSetError) {
 				console.error('Error creating card set:', insertCardSetError);
-				return Response.json({ error: 'Failed to create card set' }, { status: 500 });
+				console.error('Error details:', {
+					message: insertCardSetError.message,
+					details: insertCardSetError.details,
+					hint: insertCardSetError.hint,
+					code: insertCardSetError.code
+				});
+				return Response.json({ 
+					error: 'Failed to create card set',
+					details: insertCardSetError.message 
+				}, { status: 500 });
 			}
 			cardSet = newCardSet;
+			console.log('Successfully created card set:', cardSet.id);
 		} else {
 			cardSet = existingCardSet;
+			console.log('Using existing card set:', cardSet.id);
 		}
 
 		// Check if the card is already in the collection
