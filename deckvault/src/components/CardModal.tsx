@@ -23,49 +23,94 @@ interface CardModalProps {
   card: CardWithPrice | null;
   isOpen: boolean;
   onClose: () => void;
+  allCards: CardWithPrice[];
+  currentIndex: number;
+  onNavigate: (direction: 'prev' | 'next') => void;
+  clickedPosition?: { x: number; y: number };
 }
 
-export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
+export default function CardModal({ 
+  card, 
+  isOpen, 
+  onClose, 
+  allCards, 
+  currentIndex, 
+  onNavigate,
+  clickedPosition 
+}: CardModalProps) {
   const [imageError, setImageError] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   // Reset image error when card changes
   useEffect(() => {
     setImageError(false);
   }, [card?.id]);
 
-  // Handle escape key
+  // Handle escape key and arrow keys
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        onNavigate('prev');
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        onNavigate('next');
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      
+      // Start expand animation
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 300);
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onNavigate]);
 
   if (!isOpen || !card) return null;
 
   const tcgPlayerLink = TCGPLAYER_CONFIG.generateCardLink(card.name, card.id);
+  const hasPrev = currentIndex > 0;
+  const hasNext = currentIndex < allCards.length - 1;
+
+  // Calculate initial position for expand animation
+  const getInitialTransform = () => {
+    if (!clickedPosition) return 'scale(0.8) translateY(20px)';
+    
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    const deltaX = (centerX - clickedPosition.x) / centerX;
+    const deltaY = (centerY - clickedPosition.y) / centerY;
+    
+    return `scale(0.8) translate(${deltaX * 50}px, ${deltaY * 50}px)`;
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
+        className={`absolute inset-0 bg-black transition-all duration-300 ${
+          isAnimating ? 'bg-opacity-30' : 'bg-opacity-50'
+        } backdrop-blur-sm`}
         onClick={onClose}
       />
       
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden">
+      <div 
+        className={`relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden transition-all duration-300 ${
+          isAnimating 
+            ? `transform ${getInitialTransform()} opacity-0` 
+            : 'transform scale-100 translate-y-0 opacity-100'
+        }`}
+      >
         {/* Close button */}
         <button
           onClick={onClose}
@@ -75,6 +120,31 @@ export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
+
+        {/* Navigation Arrows */}
+        {hasPrev && (
+          <button
+            onClick={() => onNavigate('prev')}
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            aria-label="Previous card"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        )}
+
+        {hasNext && (
+          <button
+            onClick={() => onNavigate('next')}
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors"
+            aria-label="Next card"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        )}
 
         <div className="flex flex-col lg:flex-row h-full">
           {/* Left side - Card Image */}
@@ -106,6 +176,10 @@ export default function CardModal({ card, isOpen, onClose }: CardModalProps) {
             <div className="mb-6">
               <h2 className="text-2xl font-bold text-gray-900 mb-2">{card.name}</h2>
               <p className="text-gray-600">Product ID: {card.id}</p>
+              {/* Navigation indicator */}
+              <p className="text-sm text-gray-500 mt-1">
+                {currentIndex + 1} of {allCards.length}
+              </p>
             </div>
 
             {/* Action Buttons */}

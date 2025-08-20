@@ -33,6 +33,8 @@ export default function CatalogPage() {
   const [pricesLoading, setPricesLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState<CardWithPrice | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCardIndex, setSelectedCardIndex] = useState<number>(0);
+  const [clickedPosition, setClickedPosition] = useState<{ x: number; y: number } | undefined>();
 
   const ITEMS_PER_PAGE = 100;
 
@@ -142,14 +144,38 @@ export default function CatalogPage() {
     setImageErrors(prev => new Set(prev).add(cardId));
   };
 
-  const handleCardClick = (card: CardWithPrice) => {
+  const handleCardClick = (card: CardWithPrice, event: React.MouseEvent) => {
+    const index = cards.findIndex(c => c.id === card.id);
+    setSelectedCardIndex(index);
     setSelectedCard(card);
     setIsModalOpen(true);
+    
+    // Capture click position for expand animation
+    setClickedPosition({
+      x: event.clientX,
+      y: event.clientY
+    });
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setSelectedCard(null);
+    setClickedPosition(undefined);
+  };
+
+  const handleNavigate = (direction: 'prev' | 'next') => {
+    let newIndex = selectedCardIndex;
+    
+    if (direction === 'prev' && selectedCardIndex > 0) {
+      newIndex = selectedCardIndex - 1;
+    } else if (direction === 'next' && selectedCardIndex < cards.length - 1) {
+      newIndex = selectedCardIndex + 1;
+    }
+    
+    if (newIndex !== selectedCardIndex) {
+      setSelectedCardIndex(newIndex);
+      setSelectedCard(cards[newIndex]);
+    }
   };
 
   const fetchPrices = async (cardIds: string[]) => {
@@ -241,7 +267,7 @@ export default function CatalogPage() {
               <div 
                 key={card.id} 
                 className="border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-lg hover:scale-105 transition-all duration-200 bg-white cursor-pointer transform hover:-translate-y-1"
-                onClick={() => handleCardClick(card)}
+                onClick={(e) => handleCardClick(card, e)}
               >
                 <div className="relative aspect-[3/4] bg-gray-100">
                   {card.imageUrl && !imageErrors.has(card.id) ? (
@@ -327,6 +353,10 @@ export default function CatalogPage() {
         card={selectedCard}
         isOpen={isModalOpen}
         onClose={handleCloseModal}
+        allCards={cards}
+        currentIndex={selectedCardIndex}
+        onNavigate={handleNavigate}
+        clickedPosition={clickedPosition}
       />
     </div>
   );
