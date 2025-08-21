@@ -1,4 +1,5 @@
 import { createSupabaseServer } from '@/lib/supabase/server';
+import { NextRequest } from 'next/server';
 
 
 
@@ -118,20 +119,20 @@ export async function GET() {
 		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
-				// Use the same price API route that catalog and AddCardModal use
-				const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/tcgplayer/prices`, {
+				// Import and call the price API function directly (same as catalog)
+				const { POST: priceApiHandler } = await import('../tcgplayer/prices/route');
+				
+				// Create a mock request object for the price API
+				const mockRequest = new NextRequest('http://localhost:3000/api/tcgplayer/prices', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 					body: JSON.stringify({ productIds }),
 				});
-
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-
-				const data = await response.json();
+				
+				const priceResponse = await priceApiHandler(mockRequest);
+				const data = await priceResponse.json();
 				console.log('Price API response:', data);
 				
 				if (data.success) {
