@@ -119,14 +119,64 @@ export async function GET() {
 				// Import the price API function directly instead of making an HTTP request
 				const { tcgPlayerAPI } = await import('@/lib/tcgplayer/api');
 				
-				const pricesResponse = await tcgPlayerAPI.getSKUPrices(productIds);
+				const pricesResponse = await tcgPlayerAPI.getProductPrices(productIds);
 				console.log('Direct API response:', pricesResponse);
 				
-				if (pricesResponse.success) {
-					prices = pricesResponse.data;
+				// Process the pricing data similar to the price API route
+				if (pricesResponse && pricesResponse.length > 0) {
+					// Group results by product ID and extract the best price
+					const productGroups = new Map<number, any[]>();
+					
+					pricesResponse.forEach((result: any) => {
+						if (!productGroups.has(result.productId)) {
+							productGroups.set(result.productId, []);
+						}
+						productGroups.get(result.productId)!.push(result);
+					});
+					
+					// Extract the best price for each product
+					productGroups.forEach((priceEntries: any[], productId: number) => {
+						// Filter out entries with no price data
+						const validPrices = priceEntries.filter(entry => 
+							entry.lowPrice !== null || 
+							entry.midPrice !== null || 
+							entry.highPrice !== null || 
+							entry.marketPrice !== null
+						);
+						
+						if (validPrices.length > 0) {
+							// Priority: lowPrice > directLowPrice > marketPrice > midPrice
+							let bestPrice = null;
+							
+							for (const entry of validPrices) {
+								if (entry.lowPrice !== null) {
+									if (bestPrice === null || entry.lowPrice < bestPrice) {
+										bestPrice = entry.lowPrice;
+									}
+								} else if (entry.directLowPrice !== null) {
+									if (bestPrice === null || entry.directLowPrice < bestPrice) {
+										bestPrice = entry.directLowPrice;
+									}
+								} else if (entry.marketPrice !== null) {
+									if (bestPrice === null || entry.marketPrice < bestPrice) {
+										bestPrice = entry.marketPrice;
+									}
+								} else if (entry.midPrice !== null) {
+									if (bestPrice === null || entry.midPrice < bestPrice) {
+										bestPrice = entry.midPrice;
+									}
+								}
+							}
+							
+							if (bestPrice !== null) {
+								prices[productId] = bestPrice;
+							}
+						}
+					});
+					
 					console.log('Fetched prices:', prices);
 				} else {
-					console.error('Price API returned error:', pricesResponse);
+					console.error('No pricing data returned');
 				}
 			} catch (error) {
 				console.error('Error fetching prices:', error);
