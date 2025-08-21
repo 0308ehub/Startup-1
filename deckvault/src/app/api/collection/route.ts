@@ -85,8 +85,11 @@ export async function GET() {
 			}
 
 			// Collect product IDs for price fetching
+			console.log('Card product_id:', card.product_id, 'for card:', card.name);
 			if (card.product_id) {
 				productIds.push(parseInt(card.product_id));
+			} else {
+				console.log('No product_id found for card:', card.name);
 			}
 
 			transformedItems.push({
@@ -110,6 +113,7 @@ export async function GET() {
 
 		// Fetch current prices for all cards
 		let prices: { [key: number]: number } = {};
+		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
 				const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/tcgplayer/prices`, {
@@ -122,20 +126,30 @@ export async function GET() {
 
 				if (response.ok) {
 					const data = await response.json();
+					console.log('Price API response:', data);
 					if (data.success) {
 						prices = data.data;
+						console.log('Fetched prices:', prices);
 					}
+				} else {
+					console.error('Price API error:', response.status, response.statusText);
 				}
 			} catch (error) {
 				console.error('Error fetching prices:', error);
 			}
+		} else {
+			console.log('No product IDs found for price fetching');
 		}
 
 		// Update items with current prices
-		const itemsWithPrices = transformedItems.map(item => ({
-			...item,
-			price: item.cardId ? (prices[parseInt(item.cardId)] || 0) : 0
-		}));
+		const itemsWithPrices = transformedItems.map(item => {
+			const price = item.cardId ? (prices[parseInt(item.cardId)] || 0) : 0;
+			console.log('Final price for', item.cardName, 'with cardId', item.cardId, ':', price);
+			return {
+				...item,
+				price: price
+			};
+		});
 
 		return Response.json({ items: itemsWithPrices });
 	} catch (error) {
