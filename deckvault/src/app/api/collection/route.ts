@@ -122,7 +122,7 @@ export async function GET() {
 		}
 
 		// Fetch current prices for all cards
-		let prices: { [key: number]: number } = {};
+		const prices: { [key: number]: number } = {};
 		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
@@ -156,6 +156,7 @@ export async function GET() {
 							const priceValues = Object.values(validPrices[0].prices).filter(price => price !== null && price > 0);
 							if (priceValues.length > 0) {
 								const bestPrice = Math.min(...priceValues);
+								// eslint-disable-next-line prefer-const
 								prices[productId] = bestPrice;
 							}
 						}
