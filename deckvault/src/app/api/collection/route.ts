@@ -116,7 +116,13 @@ export async function GET() {
 		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
-				const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/tcgplayer/prices`, {
+				const baseUrl = process.env.VERCEL_URL 
+					? `https://${process.env.VERCEL_URL}` 
+					: process.env.NEXT_PUBLIC_VERCEL_URL 
+					? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` 
+					: 'http://localhost:3000';
+				
+				const response = await fetch(`${baseUrl}/api/tcgplayer/prices`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
