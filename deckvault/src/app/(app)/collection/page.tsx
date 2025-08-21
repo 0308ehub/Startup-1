@@ -53,6 +53,11 @@ export default function CollectionPage() {
         if (response.ok) {
           const data = await response.json();
           console.log('Fetched collection data:', data);
+          console.log('Collection items with prices:', data.items?.map((item: any) => ({
+            name: item.cardName,
+            cardId: item.cardId,
+            price: item.price
+          })));
           setCollection(data.items || []);
           setLastPriceUpdate(new Date());
         } else {
@@ -180,6 +185,12 @@ export default function CollectionPage() {
       
       if (response.ok) {
         const data = await response.json();
+        console.log('Refresh prices - fetched data:', data);
+        console.log('Refresh prices - items with prices:', data.items?.map((item: any) => ({
+          name: item.cardName,
+          cardId: item.cardId,
+          price: item.price
+        })));
         setCollection(data.items || []);
         setLastPriceUpdate(new Date());
       }
