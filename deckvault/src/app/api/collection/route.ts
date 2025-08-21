@@ -1,5 +1,15 @@
 import { createSupabaseServer } from '@/lib/supabase/server';
 
+// Import TCGPlayer types
+interface TCGPlayerProductPricing {
+  productId: number;
+  prices: Record<string, number>;
+  skus: Array<{
+    skuId: number;
+    prices: Record<string, number>;
+  }>;
+}
+
 export async function GET() {
 	try {
 		const supabase = await createSupabaseServer();
@@ -125,9 +135,9 @@ export async function GET() {
 				// Process the pricing data similar to the price API route
 				if (pricesResponse && pricesResponse.length > 0) {
 					// Group results by product ID and extract the best price
-					const productGroups = new Map<number, any[]>();
+					const productGroups = new Map<number, TCGPlayerProductPricing[]>();
 					
-					pricesResponse.forEach((result: any) => {
+					pricesResponse.forEach((result: TCGPlayerProductPricing) => {
 						if (!productGroups.has(result.productId)) {
 							productGroups.set(result.productId, []);
 						}
@@ -135,40 +145,17 @@ export async function GET() {
 					});
 					
 					// Extract the best price for each product
-					productGroups.forEach((priceEntries: any[], productId: number) => {
+					productGroups.forEach((priceEntries: TCGPlayerProductPricing[], productId: number) => {
 						// Filter out entries with no price data
 						const validPrices = priceEntries.filter(entry => 
-							entry.lowPrice !== null || 
-							entry.midPrice !== null || 
-							entry.highPrice !== null || 
-							entry.marketPrice !== null
+							entry.prices && Object.values(entry.prices).some(price => price !== null && price > 0)
 						);
 						
 						if (validPrices.length > 0) {
-							// Priority: lowPrice > directLowPrice > marketPrice > midPrice
-							let bestPrice = null;
-							
-							for (const entry of validPrices) {
-								if (entry.lowPrice !== null) {
-									if (bestPrice === null || entry.lowPrice < bestPrice) {
-										bestPrice = entry.lowPrice;
-									}
-								} else if (entry.directLowPrice !== null) {
-									if (bestPrice === null || entry.directLowPrice < bestPrice) {
-										bestPrice = entry.directLowPrice;
-									}
-								} else if (entry.marketPrice !== null) {
-									if (bestPrice === null || entry.marketPrice < bestPrice) {
-										bestPrice = entry.marketPrice;
-									}
-								} else if (entry.midPrice !== null) {
-									if (bestPrice === null || entry.midPrice < bestPrice) {
-										bestPrice = entry.midPrice;
-									}
-								}
-							}
-							
-							if (bestPrice !== null) {
+							// Get the best price from the prices object
+							const priceValues = Object.values(validPrices[0].prices).filter(price => price !== null && price > 0);
+							if (priceValues.length > 0) {
+								const bestPrice = Math.min(...priceValues);
 								prices[productId] = bestPrice;
 							}
 						}
