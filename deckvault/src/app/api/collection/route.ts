@@ -116,29 +116,17 @@ export async function GET() {
 		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
-				const baseUrl = process.env.VERCEL_URL 
-					? `https://${process.env.VERCEL_URL}` 
-					: process.env.NEXT_PUBLIC_VERCEL_URL 
-					? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` 
-					: 'http://localhost:3000';
+				// Import the price API function directly instead of making an HTTP request
+				const { tcgPlayerAPI } = await import('@/lib/tcgplayer/api');
 				
-				const response = await fetch(`${baseUrl}/api/tcgplayer/prices`, {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({ productIds }),
-				});
-
-				if (response.ok) {
-					const data = await response.json();
-					console.log('Price API response:', data);
-					if (data.success) {
-						prices = data.data;
-						console.log('Fetched prices:', prices);
-					}
+				const pricesResponse = await tcgPlayerAPI.getSKUPrices(productIds);
+				console.log('Direct API response:', pricesResponse);
+				
+				if (pricesResponse.success) {
+					prices = pricesResponse.data;
+					console.log('Fetched prices:', prices);
 				} else {
-					console.error('Price API error:', response.status, response.statusText);
+					console.error('Price API returned error:', pricesResponse);
 				}
 			} catch (error) {
 				console.error('Error fetching prices:', error);
