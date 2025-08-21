@@ -1,14 +1,6 @@
 import { createSupabaseServer } from '@/lib/supabase/server';
 
-// Import TCGPlayer types
-interface TCGPlayerProductPricing {
-  productId: number;
-  prices: Record<string, number>;
-  skus: Array<{
-    skuId: number;
-    prices: Record<string, number>;
-  }>;
-}
+
 
 export async function GET() {
 	try {
@@ -121,50 +113,33 @@ export async function GET() {
 			});
 		}
 
-		// Fetch current prices for all cards
+		// Fetch current prices for all cards using the same approach as catalog
 		const prices: { [key: number]: number } = {};
 		console.log('Product IDs for price fetching:', productIds);
 		if (productIds.length > 0) {
 			try {
-				// Import the price API function directly instead of making an HTTP request
-				const { tcgPlayerAPI } = await import('@/lib/tcgplayer/api');
+				// Use the same price API route that catalog and AddCardModal use
+				const response = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/tcgplayer/prices`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ productIds }),
+				});
+
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+
+				const data = await response.json();
+				console.log('Price API response:', data);
 				
-				const pricesResponse = await tcgPlayerAPI.getProductPrices(productIds);
-				console.log('Direct API response:', pricesResponse);
-				
-				// Process the pricing data similar to the price API route
-				if (pricesResponse && pricesResponse.length > 0) {
-					// Group results by product ID and extract the best price
-					const productGroups = new Map<number, TCGPlayerProductPricing[]>();
-					
-					pricesResponse.forEach((result: TCGPlayerProductPricing) => {
-						if (!productGroups.has(result.productId)) {
-							productGroups.set(result.productId, []);
-						}
-						productGroups.get(result.productId)!.push(result);
-					});
-					
-					// Extract the best price for each product
-					productGroups.forEach((priceEntries: TCGPlayerProductPricing[], productId: number) => {
-						// Filter out entries with no price data
-						const validPrices = priceEntries.filter(entry => 
-							entry.prices && Object.values(entry.prices).some(price => price !== null && price > 0)
-						);
-						
-						if (validPrices.length > 0) {
-							// Get the best price from the prices object
-							const priceValues = Object.values(validPrices[0].prices).filter(price => price !== null && price > 0);
-							if (priceValues.length > 0) {
-								const bestPrice = Math.min(...priceValues);
-								// eslint-disable-next-line prefer-const
-								prices[productId] = bestPrice;
-							}
-						}
-					});
-					
+				if (data.success) {
+					// The API returns a simple object mapping product IDs to prices
+					Object.assign(prices, data.data);
 					console.log('Fetched prices:', prices);
 				} else {
-					console.error('No pricing data returned');
+					console.error('Price API returned error:', data.error);
 				}
 			} catch (error) {
 				console.error('Error fetching prices:', error);
