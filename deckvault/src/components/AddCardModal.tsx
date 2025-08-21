@@ -12,6 +12,7 @@ interface TCGPlayerCard {
   url: string;
   modifiedOn: string;
   imageCount: number;
+  price?: number;
 }
 
 interface AddCardModalProps {
@@ -26,6 +27,7 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
   const [loading, setLoading] = useState(false);
   const [selectedCard, setSelectedCard] = useState<TCGPlayerCard | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const [pricesLoading, setPricesLoading] = useState(false);
 
   // Handle escape key
   useEffect(() => {
@@ -61,6 +63,8 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
             const data = await response.json();
             if (data.success) {
               setSearchResults(data.data);
+              // Fetch prices for the initial cards
+              fetchPrices(data.data);
             }
           }
         } catch (error) {
@@ -94,6 +98,8 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
           const data = await response.json();
           if (data.success) {
             setSearchResults(data.data);
+            // Fetch prices for the search results
+            fetchPrices(data.data);
           }
         }
       } catch (error) {
@@ -109,6 +115,39 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
 
   const handleCardSelect = (card: TCGPlayerCard) => {
     setSelectedCard(card);
+  };
+
+  const fetchPrices = async (cards: TCGPlayerCard[]) => {
+    try {
+      setPricesLoading(true);
+      const cardIds = cards.map(card => parseInt(card.id));
+      
+      const response = await fetch('/api/tcgplayer/prices', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ productIds: cardIds }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          // Update cards with price information
+          setSearchResults(prevCards => 
+            prevCards.map(card => ({
+              ...card,
+              price: data.data[parseInt(card.id)] || undefined
+            }))
+          );
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching prices:', err);
+      // Don't show error to user for price fetching failures
+    } finally {
+      setPricesLoading(false);
+    }
   };
 
   const handleAddCard = () => {
@@ -203,7 +242,17 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
                       </div>
                       <div className="flex-1">
                         <h4 className="font-medium text-gray-900">{card.name}</h4>
-                        <p className="text-sm text-gray-600">ID: {card.id}</p>
+                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                          <span>ID: {card.id}</span>
+                          {card.price !== undefined && (
+                            <span className="font-medium text-green-600">
+                              ${card.price.toFixed(2)}
+                            </span>
+                          )}
+                          {pricesLoading && card.price === undefined && (
+                            <span className="text-gray-400">Loading price...</span>
+                          )}
+                        </div>
                       </div>
                       {selectedCard?.id === card.id && (
                         <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
@@ -243,7 +292,14 @@ export default function AddCardModal({ isOpen, onClose, onAddCard }: AddCardModa
                 <div className="flex-1 flex flex-col justify-between h-32">
                   <div>
                     <h4 className="font-medium text-gray-900">{selectedCard.name}</h4>
-                    <p className="text-sm text-gray-600">ID: {selectedCard.id}</p>
+                    <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <span>ID: {selectedCard.id}</span>
+                      {selectedCard.price !== undefined && (
+                        <span className="font-medium text-green-600">
+                          ${selectedCard.price.toFixed(2)}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   <div className="flex items-end justify-between gap-3">
                     <div>
